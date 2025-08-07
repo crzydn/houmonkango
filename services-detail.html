@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>サービス詳細 | ○○訪問看護ステーション</title>
+  <meta name="description" content="○○訪問看護ステーションのサービス詳細ページ。傾聴サポート、メンタルヘルスチェック、服薬管理、緊急対応、セルフケア指導、生活保護申請サポートについて詳しくご紹介します。" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    html { scroll-behavior: smooth; font-size:16px; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+
+    body { font-family:'Hiragino Sans','Noto Sans JP',sans-serif; background:#eef4f7; color:#333; line-height:1.6; }
+    a { text-decoration:none; color:inherit; }
+    .container { max-width:960px; margin:auto; padding:1rem; }
+    header { background:#4caf93; color:#fff; text-align:center; padding:1rem 0; }
+    header h1 { display:flex; justify-content:center; align-items:center; gap:0.5rem; font-size:1.8rem; }
+    nav ul { display:flex; justify-content:center; gap:1rem; list-style:none; margin-top:0.5rem; }
+    nav a { color:#fff; font-size:0.9rem; }
+    .section { background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.05); margin:1.5rem 0; padding:1.5rem; }
+    .section h2 { display:flex; align-items:center; gap:0.5rem; font-size:1.4rem; color:#4caf93; margin-bottom:1rem; }
+
+    .section p { font-size:0.95rem; margin-bottom:1rem; }
+    .contact-btn { display:inline-block; background:#00c300; color:#fff; padding:0.6rem 1.2rem; border-radius:25px; font-weight:bold; transition:background 0.3s; margin-top:1.5rem; }
+    .contact-btn:hover { background:#00a000; }
+    .back-link { display:inline-block; margin-top:1rem; color:#4caf93; font-size:0.9rem; }
+    footer { background:#4caf93; color:#fff; text-align:center; padding:1rem 0; font-size:0.85rem; }
+    @media (max-width:768px) { .section { padding:1rem; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><i class="fa-solid fa-hands-holding-heart"></i> サービス詳細</h1>
+
+    <nav>
+      <ul>
+        <li><a href="index.html#services">トップへ戻る</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="section" id="service1">
+      <h2><i class="fa-solid fa-headset"></i> 傾聴サポート</h2>
+      <p>利用者様の話にじっくり耳を傾け、安心して何でも話せる場を提供します。仕事帰りのストレスや孤独感を軽減し、心身の安定をサポートします。</p>
+    </section>
+    <section class="section" id="service2">
+      <h2><i class="fa-solid fa-heart-pulse"></i> メンタルヘルスチェック</h2>
+      <p>定期的に心の状態を評価し、不安や抑うつの兆候を早期に発見します。必要に応じて
+
+医療機関や行政機関と連携し、適切なサポートを行います。</p>
+    </section>
+    <section class="section" id="service3">
+      <h2><i class="fa-solid fa-pills"></i> 服薬管理</h2>
+      <p>お薬の飲み忘れを防ぎ、治療計画に基づいた服薬をサポートします。ご家族やご本人に合わせた管理方法を提案し、安全に治療を継続できる環境を整えます。</p>
+    </section>
+    <section class="section" id="service4">
+      <h2><i class="fa-solid fa-triangle-exclamation"></i> 緊急対応</h2>
+      <p>急な体調不良や精神的な危機的状況に迅速に対応します。24時間体制で連絡が可能、緊急度に応じた適切な措置を行い、安全を確保します。</p>
+    </section>
+    <section class="section" id="service5">
+      <h2><i class="fa-solid fa-person-walking-arrow-loop-left"></i> セルフケア指導</h2>
+
+      <p>リラクセーション法や呼吸法など、自宅でできるセルフケア技術を指導します。ストレスコントロールや心身のリラクセーションを学び、日常生活をより快適に過ごせるようサポートします。</p>
+    </section>
+    <section class="section" id="service6">
+      <h2><i class="fa-solid fa-file-circle-check"></i> 生活保護申請サポート</h2>
+      <p>生活保護申請手続きの流れを分かりやすく整理し、必要書類の作成を支援します。申請に関する不安を軽減し、安心して支援を受けられるようサポートします。</p>
+    </section>
+
+    <a href="contact-detail.html" class="contact-btn"><i class="fa-brands fa-line"></i> お問い合わせ・無料相談はこちら</a>
+    <div><a href="index.html#services" class="back-link">← サービス一覧へ戻る</a></div>
+
+  </main>
+
+  <footer>
+    <small>&copy; 2025 ○○訪問看護ステーション</small>
+  </footer>
+</body>
+</html>
