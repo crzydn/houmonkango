@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>活動地域詳細 | ○○訪問看護ステーション</title>
+  <meta name="description" content="○○訪問看護ステーションの訪問地域詳細ページ。西成区、浪速区、阿倍野区、住吉区、平野区、住之江区でのサービス提供エリアをご紹介します。" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* 共通リセット＆ベース */
+    html { scroll-behavior: smooth; font-size: 16px; }
+    * { box-sizing: border-box; margin: 0; 
+
+padding: 0; }
+    body { font-family: 'Hiragino Sans','Noto Sans JP',sans-serif; background: #eef4f7; color: #333; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    .container { width: 100%; max-width: 1024px; margin: auto; padding: 0 1rem; }
+
+    /* ヘッダー */
+    header { background: #4caf93; color: #fff; text-align: center; padding: 1rem 0; }
+    header h1 { font-size: 1.8rem; display: flex; justify-content: center; align-items: center; gap: 0.5rem; }
+    header h1 i { font-size: 1.5rem; }
+    nav ul { display: flex; justify-content: center; gap: 1rem; margin-top: 0.5rem; }
+    nav a { color: #fff; font-size: 0.9rem; }
+
+    /* セクション */
+    .section { background: #fff; border-radius: 10px; box-shadow: 0 2px 8px 
+
+rgba(0,0,0,0.05); margin: 1.5rem 0; padding: 1.5rem; }
+    .section h2 { display: flex; align-items: center; gap: 0.5rem; font-size: 1.4rem; color: #4caf93; margin-bottom: 0.8rem; }
+    .section h2 i { font-size: 1.3rem; }
+    .section p { font-size: 0.95rem; margin-bottom: 1rem; }
+
+    /* 地域マップ */
+    .region-map img { width: 100%; height: auto; border-radius: 6px; }
+
+    /* お問い合わせボタン */
+    .contact-btn { display: inline-block; background: #00c300; color: #fff; padding: 0.6rem 1.2rem; border-radius: 25px; font-weight: bold; transition: background 0.3s; margin-top: 1rem; }
+    .contact-btn:hover { background: #00a000; }
+
+    /* 戻るリンク */
+    .back-link { display: inline-block; margin-top: 1rem; color: #4caf93; font-size: 0.9rem; }
+
+    /* フッター */
+    footer { text-align: center; padding: 1rem 0; background: #4caf93; color: #fff; font-size: 0.85rem; }
+
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+      nav ul { flex-direction: column; }
+      .section { padding: 1rem; }
+      .section h2 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><i class="fa-solid fa-map-location-dot"></i> 活動地域のご案内</h1>
+    <nav>
+
+      <ul>
+        <li><a href="index.html#region">地域一覧へ戻る</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h2><i class="fa-solid fa-map-pin"></i> 西成区</h2>
+      <p>一人暮らしの方や生活保護受給中の方が多く暮らす地域です。地域に根ざした訪問看護で、夜間対応や緊急時のケアにも迅速に対応します。</p>
+    </section>
+    <section class="section">
+      <h2><i class="fa-solid fa-map-pin"></i> 浪速区</h2>
+      <p>繁華街に近いエリアで、仕事帰りの夜間訪問を希望される方に最適です。夜間・早朝の対応もお問い合わせください。</p>
+
+    </section>
+    <section class="section">
+      <h2><i class="fa-solid fa-map-pin"></i> 阿倍野区</h2>
+      <p>住宅街が広がる地域。地域の医療機関と連携しながら、在宅療養を続ける方に安心のサポートを提供します。</p>
+    </section>
+    <section class="section">
+      <h2><i class="fa-solid fa-map-pin"></i> 住吉区</h2>
+      <p>ファミリー層や高齢者が多いエリアです。ご家族支援や高齢者ケアにも対応し、安心した在宅生活をサポートします。</p>
+    </section>
+    <section class="section">
+      <h2><i class="fa-solid fa-map-pin"></i> 平野区</h2>
+      <p>医療機関と密接に連携し、定期訪問による安定したケアを提供しています。不規則勤務の方への柔軟な対応も可能です。</p>
+    </section>
+
+    <section class="section">
+      <h2><i class="fa-solid fa-map-pin"></i> 住之江区</h2>
+      <p>港湾地域や工業地帯も含む広範囲エリア。勤務時間が不規則な方や企業への訪問支援も行っています。</p>
+    </section>
+    <section class="section">
+      <h2><i class="fa-solid fa-globe"></i> その他地域の対応</h2>
+      <p>大阪市内全域、さらには近隣の市町村にお住まいの方も、まずはお気軽にご相談ください。可能な場合は対応エリアを拡大したり、提携先をご紹介します。</p>
+    </section>
+    <a href="contact-detail.html" class="contact-btn"><i class="fa-brands fa-line"></i> お問い合わせ・無料相談はこちら</a>
+  </main>
+
+  <footer>
+
+    <small>&copy; 2025 ○○訪問看護ステーション</small>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>スタッフ紹介 | ○○訪問看護ステーション</title>
+  <meta name="description" content="○○訪問看護ステーションのスタッフ紹介ページ。経験豊富な男性・女性看護師のプロフィールと対応時間を掲載しています。">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    html { scroll-behavior: smooth; font-size:16px; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'Hiragino Sans','Noto 
+
+Sans JP',sans-serif; background:#eef4f7; color:#333; }
+    a { text-decoration:none; color:inherit; }
+    .container { max-width:960px; margin:auto; padding:1rem; }
+    header { background:#4caf93; color:#fff; text-align:center; padding:1rem 0; }
+    header h1 { display:flex; justify-content:center; align-items:center; gap:0.5rem; font-size:1.8rem; }
+    nav ul { display:flex; justify-content:center; gap:1rem; list-style:none; margin-top:0.5rem; }
+    nav a { color:#fff; font-size:0.9rem; }
+    .staff-list { display:flex; flex-wrap:wrap; gap:1rem; margin:1rem 0; }
+    .staff-card { background:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.05); padding:1rem; text-align:center; flex:1 1 calc(50% - 1rem); }
+    .staff-card img { width:120px; height:120px; object-fit:cover; border-
+
+radius:50%; margin-bottom:0.5rem; }
+    .staff-card h3 { font-size:1.2rem; color:#4caf93; margin-bottom:0.3rem; }
+    .staff-card p { font-size:0.95rem; line-height:1.4; }
+    .table-responsive { overflow-x:auto; margin:1.5rem 0; }
+    table { width:100%; border-collapse:collapse; }
+    th, td { border:1px solid #ddd; padding:0.8rem; text-align:center; }
+    th { background:#4caf93; color:#fff; }
+    .badge-ok { background:#4caf93; color:#fff; padding:3px 6px; border-radius:4px; font-size:0.8rem; }
+    .badge-consult { background:#ff9800; color:#fff; padding:3px 6px; border-radius:4px; font-size:0.8rem; }
+    .contact-btn { display:inline-block; background:#00c300; color:#fff; padding:0.6rem 1.2rem; border-radius:25px; font-weight:bold; margin-top:1rem; }
+
+    .contact-btn:hover { background:#00a000; }
+    .back-link { display:inline-block; margin-top:1rem; color:#4caf93; font-size:0.9rem; }
+    footer { background:#4caf93; color:#fff; text-align:center; padding:1rem 0; margin-top:2rem; }
+    @media(max-width:768px){ .staff-card { flex:1 1 100%; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><i class="fa-solid fa-user-nurse"></i> スタッフ紹介</h1>
+    <nav>
+      <ul><li><a href="index.html#staff">トップへ戻る</a></li></ul>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section class="staff-list">
+      <div class="staff-card">
+        <img src="https://via.placeholder.com/120" alt="男性看護師：田中太郎">
+        <h3>田中 太郎</h3>
+        <p>精神科訪問看護師。落ち着いた雰囲気で安心感を提供。傾聴力に定評があります。</p>
+      </div>
+      <div class="staff-card">
+        <img src="https://via.placeholder.com/120" alt="女性看護師：佐藤花子">
+        <h3>佐藤 花子</h3>
+        <p>精神科訪問看護師。温かい対応で心に寄り添います。生活保護申請サポートも得意。</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2><i class="fa-solid fa-clock"></i> 男女別・時間帯対応表</h2>
+
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>時間帯</th><th>男性看護師</th><th>女性看護師</th></tr></thead>
+          <tbody>
+            <tr><td data-label="時間帯">08:00〜12:00</td><td data-label="男性"><span class="badge-ok">対応可</span></td><td data-label="女性"><span class="badge-ok">対応可</span></td></tr>
+            <tr><td>12:00〜16:00</td><td><span class="badge-ok">対応可</span></td><td><span class="badge-ok">対応可</span></td></tr>
+            <tr><td>16:00〜20:00</td><td><span class="badge-ok">対応可</span></td><td><span class="badge-consult">要相談</span></td></tr>
+            <tr><td>20:00〜24:00</td><td><span class="badge-consult">要相談</span></td><td><span class="badge-ok">
+
+対応可</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <a href="contact-detail.html" class="contact-btn"><i class="fa-brands fa-line"></i> お問い合わせ・無料相談はこちら</a>
+    <div><a href="index.html#staff" class="back-link">← トップへ戻る</a></div>
+  </main>
+
+  <footer>
+    <small>&copy; 2025 ○○訪問看護ステーション</small>
+  </footer>
+</body>
+</html>
