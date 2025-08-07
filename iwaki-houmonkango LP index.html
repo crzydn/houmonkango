@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大阪市西成区の精神科訪問看護なら○○訪問看護ステーション</title>
+  <meta name="description" content="大阪市西成区で24時間対応の精神科訪問看護ステーション。仕事帰りの傾聴サポートから生活保護申請まで専門看護師が寄り添います。">
+  <meta name="keywords" content="大阪市,西成区,精神科訪問看護,訪問看護,生活保護申請,メンタルヘルス">
+  <meta property="og:title" content="大阪市西成区の精神科訪問看護なら○○訪問看護ステーション">
+
+  <meta property="og:description" content="精神科訪問看護を通じて、心に寄り添うサポートを行います。24時間365日対応可能。">
+  <meta property="og:image" content="https://example.com/ogp.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}  
+
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXX');
+  </script>
+
+<style>
+  html { scroll-behavior: smooth; font-size: 16px; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Hiragino Sans','Noto Sans JP',sans-serif; background: #eef4f7; color: #333; line-height: 1.6; }
+  a { text-decoration: none; color: inherit; }
+  .container { width: 100%; max-width: 1024px; margin: auto; padding: 0 1rem; }
+
+  /* ===== ヘッダー ===== */
+  header { position: sticky; top: 0; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.1); z-index: 1000; }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; 
+
+padding: 0.5rem 1rem; }
+  .logo img { height: 36px; }
+  .nav-toggle { display: none; font-size: 1.4rem; cursor: pointer; }
+  nav ul { display: flex; gap: 1rem; }
+  nav li { list-style: none; }
+  nav a { font-size: 0.9rem; padding: 0.4rem; transition: color 0.3s; }
+  nav a:hover { color: #4caf93; }
+  .header-btn { background: #00c300; color: #fff; padding: 0.4rem 0.8rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem; }
+
+  @media (max-width: 768px) {
+    .nav-toggle { display: block; }
+    nav { position: absolute; top: 100%; left: 0; width: 100%; background: #fff; display: none; flex-direction: column; }
+    nav.active { display: flex; }
+    nav ul { flex-direction: column; }
+    nav li + li { border-top: 1px solid #eee; }
+    nav a { padding: 0.8rem; }
+
+  }
+
+  /* ===== ヒーローセクション ===== */
+  .hero { position: relative; background: url('https://example.com/hero.jpg') center/cover no-repeat; text-align: center; color: #fff; padding: calc(2.5rem + 60px) 1rem 2rem; }
+  .hero::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
+  .hero .content { position: relative; z-index: 1; max-width: 800px; margin: auto; }
+  .hero h1 { font-size: 1.8rem; margin-bottom: 0.8rem; line-height: 1.2; }
+  .hero p { font-size: 1rem; margin-bottom: 1.2rem; }
+  .btn-primary { background: #fff; color: #4caf93; padding: 0.8rem 1.6rem; border-radius: 25px; font-weight: 600; font-size: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2); transition: transform 0.3s; }
+  .btn-primary:hover { transform: 
+
+translateY(-2px); }
+  .hero-small { font-size: 0.85rem; opacity: 0.8; margin-top: 0.5rem; }
+
+  /* ===== 各セクション共通 ===== */
+  .section { background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin: 1.5rem 0; padding: 1.5rem; }
+  .section h2 { font-size: 1.4rem; color: #4caf93; margin-bottom: 1rem; position: relative; }
+  .section h2::after { content: ''; display: block; width: 50px; height: 3px; background: #4caf93; border-radius: 2px; position: absolute; bottom: -6px; left: 0; }
+
+  /* ===== カード ===== */
+  .cards { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+  .card { flex: 1 1 calc(50% - 0.8rem); background: #fafafa; padding: 0.8rem; 
+
+border-radius: 6px; box-shadow: 0 1px 6px rgba(0,0,0,0.05); }
+  .card h3 { font-size: 1.1rem; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem; }
+  .card p { font-size: 0.9rem; }
+  .cute-icon { font-size: 1.5rem; color: #4caf93; margin-right: 0.5rem; }
+
+  /* ===== 活動地域 ===== */
+  .region-map img { width: 100%; height: auto; border-radius: 6px; }
+  .region-list { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1rem; }
+  .region-list li { background: #4caf93; color: #fff; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 0.9rem; }
+
+  /* ===== ニュースティッカー ===== */
+  .news-ticker { background: #e8f8f0; overflow: hidden; border-radius: 8px; }
+  .ticker { display: inline-block; white-space: 
+
+nowrap; transform: translateX(0); }
+  .ticker span { display: inline-block; padding: 0.5rem 2rem; color: #000; }
+
+  /* ===== ダウンロードボタン ===== */
+  .btn-download { background: linear-gradient(135deg, #4caf93, #3e9b7d); color: #fff; padding: 0.6rem 1.2rem; border-radius: 25px; font-size: 0.95rem; transition: transform 0.3s; }
+  .btn-download:hover { transform: translateY(-2px); }
+
+  /* ===== テーブル ===== */
+  .table-responsive { overflow-x: auto; margin-bottom: 1.5rem; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { border: 1px solid #ddd; padding: 0.6rem; text-align: center; font-size: 0.9rem; }
+  th { background: #4caf93; color: #fff; }
+  tbody tr:nth-child(odd) { background: 
+
+#f5f5f5; }
+  @media (max-width: 768px) {
+    table, thead, tbody, th, td, tr { display: block; }
+    thead tr { display: none; }
+    tbody tr { margin-bottom: 0.8rem; }
+    td { position: relative; padding-left: 50%; text-align: right; }
+    td::before { content: attr(data-label); position: absolute; left: 0.8rem; width: calc(50% - 1.6rem); text-align: left; font-weight: bold; }
+  }
+
+  /* ===== バッジ ===== */
+  .badge-ok { background: #4caf93; color: #fff; padding: 3px 6px; border-radius: 4px; font-size: 0.8rem; }
+  .badge-consult { background: #ff9800; color: #fff; padding: 3px 6px; border-radius: 4px; font-size: 0.8rem; }
+
+  /* ===== モーダル ===== */
+  .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; }
+  .modal-content { background: #fff; margin: 5% auto; padding: 0.8rem; width: 90%; max-width: 720px; border-radius: 6px; position: relative; }
+  .modal-close { position: absolute; top: 8px; right: 8px; font-size: 1.4rem; cursor: pointer; }
+  .modal-content iframe { width: 100%; height: 70vh; border: none; }
+
+  /* ===== LINE浮動ボタン ===== */
+  .floating-line { position: fixed; bottom: 16px; right: 16px; width: 52px; height: 52px; background: #00c300; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .floating-line a { color: #fff; font-size: 1.3rem; }
+
+  /* ===== フッター ===== */
+  footer { text-align: center; padding: 1rem 0; background: #4caf93; color: #fff; font-size: 0.85rem; }
+
+  /* ===== スマホ調整 ===== */
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 1.4rem; }
+    .hero p { font-size: 0.9rem; }
+    .cards { gap: 0.5rem; }
+    .card { padding: 0.6rem; }
+    .region-list li { font-size: 0.85rem; padding: 0.3rem 0.6rem; }
+  }
+</style>
+  
+</head>
+<body>
+  <!-- ===== ヘッダー ===== -->
+  <header>
+    <div class="container header-inner">
+      <div class="logo"><img src="https://
+
+example.com/logo.svg" alt="○○訪問看護"></div>
+      <i class="fa fa-bars nav-toggle"></i>
+      <nav>
+        <ul>
+          <li><a href="#hero">ホーム</a></li>
+          <li><a href="#services">サービス</a></li>
+          <li><a href="#region">活動地域</a></li>
+          <li><a href="#fees">料金表</a></li>
+          <li><a href="#contracts">契約書</a></li>
+          <li><a href="#staff">スタッフ対応</a></li>
+          <li><a href="#contact" class="header-btn"><i class="fa-brands fa-line"></i> 無料相談</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- ===== ヒーローセクション ===== -->
+  <section id="hero" class="hero">
+    <div class="content container">
+      <h1>「今日も一人で頑張ったな…」そんな夜を、少しでも安心に包みたい。</h1>
+      <p>大阪市西成区で仕事帰りの“聴き手”や、生活保護支援を求めるあなたへ。
+      <br>専門の精神科看護師が、誰にも話せない心の声に寄り添います。</p>
+      <a href="#contact" class="btn-primary"><i class="fa-brands fa-line"></i> 無料相談</a>
+      <div class="hero-small">LINE・電話・メールでお気軽にどうぞ</div>
+    </div>
+  </section>
+
+  <!-- ===== メインコンテンツ ===== -->
+  <main class="container">
+    <!-- サービス -->
+    <section id="services" class="section">
+
+      <h2><i class="fa-solid fa-brain"></i> 精神科訪問看護でできること</h2>
+      <div class="cards">
+        <div class="card"><h3><i class="fa-solid fa-headset cute-icon"></i> 傾聴サポート</h3><p>仕事帰りの疲れや孤独感、何でもお気軽にお話しください。</p></div>
+        <div class="card"><h3><i class="fa-solid fa-heart-pulse cute-icon"></i> メンタルヘルスチェック</h3><p>不安や抑うつ状態を定期的に確認し、早期対応を行います。</p></div>
+        <div class="card"><h3><i class="fa-solid fa-pills cute-icon"></i> 服薬管理</h3><p>お薬の飲み忘れを防ぎ、安心して治療を継続できるようサポート。</p><span class="badge-ok">守秘義務厳守</span></div>
+        <div class="card"><h3><i class="fa-solid fa-triangle-exclamation cute-icon"></i> 緊急対応</h3><p>急な不調時には迅速に対応し、安全を確保します。</p><span 
+
+class="badge-consult">24時間対応</span></div>
+        <div class="card"><h3><i class="fa-solid fa-person-walking-arrow-loop-left cute-icon"></i> セルフケア指導</h3><p>簡単な呼吸法やリラクセーション技法をお伝えします。</p></div>
+        <div class="card"><h3><i class="fa-solid fa-file-circle-check cute-icon"></i> 生活保護申請サポート</h3><p>申請手続きを一緒に整理し、不安を軽減します。</p><span class="badge-ok">無料相談</span></div>
+      </div>
+      <p style="text-align:right; margin-top:1rem;"><a href="services-detail.html" class="btn-primary">詳しく見る →</a></p>
+    </section>
+
+    <!-- 活動地域 -->
+    <section id="region" class="section">
+      <h2><i class="fa-solid fa-map-location-dot"></i> 活動地域</h2>
+
+      <div class="region-map"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Osaka_city_in_Osaka_prefecture_Japan.svg/640px-Osaka_city_in_Osaka_prefecture_Japan.svg.png" alt="大阪市活動地域図"></div>
+      <ul class="region-list">
+        <li>西成区</li>
+        <li>浪速区</li>
+        <li>阿倍野区</li>
+        <li>住吉区</li>
+        <li>平野区</li>
+        <li>住之江区</li>
+      </ul>
+      <p style="text-align:right; margin-top:1rem;"><a href="region-detail.html" class="btn-primary">詳しく見る →</a></p>
+    </section>
+
+    <!-- お知らせ -->
+    <section id="news" class="section">
+
+      <h2><i class="fa-solid fa-newspaper"></i> おしらせ</h2>
+      <div class="news-ticker"><div class="ticker">
+        <span>2025.07.09 くるみのアトリエ25号発行しました。</span>
+        <span>2025.03.30 LINE対応開始しました。</span>
+        <span>2025.02.06 くるみのアトリエ20号発行しました。</span>
+        <span>2025.01.10 看護記録開示公開しました。</span>
+      </div></div>
+    </section>
+
+    <!-- 料金表 -->
+    <section id="fees" class="section">
+      <h2><i class="fa-solid fa-file-invoice-dollar"></i> 料金表</h2>
+      <a href="#" class="btn-download" onclick="openModal('modal-fees')"><i class="fa-solid fa-file-pdf"></i> PDFを見る</
+
+a>
+      <p style="text-align:right; margin-top:1rem;"><a href="fees-detail.html" class="btn-primary">詳しく見る →</a></p>
+    </section>
+
+    <!-- 契約書 -->
+    <section id="contracts" class="section">
+      <h2><i class="fa-solid fa-file-contract"></i> 契約書</h2>
+      <a href="#" class="btn-download" onclick="openModal('modal-contracts')"><i class="fa-solid fa-file-contract"></i> PDFを見る</a>
+      <p style="text-align:right; margin-top:1rem;"><a href="contracts-detail.html" class="btn-primary">詳しく聞く →</a></p>
+    </section>
+
+    <!-- スタッフ対応 -->
+    <section id="staff" class="section">
+      <h2><i class="fa-solid fa-user-nurse"></
+
+i> スタッフ訪問対応</h2>
+      <div class="table-responsive"><table>
+        <thead><tr><th>時間帯</th><th>男性看護師</th><th>女性看護師</th></tr></thead>
+        <tbody>
+          <tr><td data-label="時間帯">08:00〜12:00</td><td data-label="男性看護師"><span class="badge-ok">対応可</span></td><td data-label="女性看護師"><span class="badge-ok">対応可</span></td></tr>
+          <tr><td>12:00〜16:00</td><td><span class="badge-ok">対応可</span></td><td><span class="badge-ok">対応可</span></td></tr>
+          <tr><td>16:00〜20:00</td><td><span class="badge-ok">対応可</span></td><td><span class="badge-consult">要相談</span></td></tr>
+          <tr><td>20:00〜24:00</td><td><span class="badge-consult">要相談</span></td><td><span class="badge-ok">対応可</
+
+span></td></tr>
+        </tbody>
+      </table></div>
+      <p style="text-align:right; margin-top:1rem;"><a href="staff-detail.html" class="btn-primary">詳しく見る →</a></p>
+    </section>
+
+    <!-- お問い合わせ -->
+    <section id="contact" class="section">
+      <h2><i class="fa-solid fa-comments"></i> お問い合わせ</h2>
+      <p>LINE・電話・メールで24時間受付中。ご相談ください。</p>
+      <div style="margin-top:1rem;"><a href="https://line.me/ti/p/XXXXXXXX" class="btn-primary" target="_blank"><i class="fa-brands fa-line"></i> LINEで相談</a></div>
+      <p style="margin-top:1rem; font-size:0.9rem;">
+        <i class="fa-solid fa-phone"></i> <a 
+
+href="tel:06-XXXX-XXXX">06-XXXX-XXXX</a><br>
+        <i class="fa-solid fa-envelope"></i> <a href="mailto:info@example.com">info@example.com</a>
+      </p>
+    </section>
+<!-- 各種SNS -->
+    <section id="sns" class="section">
+      <h2><i class="fa-solid fa-hashtag"></i> 各種SNS</h2>
+      <p>最新情報や日々の様子をSNSでも発信しています。ぜひフォローしてください。</p>
+      <div class="cards">
+        <div class="card" style="text-align:center;">
+          <a href="https://line.me/ti/p/XXXXXXXX" target="_blank">
+            <i class="fa-brands fa-line cute-icon" style="font-size:2rem;"></i>
+            <h3>LINE公式アカウント</h3>
+            <p>チャットで気軽にご相談</p>
+
+          </a>
+        </div>
+        <div class="card" style="text-align:center;">
+          <a href="https://twitter.com/xxxxxxxx" target="_blank">
+            <i class="fa-brands fa-x-twitter cute-icon" style="font-size:2rem;"></i>
+            <h3>X（旧Twitter）</h3>
+            <p>最新のお知らせを配信</p>
+          </a>
+        </div>
+        <div class="card" style="text-align:center;">
+          <a href="https://www.instagram.com/xxxxxxxx" target="_blank">
+            <i class="fa-brands fa-instagram cute-icon" style="font-size:2rem;"></i>
+            <h3>Instagram</h3>
+            <p>活動風景や日常を写真で</p>
+          </a>
+        </div>
+
+        <div class="card" style="text-align:center;">
+          <a href="https://www.facebook.com/xxxxxxxx" target="_blank">
+            <i class="fa-brands fa-facebook-f cute-icon" style="font-size:2rem;"></i>
+            <h3>Facebook</h3>
+            <p>地域の方との交流や情報発信</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 求人募集 -->
+    <section id="careers" class="section">
+      <h2><i class="fa-solid fa-briefcase"></i> 求人募集</h2>
+      <p>私たちと一緒に働きませんか？精神科訪問看護に興味のある看護師を募集しています。未経験OK・週1日〜勤務可。</p>
+      <ul style="list-style:disc; margin:0.8rem 0 1rem 1.2rem;">
+
+        <li>職種：正看護師／准看護師</li>
+        <li>雇用形態：常勤・非常勤</li>
+        <li>勤務地：大阪市西成区エリア（直行直帰可）</li>
+        <li>給与：経験・資格により応相談</li>
+        <li>待遇：交通費支給・社会保険完備（条件あり）</li>
+      </ul>
+      <p style="text-align:right;"><a href="recruit-detail.html" class="btn-primary">詳しく見る →</a></p>
+    </section>
+
+    <!-- 関連会社 -->
+    <section id="partners" class="section">
+      <h2><i class="fa-solid fa-building"></i> 関連会社</h2>
+      <p>当ステーションは以下の関連企業と連携し、包括的なケアを提供しています。</p>
+      <ul style="list-style:disc; margin:0.8rem 0 1rem 1.2rem;">
+        <li><a href="https://
+
+kurumi.makecare.co.jp/" target="_blank">株式会社○○メディカルサービス（訪問介護）</a></li>
+        <li><a href="#" target="_blank">合同会社○○ライフケア（福祉用具レンタル）</a></li>
+        <li><a href="#" target="_blank">社会福祉法人○○会（地域支援事業）</a></li>
+      </ul>
+      <p style="text-align:right;"><a href="related-detail.html" class="btn-primary">詳しく見る →</a></p>
+    </section>
+  </main>
+
+  <!-- モーダル -->
+  <div id="modal-fees" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('modal-fees')">×</span>
+      <iframe src="fees.pdf"></iframe>
+    </div>
+
+  </div>
+  <div id="modal-contracts" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('modal-contracts')">×</span>
+      <iframe src="contracts.pdf"></iframe>
+    </div>
+  </div>
+
+  <!-- 浮動LINEボタン -->
+  <div class="floating-line">
+    <a href="https://line.me/ti/p/XXXXXXXX" target="_blank">
+      <i class="fa-brands fa-line"></i>
+    </a>
+  </div>
+
+  <!-- フッター -->
+  <footer>
+    <small>&copy; 2025 ○○訪問看護ステーション</small>
+
+  </footer>
+
+  <!-- スクリプト -->
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', () => {
+      document.querySelector('nav').classList.toggle('active');
+    });
+    function openModal(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+    (function tickerScroll(){
+      const ticker = 
+
+document.querySelector('.ticker');
+      let x = ticker.parentElement.clientWidth;
+      function move(){
+        x--;
+        if(x < -ticker.offsetWidth) x = ticker.parentElement.clientWidth;
+        ticker.style.transform = `translateX(${x}px)`;
+        requestAnimationFrame(move);
+      }
+      move();
+    })();
+  </script>
+</body>
+</html>
