@@ -77,44 +77,44 @@ nav a:hover, nav a:focus { color:#2b8f6e; outline:none; }
   color: #333;
 }
 
-/* ===== mobile: nav slides out from right (修正版：上寄せ) ===== */
+/* ===== mobile: nav slides out from right (修正版) ===== */
 @media (max-width: 768px) {
   .logo img { height:44px; }
-  .nav-toggle { display:inline-flex; align-items:center; justify-content:center; }
+  .nav-toggle { display:inline-flex; align-items:center; justify-content:center; z-index: 3500; }
 
-  /* nav is fixed, hidden off-canvas to the right */
+  /* nav: off-canvas right, but items placed near top */
   nav {
     position: fixed;
     top: 0;
-    right: -100%; /* hidden */
+    right: -100%; /* hidden off-canvas */
     height: 100vh;
     width: 320px;
     max-width: 86%;
     background: #fff;
     display:flex;
     flex-direction:column;
-    align-items:flex-start;       /* 上寄せを強制 */
-    padding: 0.9rem 1rem 1rem 1rem;/* トップ余白を小さく */
+    align-items:flex-start;
+    /* 小さめの top padding + 内部見出しエリアの余白を小さく */
+    padding: 1.0rem 1rem;
     box-shadow: -6px 0 18px rgba(0,0,0,0.08);
     transition: right 0.28s ease;
-    z-index: 3000;
+    z-index: 3200;
   }
   nav.active { right: 0; }
-
-  /* optional close btn position (if present in HTML) */
+  /* optional close button inside nav (if you add it in HTML) */
   nav .nav-close {
     background: transparent;
     border: none;
     font-size: 1.6rem;
     color: #444;
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 10px;
+    right: 10px;
     padding: 8px;
     cursor: pointer;
   }
 
-  /* メニュー項目は上から自然に並ぶ（margin-topは小さめ） */
+  /* 項目を上寄せに：ul の余白は小さく、すぐにメニューが来るように */
   nav ul { flex-direction: column; align-items:stretch; width:100%; gap:0; margin-top: 0.6rem; }
   nav a { padding: 0.9rem 1rem; border-radius:6px; display:block; color:#214a3b; }
   nav li + li { margin-top: 0.25rem; }
@@ -159,68 +159,84 @@ nav a:hover, nav a:focus { color:#2b8f6e; outline:none; }
 .btn-download { background: linear-gradient(135deg,#2b8f6e,#1f7a63); color:#fff; padding:0.6rem 1rem; border-radius:25px; font-size:0.95rem; display:inline-flex; gap:0.5rem; align-items:center; }
 .btn-download:hover { transform: translateY(-3px); }
 
-/* ===== テーブル（改善：スマホ崩れ対策） ===== */
+/* ===== テーブル（改善：モバイルで崩れないグリッド化） ===== */
 .table-responsive { overflow-x:auto; margin-bottom:1.5rem; }
-table { width:100%; border-collapse:collapse; table-layout:auto; word-break:normal; }
-th, td { border:1px solid #e6e6e6; padding:0.75rem; text-align:center; font-size:0.95rem; vertical-align:middle; }
+table { width:100%; border-collapse:collapse; /* table-layout: auto; */ }
+th, td { border:1px solid #e6e6e6; padding:0.75rem; text-align:center; font-size:0.95rem; vertical-align:middle; word-break: normal; overflow-wrap: anywhere; }
 th { background:#e8f9f1; color:#214a3b; font-weight:700; }
 tbody tr:nth-child(odd) { background:#fbfdfc; }
 
-/* 列幅はPCでの推奨値 */
+/* desktop 列幅の目安 */
 th:nth-child(1), td:nth-child(1) { width:52%; }
 th:nth-child(2), td:nth-child(2) { width:24%; }
 th:nth-child(3), td:nth-child(3) { width:24%; }
 
-/* prevent characters from breaking vertically in time cells on desktop & mobile unless necessary */
-table td:first-child { white-space: nowrap; }
-
-/* モバイルでのテーブル表示（改良版）:
-   各 tr をカード化し、順に
-   - time cell（幅100%、nowrap）
-   - 男性看護師 cell（幅100%、バッジは右寄せ）
-   - 女性看護師 cell（幅100%、バッジは右寄せ）
-*/
+/* モバイル時はテーブルを block にするのではなく、各 tbody tr を grid にして安定表示 */
 @media (max-width:768px) {
-  table, thead, tbody, th, td, tr { display:block; }
-  thead tr { display:none; }
-
+  thead { display:none; }
   tbody tr {
-    display:block;
-    margin-bottom:0.9rem;
-    border-radius:8px;
-    overflow:visible;
-    box-shadow:0 1px 4px rgba(0,0,0,0.03);
-    background:#fff;
-    border:1px solid #eee;
+    display: grid;
+    grid-template-columns: 1fr auto; /* 左にラベル（時間帯）、右に状態（男性/女性） */
+    gap: 0;
+    padding: 0;
+    margin-bottom: 0.9rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    background: #fff;
+    align-items: stretch;
   }
 
-  /* 時間セル：上部・太字で nowrap（縦に割れないように） */
-  tbody tr td:first-child {
-    display:block;
-    padding:0.9rem 0.9rem;
-    text-align:left;
+  /* 各行の中をさらにグリッドで分ける（時間帯+2つのスタッフ行を縦に） */
+  tbody tr td {
+    display: block;
+    padding: 0; /* 各セル内で子を調整するため */
+    border: none; /* 見た目はカードで囲むので個別の線は不要 */
+  }
+
+  /* ラッパー：1列目（時間帯） */
+  tbody tr td.timecell {
+    padding: 0.85rem 0.9rem;
+    border: 1px solid #e6e6e6;
+    border-right: none;
+    text-align: left;
     font-weight:700;
-    color:#214a3b;
-    white-space:nowrap;
-    border-bottom:1px solid #f1f1f1;
+    background: #fff;
   }
 
-  /* 各対応セルは行幅いっぱいを使いバッジは右に寄せる */
-  tbody tr td:nth-child(n+2) {
+  /* 右側は男性/女性の2ブロックを縦に並べる */
+  tbody tr td.staffcell {
+    padding: 0.6rem;
+    border: 1px solid #e6e6e6;
+    border-left: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    align-items: flex-end; /* バッジを右寄せ */
+    justify-content: center;
+    background: #fbfdfc;
+  }
+
+  /* individual staff box */
+  .staff-box {
+    width: 100%;
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 0.65rem;
+    border-radius: 6px;
     display:flex;
     align-items:center;
-    justify-content:space-between; /* 左テキスト / 右バッジ */
-    padding:0.85rem 0.9rem;
-    text-align:left;
-    white-space:normal;
-    border-bottom:1px solid #f7f7f7;
+    justify-content:space-between;
+    gap: 0.6rem;
   }
+  .staff-box .label { font-weight:700; color:#333; }
+  .staff-box .badge { margin-left: 8px; }
 
-  /* 最後のセルの下線を消す */
-  tbody tr td:last-child { border-bottom: none; }
+  /* small screens: ensure text wraps nicely */
+  tbody tr td, .staff-box { font-size: 0.95rem; }
 
-  /* バッジの余白を安定化 */
-  .badge-ok, .badge-consult { margin: 0; transform:none; }
+  /* remove default table row borders to make card-like */
+  table, tbody, tr, td { border: none; background: transparent; }
 }
 
 /* ===== バッジ ===== */
@@ -233,8 +249,6 @@ table td:first-child { white-space: nowrap; }
 .modal-content { background:#fff; margin:0 auto; padding:1rem; width:100%; max-width:840px; border-radius:10px; position:relative; box-shadow:0 12px 36px rgba(0,0,0,0.14); }
 .modal-close { position:absolute; top:12px; right:12px; font-size:1.2rem; cursor:pointer; background:transparent; border:none; color:#666; padding:6px; border-radius:6px; }
 .modal-close:focus { box-shadow:0 0 0 4px rgba(43,143,110,0.12); }
-
-/* modal iframe */
 .modal-content iframe { width:100%; height:70vh; border:none; border-radius:6px; }
 
 /* ===== 浮動LINEボタン ===== */
