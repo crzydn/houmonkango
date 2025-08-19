@@ -77,29 +77,31 @@ nav a:hover, nav a:focus { color:#2b8f6e; outline:none; }
   color: #333;
 }
 
-/* ===== mobile: nav slides out from right ===== */
+/* ===== mobile: nav slides out from right (修正版：上寄せ) ===== */
 @media (max-width: 768px) {
   .logo img { height:44px; }
   .nav-toggle { display:inline-flex; align-items:center; justify-content:center; }
 
-  /* nav is hidden by default, slides from right */
+  /* nav is fixed, hidden off-canvas to the right */
   nav {
     position: fixed;
     top: 0;
-    right: -100%; /* hidden off-canvas */
+    right: -100%; /* hidden */
     height: 100vh;
     width: 320px;
     max-width: 86%;
     background: #fff;
     display:flex;
     flex-direction:column;
-    align-items:flex-start;
-    padding: 1.2rem 1rem; /* 小さめのtop padding: 項目が上に寄る */
+    align-items:flex-start;       /* 上寄せを強制 */
+    padding: 0.9rem 1rem 1rem 1rem;/* トップ余白を小さく */
     box-shadow: -6px 0 18px rgba(0,0,0,0.08);
     transition: right 0.28s ease;
     z-index: 3000;
   }
   nav.active { right: 0; }
+
+  /* optional close btn position (if present in HTML) */
   nav .nav-close {
     background: transparent;
     border: none;
@@ -111,8 +113,9 @@ nav a:hover, nav a:focus { color:#2b8f6e; outline:none; }
     padding: 8px;
     cursor: pointer;
   }
-  nav ul { flex-direction: column; align-items:stretch; width:100%; gap:0; margin-top: 6rem; /* 少し余白をタイトル領域分確保 */ }
-  /* もしメニューをより上に出したければ margin-top を小さくしてください */
+
+  /* メニュー項目は上から自然に並ぶ（margin-topは小さめ） */
+  nav ul { flex-direction: column; align-items:stretch; width:100%; gap:0; margin-top: 0.6rem; }
   nav a { padding: 0.9rem 1rem; border-radius:6px; display:block; color:#214a3b; }
   nav li + li { margin-top: 0.25rem; }
   nav .header-btn { margin-top:0.6rem; width:calc(100% - 2rem); justify-content:center; }
@@ -156,30 +159,68 @@ nav a:hover, nav a:focus { color:#2b8f6e; outline:none; }
 .btn-download { background: linear-gradient(135deg,#2b8f6e,#1f7a63); color:#fff; padding:0.6rem 1rem; border-radius:25px; font-size:0.95rem; display:inline-flex; gap:0.5rem; align-items:center; }
 .btn-download:hover { transform: translateY(-3px); }
 
-/* ===== テーブル（改善） ===== */
+/* ===== テーブル（改善：スマホ崩れ対策） ===== */
 .table-responsive { overflow-x:auto; margin-bottom:1.5rem; }
-table { width:100%; border-collapse:collapse; /* table-layout を auto にして自然な折返しに */ }
-th, td { border:1px solid #e6e6e6; padding:0.75rem; text-align:center; font-size:0.95rem; vertical-align:middle; word-break: normal; overflow-wrap: normal; }
+table { width:100%; border-collapse:collapse; table-layout:auto; word-break:normal; }
+th, td { border:1px solid #e6e6e6; padding:0.75rem; text-align:center; font-size:0.95rem; vertical-align:middle; }
 th { background:#e8f9f1; color:#214a3b; font-weight:700; }
 tbody tr:nth-child(odd) { background:#fbfdfc; }
 
-/* 列幅は推奨（PC） */
+/* 列幅はPCでの推奨値 */
 th:nth-child(1), td:nth-child(1) { width:52%; }
 th:nth-child(2), td:nth-child(2) { width:24%; }
 th:nth-child(3), td:nth-child(3) { width:24%; }
 
-/* prevent characters from breaking vertically in time cells */
+/* prevent characters from breaking vertically in time cells on desktop & mobile unless necessary */
 table td:first-child { white-space: nowrap; }
 
-/* モバイルでのテーブル見せ方 */
+/* モバイルでのテーブル表示（改良版）:
+   各 tr をカード化し、順に
+   - time cell（幅100%、nowrap）
+   - 男性看護師 cell（幅100%、バッジは右寄せ）
+   - 女性看護師 cell（幅100%、バッジは右寄せ）
+*/
 @media (max-width:768px) {
   table, thead, tbody, th, td, tr { display:block; }
   thead tr { display:none; }
-  tbody tr { margin-bottom:0.9rem; border-radius:8px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.03); background:#fff; }
-  td { position:relative; padding-left:50%; text-align:right; white-space: normal; } /* allow wrapping in small screens for long labels */
-  td::before { content: attr(data-label); position:absolute; left:0.9rem; width:calc(50% - 1.8rem); text-align:left; font-weight:700; color:#333; }
-  /* ensure first column still readable */
-  td:first-child { padding-left:0.9rem; text-align:left; }
+
+  tbody tr {
+    display:block;
+    margin-bottom:0.9rem;
+    border-radius:8px;
+    overflow:visible;
+    box-shadow:0 1px 4px rgba(0,0,0,0.03);
+    background:#fff;
+    border:1px solid #eee;
+  }
+
+  /* 時間セル：上部・太字で nowrap（縦に割れないように） */
+  tbody tr td:first-child {
+    display:block;
+    padding:0.9rem 0.9rem;
+    text-align:left;
+    font-weight:700;
+    color:#214a3b;
+    white-space:nowrap;
+    border-bottom:1px solid #f1f1f1;
+  }
+
+  /* 各対応セルは行幅いっぱいを使いバッジは右に寄せる */
+  tbody tr td:nth-child(n+2) {
+    display:flex;
+    align-items:center;
+    justify-content:space-between; /* 左テキスト / 右バッジ */
+    padding:0.85rem 0.9rem;
+    text-align:left;
+    white-space:normal;
+    border-bottom:1px solid #f7f7f7;
+  }
+
+  /* 最後のセルの下線を消す */
+  tbody tr td:last-child { border-bottom: none; }
+
+  /* バッジの余白を安定化 */
+  .badge-ok, .badge-consult { margin: 0; transform:none; }
 }
 
 /* ===== バッジ ===== */
