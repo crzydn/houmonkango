@@ -160,84 +160,19 @@ nav a:hover, nav a:focus { color:#2b8f6e; outline:none; }
 .btn-download:hover { transform: translateY(-3px); }
 
 /* ===== テーブル（改善：モバイルで崩れないグリッド化） ===== */
-.table-responsive { overflow-x:auto; margin-bottom:1.5rem; }
-table { width:100%; border-collapse:collapse; /* table-layout: auto; */ }
-th, td { border:1px solid #e6e6e6; padding:0.75rem; text-align:center; font-size:0.95rem; vertical-align:middle; word-break: normal; overflow-wrap: anywhere; }
-th { background:#e8f9f1; color:#214a3b; font-weight:700; }
-tbody tr:nth-child(odd) { background:#fbfdfc; }
+.staff-card { background:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.05); padding:1rem; text-align:center; flex:1 1 calc(50% - 1rem); }
+    .staff-card img { width:120px; height:120px; object-fit:cover; border-
 
-/* desktop 列幅の目安 */
-th:nth-child(1), td:nth-child(1) { width:52%; }
-th:nth-child(2), td:nth-child(2) { width:24%; }
-th:nth-child(3), td:nth-child(3) { width:24%; }
+radius:50%; margin-bottom:0.5rem; }
+    .staff-card h3 { font-size:1.2rem; color:#4caf93; margin-bottom:0.3rem; }
+    .staff-card p { font-size:0.95rem; line-height:1.4; }
+    .table-responsive { overflow-x:auto; margin:1.5rem 0; }
+    table { width:100%; border-collapse:collapse; }
+    th, td { border:1px solid #ddd; padding:0.8rem; text-align:center; }
+    th { background:#4caf93; color:#fff; }
+    .badge-ok { background:#4caf93; color:#fff; padding:3px 6px; border-radius:4px; font-size:0.8rem; }
 
-/* モバイル時はテーブルを block にするのではなく、各 tbody tr を grid にして安定表示 */
-@media (max-width:768px) {
-  thead { display:none; }
-  tbody tr {
-    display: grid;
-    grid-template-columns: 1fr auto; /* 左にラベル（時間帯）、右に状態（男性/女性） */
-    gap: 0;
-    padding: 0;
-    margin-bottom: 0.9rem;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-    background: #fff;
-    align-items: stretch;
-  }
-
-  /* 各行の中をさらにグリッドで分ける（時間帯+2つのスタッフ行を縦に） */
-  tbody tr td {
-    display: block;
-    padding: 0; /* 各セル内で子を調整するため */
-    border: none; /* 見た目はカードで囲むので個別の線は不要 */
-  }
-
-  /* ラッパー：1列目（時間帯） */
-  tbody tr td.timecell {
-    padding: 0.85rem 0.9rem;
-    border: 1px solid #e6e6e6;
-    border-right: none;
-    text-align: left;
-    font-weight:700;
-    background: #fff;
-  }
-
-  /* 右側は男性/女性の2ブロックを縦に並べる */
-  tbody tr td.staffcell {
-    padding: 0.6rem;
-    border: 1px solid #e6e6e6;
-    border-left: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
-    align-items: flex-end; /* バッジを右寄せ */
-    justify-content: center;
-    background: #fbfdfc;
-  }
-
-  /* individual staff box */
-  .staff-box {
-    width: 100%;
-    background: #fff;
-    border: 1px solid #eee;
-    padding: 0.65rem;
-    border-radius: 6px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap: 0.6rem;
-  }
-  .staff-box .label { font-weight:700; color:#333; }
-  .staff-box .badge { margin-left: 8px; }
-
-  /* small screens: ensure text wraps nicely */
-  tbody tr td, .staff-box { font-size: 0.95rem; }
-
-  /* remove default table row borders to make card-like */
-  table, tbody, tr, td { border: none; background: transparent; }
-}
+@media(max-width:768px){ .staff-card { flex:1 1 100%; } }
 
 /* ===== バッジ ===== */
 .badge-ok { background:#2b8f6e; color:#fff; padding:6px 10px; border-radius:8px; font-size:0.86rem; display:inline-block; }
@@ -392,40 +327,16 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
     <!-- Staff -->
     <section id="staff" class="section">
       <h2><i class="fa-solid fa-user-nurse" aria-hidden="true"></i> スタッフ訪問対応</h2>
-      <div class="table-responsive" role="region" aria-label="スタッフ対応時間">
+     <div class="table-responsive">
         <table>
-          <thead>
-            <tr><th scope="col">時間帯</th><th scope="col">男性看護師</th><th scope="col">女性看護師</th></tr>
-          </thead>
+          <thead><tr><th>時間帯</th><th>男性看護師</th><th>女性看護師</th></tr></thead>
           <tbody>
-<tr>
-  <td class="timecell">08:00〜12:00</td>
-  <td class="staffcell">
-    <div class="staff-box"><span class="label">男性看護師</span><span class="badge badge-ok">対応可</span></div>
-    <div class="staff-box"><span class="label">女性看護師</span><span class="badge badge-ok">対応可</span></div>
-  </td>
-</tr>
-<tr>
-  <td class="timecell">08:00〜12:00</td>
-  <td class="staffcell">
-    <div class="staff-box"><span class="label">男性看護師</span><span class="badge badge-ok">対応可</span></div>
-    <div class="staff-box"><span class="label">女性看護師</span><span class="badge badge-ok">対応可</span></div>
-  </td>
-</tr>
-<tr>
-  <td class="timecell">08:00〜12:00</td>
-  <td class="staffcell">
-    <div class="staff-box"><span class="label">男性看護師</span><span class="badge badge-ok">対応可</span></div>
-    <div class="staff-box"><span class="label">女性看護師</span><span class="badge badge-ok">対応可</span></div>
-  </td>
-</tr>
-<tr>
-  <td class="timecell">08:00〜12:00</td>
-  <td class="staffcell">
-    <div class="staff-box"><span class="label">男性看護師</span><span class="badge badge-ok">対応可</span></div>
-    <div class="staff-box"><span class="label">女性看護師</span><span class="badge badge-ok">対応可</span></div>
-  </td>
-</tr>
+            <tr><td data-label="時間帯">08:00〜12:00</td><td data-label="男性"><span class="badge-ok">対応可</span></td><td data-label="女性"><span class="badge-ok">対応可</span></td></tr>
+            <tr><td>12:00〜16:00</td><td><span class="badge-ok">対応可</span></td><td><span class="badge-ok">対応可</span></td></tr>
+            <tr><td>16:00〜20:00</td><td><span class="badge-ok">対応可</span></td><td><span class="badge-consult">要相談</span></td></tr>
+            <tr><td>20:00〜24:00</td><td><span class="badge-consult">要相談</span></td><td><span class="badge-ok">
+
+対応可</span></td></tr>
           </tbody>
         </table>
       </div>
