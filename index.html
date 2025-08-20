@@ -66,59 +66,131 @@ nav a:hover, nav a:focus { color:#2b8f6e; outline:none; }
 }
 .header-btn i { display:inline-block; font-size:1.05rem; }
 
-/* hamburger (visible on mobile) */
-.nav-toggle {
-  display: none;
-  background: transparent;
-  border: none;
-  font-size: 1.25rem;
-  cursor: pointer;
-  padding: 0.35rem;
-  color: #333;
+/* ===== モバイルハンバーガー（新） ===== */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.36);
+  opacity: 0;
+  transition: opacity .28s ease;
+  z-index: 3100;
+  touch-action: none;
 }
 
-/* ===== mobile: nav slides out from right (修正版) ===== */
-@media (max-width: 768px) {
-  .logo img { height:44px; }
-  .nav-toggle { display:inline-flex; align-items:center; justify-content:center; z-index: 3500; }
+.nav-overlay.visible {
+  opacity: 1;
+}
 
-  /* nav: off-canvas right, but items placed near top */
-  nav {
-    position: fixed;
-    top: 0;
-    right: -100%; /* hidden off-canvas */
-    height: 100vh;
-    width: 320px;
-    max-width: 86%;
-    background: #fff;
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    /* 小さめの top padding + 内部見出しエリアの余白を小さく */
-    padding: 1.0rem 1rem;
-    box-shadow: -6px 0 18px rgba(0,0,0,0.08);
-    transition: right 0.28s ease;
-    z-index: 3200;
-  }
-  nav.active { right: 0; }
-  /* optional close button inside nav (if you add it in HTML) */
-  nav .nav-close {
-    background: transparent;
-    border: none;
-    font-size: 1.6rem;
-    color: #444;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 8px;
-    cursor: pointer;
-  }
+/* off-canvas nav */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 320px;
+  max-width: 86%;
+  background: #fff;
+  transform: translateX(110%); /* hidden */
+  transition: transform .28s cubic-bezier(.2,.9,.2,1);
+  z-index: 3200;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* 少なめの上余白で項目を上寄せに */
+  padding: 18px 16px 20px 16px;
+  box-shadow: -8px 0 26px rgba(0,0,0,0.08);
+}
 
-  /* 項目を上寄せに：ul の余白は小さく、すぐにメニューが来るように */
-  nav ul { flex-direction: column; align-items:stretch; width:100%; gap:0; margin-top: 0.6rem; }
-  nav a { padding: 0.9rem 1rem; border-radius:6px; display:block; color:#214a3b; }
-  nav li + li { margin-top: 0.25rem; }
-  nav .header-btn { margin-top:0.6rem; width:calc(100% - 2rem); justify-content:center; }
+/* open */
+.mobile-nav.open {
+  transform: translateX(0);
+}
+
+/* close button inside nav (top-right) */
+.mobile-nav .mobile-nav-close {
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  color: #333;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 6px;
+  cursor: pointer;
+}
+
+/* list */
+.mobile-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* 小さめの余白で上寄せ */
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mobile-nav-list a {
+  display: block;
+  padding: 12px 10px;
+  color: #214a3b;
+  font-size: 1.05rem;
+  border-radius: 8px;
+}
+
+.mobile-nav-list a:hover,
+.mobile-nav-list a:focus {
+  background: #f1f7f4;
+  color: #1f7a63;
+  outline: none;
+}
+
+/* header btn inside menu */
+.mobile-nav-list .header-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  margin-top: 8px;
+  background: #00c300;
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* ensure nav toggle visible on mobile and positioned to right */
+.nav-toggle {
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #333;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  z-index: 3500;
+}
+
+/* prevent body scroll when nav open */
+body.nav-open {
+  overflow: hidden;
+}
+
+/* accessibility helper (screen-reader only) */
+.sr-only {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+/* small tweak for very small screens */
+@media (max-width: 360px) {
+  .mobile-nav { width: 86%; }
+  .mobile-nav-list a { font-size: 1rem; padding: 10px; }
 }
 
 /* ===== ヒーロー ===== */
@@ -205,33 +277,39 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
 </style>
 </head>
 <body>
-  <header>
-    <div class="container header-inner">
-      <div class="logo">
-        <img src="iwaki-logo.png" alt="いわき訪問看護ステーション ロゴ">
-      </div>
-
-      <!-- ハンバーガー（右側） -->
-      <button class="nav-toggle" aria-label="メニュー" aria-expanded="false">
-        <i class="fa fa-bars" aria-hidden="true"></i>
-      </button>
-
-      <nav aria-label="メインナビゲーション">
-        <!-- モバイル時の閉じるボタン -->
-        <button class="nav-close" aria-label="閉じるメニュー" style="display:none;">&times;</button>
-
-        <ul>
-          <li><a href="#hero">ホーム</a></li>
-          <li><a href="#services">サービス</a></li>
-          <li><a href="#region">活動地域</a></li>
-          <li><a href="#fees">料金表</a></li>
-          <li><a href="#contracts">契約書</a></li>
-          <li><a href="#staff">スタッフ対応</a></li>
-          <li><a href="#contact" class="header-btn"><i class="fa-brands fa-line" aria-hidden="true"></i> 無料相談</a></li>
-        </ul>
-      </nav>
+  <!-- ===== 新しいヘッダー（置き換え） ===== -->
+<header>
+  <div class="container header-inner">
+    <div class="logo">
+      <a href="/"><img src="iwaki-logo.png" alt="いわき訪問看護ステーション ロゴ"></a>
     </div>
-  </header>
+
+    <!-- ハンバーガーボタン（右） -->
+    <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="メニュー">
+      <i class="fa fa-bars" aria-hidden="true"></i>
+    </button>
+  </div>
+</header>
+
+<!-- オーバーレイ（メニュー開時の背景） -->
+<div id="navOverlay" class="nav-overlay" hidden aria-hidden="true"></div>
+
+<!-- オフキャンバスナビ（右側スライド） -->
+<nav id="mobile-nav" class="mobile-nav" aria-hidden="true" aria-label="モバイルメニュー">
+  <button class="mobile-nav-close" aria-label="閉じるメニュー">
+    <i class="fa fa-times" aria-hidden="true"></i>
+  </button>
+
+  <ul class="mobile-nav-list">
+    <li><a href="#hero">ホーム</a></li>
+    <li><a href="#services">サービス</a></li>
+    <li><a href="#region">活動地域</a></li>
+    <li><a href="#fees">料金表</a></li>
+    <li><a href="#contracts">契約書</a></li>
+    <li><a href="#staff">スタッフ対応</a></li>
+    <li><a href="#contact" class="header-btn"><i class="fa-brands fa-line" aria-hidden="true"></i> 無料相談</a></li>
+  </ul>
+</nav>
 
   <!-- ヒーロー -->
   <section id="hero" class="hero">
