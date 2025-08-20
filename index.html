@@ -524,180 +524,228 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
     <small>&copy; 2025 いわき訪問看護ステーション</small>
   </footer>
 
-  <!-- JS -->
-  <script>
-(function(){
-  const navToggle = document.querySelector('.nav-toggle');
-  const mobileNav = document.getElementById('mobile-nav');
-  const overlay = document.getElementById('navOverlay');
-  const closeBtn = mobileNav && mobileNav.querySelector('.mobile-nav-close');
-  const firstFocusableSelector = 'a, button:not([disabled]), input, [tabindex]:not([tabindex="-1"])';
+ <script>
+document.addEventListener('DOMContentLoaded', function () {
+  try {
+    /* ==========================
+       === ハンバーガーメニュー（右スライド）===
+       ※ 必須要素: .nav-toggle と nav 要素（推奨 id="mobile-nav"）
+    ========================== */
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.getElementById('mobile-nav') || document.querySelector('nav');
+    // オーバーレイを自動で作成（なければ）
+    let overlay = document.getElementById('navOverlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'navOverlay';
+      // 最低限のスタイル（ユーザーがCSSを追加していない場合でも動作するように）
+      Object.assign(overlay.style, {
+        position: 'fixed', inset: '0', background: 'rgba(0,0,0,0.38)',
+        zIndex: '2500', display: 'none', transition: 'opacity .28s ease', opacity: '0'
+      });
+      document.body.appendChild(overlay);
+    }
 
-  function openNav(){
-    if(!mobileNav || !overlay) return;
-    mobileNav.classList.add('open');
-    overlay.hidden = false;
-    overlay.classList.add('visible');
-    mobileNav.setAttribute('aria-hidden','false');
-    navToggle.setAttribute('aria-expanded','true');
-    document.body.classList.add('nav-open');
+    function showOverlay() {
+      overlay.style.display = 'block';
+      // allow transition
+      requestAnimationFrame(()=> overlay.style.opacity = '1');
+    }
+    function hideOverlay() {
+      overlay.style.opacity = '0';
+      setTimeout(()=> overlay.style.display = 'none', 300);
+    }
 
-    // focus first link
-    const first = mobileNav.querySelector(firstFocusableSelector);
-    if(first) setTimeout(()=> first.focus(), 150);
-  }
+    function openNav() {
+      if (!nav) return;
+      nav.classList.add('active', 'open');
+      nav.setAttribute('aria-hidden', 'false');
+      if (nav.style.right !== undefined) nav.style.right = '0';
+      showOverlay();
+      document.body.style.overflow = 'hidden';
+      if (navToggle) navToggle.setAttribute('aria-expanded', 'true');
+      // フォーカス移動
+      const first = nav.querySelector('a, button, input, [tabindex]:not([tabindex="-1"])');
+      if (first) setTimeout(()=> first.focus(), 120);
+    }
 
-  function closeNav(){
-    if(!mobileNav || !overlay) return;
-    mobileNav.classList.remove('open');
-    overlay.classList.remove('visible');
-    mobileNav.setAttribute('aria-hidden','true');
-    navToggle.setAttribute('aria-expanded','false');
-    document.body.classList.remove('nav-open');
-
-    // hide overlay after transition
-    setTimeout(()=> { if(overlay) overlay.hidden = true; }, 320);
-    // return focus to toggle
-    if(navToggle) navToggle.focus();
-  }
-
-  if(navToggle){
-    navToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = mobileNav.classList.contains('open');
-      if(isOpen) closeNav();
-      else openNav();
-    });
-  }
-
-  if(closeBtn) closeBtn.addEventListener('click', (e) => { e.preventDefault(); closeNav(); });
-
-  // overlay click closes
-  if(overlay) {
-    overlay.addEventListener('click', (e) => { closeNav(); });
-  }
-
-  // close when clicking a menu link (good UX on mobile)
-  document.addEventListener('click', (e) => {
-    if(!mobileNav) return;
-    if(mobileNav.classList.contains('open')) {
-      // if a nav link clicked, close nav
-      const link = e.target.closest('#mobile-nav a');
-      if(link) {
-        // allow normal navigation, but close menu for UX
-        closeNav();
+    function closeNav() {
+      if (!nav) return;
+      nav.classList.remove('active', 'open');
+      nav.setAttribute('aria-hidden', 'true');
+      if (nav.style.right !== undefined) nav.style.right = ''; // CSS 側に戻す
+      hideOverlay();
+      document.body.style.overflow = '';
+      if (navToggle) {
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.focus();
       }
     }
-  });
 
-  // ESC to close
-  document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape') {
-      if(mobileNav && mobileNav.classList.contains('open')) closeNav();
-    }
-  });
-
-  // Prevent focus leaving nav when open (simple trapping)
-  document.addEventListener('focusin', (e) => {
-    if(!mobileNav || !mobileNav.classList.contains('open')) return;
-    if(!mobileNav.contains(e.target) && !navToggle.contains(e.target)) {
-      // move focus back to first focusable in nav
-      const first = mobileNav.querySelector(firstFocusableSelector);
-      if(first) first.focus();
-    }
-  });
-
-})();
-
-  // ===== モーダル =====
-  function trapFocus(container) {
-    const focusableSelectors = 'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
-    const focusable = Array.from(container.querySelectorAll(focusableSelectors)).filter(el => el.offsetParent !== null);
-    if (focusable.length === 0) return null;
-    const first = focusable[0], last = focusable[focusable.length -1];
-    function handler(e){
-      if(e.key !== 'Tab') return;
-      if(e.shiftKey) {
-        if(document.activeElement === first){ e.preventDefault(); last.focus(); }
-      } else {
-        if(document.activeElement === last){ e.preventDefault(); first.focus(); }
-      }
-    }
-    container.addEventListener('keydown', handler);
-    return ()=>container.removeEventListener('keydown', handler);
-  }
-
-  const modals = Array.from(document.querySelectorAll('.modal'));
-  const modalState = new Map();
-
-  function openModalById(id) {
-    const el = document.getElementById(id);
-    if(!el) return;
-    const content = el.querySelector('.modal-content');
-    const previously = document.activeElement;
-    el.setAttribute('aria-hidden','false');
-    // focus close button
-    setTimeout(() => {
-      const closeBtn = el.querySelector('[data-modal-close]') || el.querySelector('.modal-close');
-      if(closeBtn) closeBtn.focus();
-    },150);
-    const cleanup = trapFocus(content) || (()=>{});
-    modalState.set(id,{cleanup,previously});
-  }
-  function closeModalById(id) {
-    const el = document.getElementById(id);
-    if(!el) return;
-    el.setAttribute('aria-hidden','true');
-    const state = modalState.get(id);
-    if(state){
-      state.cleanup();
-      if(state.previously && state.previously.focus) state.previously.focus();
-      modalState.delete(id);
-    }
-  }
-  window.openModal = openModalById;
-  window.closeModal = closeModalById;
-
-  // wire close buttons and background click
-  document.addEventListener('click', (e) => {
-    if (e.target.matches('[data-modal-close]') || e.target.closest('[data-modal-close]')) {
-      const modal = e.target.closest('.modal');
-      if (modal && modal.id) closeModalById(modal.id);
-      return;
-    }
-    if (e.target.classList && e.target.classList.contains('modal')) {
-      closeModalById(e.target.id);
-    }
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      modals.forEach(m => {
-        if (m.getAttribute('aria-hidden') === 'false') closeModalById(m.id);
+    if (navToggle && nav) {
+      navToggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (nav.classList.contains('open')) closeNav(); else openNav();
       });
     }
-  });
 
-  // ===== ニュースティッカー =====
-  (function ticker() {
-    const wrapper = document.querySelector('.news-ticker');
-    const ticker = document.querySelector('.ticker');
-    if (!wrapper || !ticker) return;
-    let speed = 0.6;
-    let x = 0;
-    function update() {
-      const tw = ticker.scrollWidth;
-      const ww = wrapper.clientWidth;
-      x -= speed;
-      if (Math.abs(x) >= tw) x = ww;
-      ticker.style.transform = `translateX(${x}px)`;
-      requestAnimationFrame(update);
+    // クリックで閉じる（オーバーレイクリック）
+    overlay.addEventListener('click', function () { closeNav(); });
+
+    // メニュー内リンククリックで閉じる（モバイルUX）
+    document.addEventListener('click', function (e) {
+      if (!nav || !nav.classList.contains('open')) return;
+      const link = e.target.closest('nav a');
+      if (link) setTimeout(closeNav, 120); // ナビ遷移を阻害しない
+    });
+
+    // ESC で閉じる（ナビ or モーダルで共通）
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        if (nav && nav.classList.contains('open')) closeNav();
+        // モーダルは下で処理
+      }
+    });
+
+    /* ==========================
+       === ニュースティッカー ===
+       .news-ticker と .ticker を想定
+    ========================== */
+    (function initTicker(){
+      const wrapper = document.querySelector('.news-ticker');
+      const ticker = wrapper ? wrapper.querySelector('.ticker') : null;
+      if (!wrapper || !ticker) return;
+
+      // 内容が短い場合は複製して幅を確保
+      function ensureWide() {
+        const tw = ticker.scrollWidth;
+        const ww = wrapper.clientWidth;
+        if (tw < ww * 1.8 && ticker.childElementCount < 128) {
+          ticker.innerHTML += ticker.innerHTML; // 複製
+          // 再試行（微遅延）
+          setTimeout(ensureWide, 40);
+        }
+      }
+      ensureWide();
+
+      let x = 0;
+      const speed = 0.6; // px / frame, 必要なら調整
+      let paused = false;
+
+      function step() {
+        if (paused) { requestAnimationFrame(step); return; }
+        const tw = ticker.scrollWidth;
+        const ww = wrapper.clientWidth;
+        x -= speed;
+        if (Math.abs(x) >= tw) x = 0;
+        ticker.style.transform = `translateX(${x}px)`;
+        requestAnimationFrame(step);
+      }
+
+      wrapper.addEventListener('mouseenter', ()=> paused = true);
+      wrapper.addEventListener('mouseleave', ()=> paused = false);
+      wrapper.addEventListener('touchstart', ()=> paused = true, {passive: true});
+      wrapper.addEventListener('touchend', ()=> paused = false, {passive: true});
+
+      requestAnimationFrame(step);
+      // サイズ変化への対応
+      window.addEventListener('resize', ()=> { x = 0; });
+    })();
+
+    /* ==========================
+       === モーダル（openModal / closeModal）===
+       .modal 要素、閉じるボタンは [data-modal-close] または .modal-close を想定
+       openModal('id') が既に HTML の onclick で使われている想定
+    ========================== */
+    const FOCUSABLE_SELECTORS = 'a[href], button:not([disabled]), textarea, input:not([type="hidden"]), select, [tabindex]:not([tabindex="-1"])';
+    const modals = Array.from(document.querySelectorAll('.modal'));
+    const modalState = new Map(); // id -> { cleanup, previouslyFocused }
+
+    function trapFocus(container) {
+      const focusables = Array.from(container.querySelectorAll(FOCUSABLE_SELECTORS)).filter(el => el.offsetParent !== null);
+      if (!focusables.length) return () => {};
+      const first = focusables[0], last = focusables[focusables.length - 1];
+      function handler(e) {
+        if (e.key !== 'Tab') return;
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+        } else {
+          if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      }
+      container.addEventListener('keydown', handler);
+      return () => container.removeEventListener('keydown', handler);
     }
-    let raf = requestAnimationFrame(update);
-    window.addEventListener('resize', () => { x = 0; });
-  })();
 
-})();
-  </script>
+    window.openModal = function(id) {
+      const el = document.getElementById(id);
+      if (!el) { console.warn('openModal: modal not found', id); return; }
+      // show
+      el.setAttribute('aria-hidden', 'false');
+      el.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+      // focus
+      const closeBtn = el.querySelector('[data-modal-close]') || el.querySelector('.modal-close') || el.querySelector('button, a');
+      if (closeBtn) setTimeout(()=> closeBtn.focus(), 80);
+      // trap focus
+      const content = el.querySelector('.modal-content') || el;
+      const cleanup = trapFocus(content);
+      modalState.set(id, { cleanup, previouslyFocused: document.activeElement });
+    };
+
+    window.closeModal = function(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.setAttribute('aria-hidden', 'true');
+      el.style.display = 'none';
+      document.body.style.overflow = '';
+      const state = modalState.get(id);
+      if (state) {
+        try { state.cleanup(); } catch (e) {}
+        if (state.previouslyFocused && state.previouslyFocused.focus) state.previouslyFocused.focus();
+        modalState.delete(id);
+      }
+    };
+
+    // ワイヤリング：閉じるボタン、背景クリック
+    document.addEventListener('click', function(e){
+      // close buttons
+      if (e.target.closest('[data-modal-close]') || e.target.closest('.modal-close')) {
+        const modal = e.target.closest('.modal');
+        if (modal && modal.id) closeModal(modal.id);
+        return;
+      }
+      // background click closes modal
+      if (e.target.classList && e.target.classList.contains('modal')) {
+        if (e.target.id) closeModal(e.target.id);
+      }
+    });
+
+    // ESC closes any open modal (and nav handled above)
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') {
+        modals.forEach(m => {
+          if (m.getAttribute('aria-hidden') === 'false') {
+            if (m.id) closeModal(m.id);
+          }
+        });
+      }
+    });
+
+    // 初期化: 全モーダルは aria-hidden=true にして display:none（なければ強制）
+    modals.forEach(m => {
+      if (m.getAttribute('aria-hidden') === null) m.setAttribute('aria-hidden', 'true');
+      if (!m.style.display) m.style.display = (m.getAttribute('aria-hidden') === 'false') ? 'block' : 'none';
+    });
+
+    // もしページ内に古い nav スクリプトが残っている場合は console に注意喚起
+    // (開発者が複数スクリプト混在させないように)
+    // console.info('Unified UI script initialized.');
+
+  } catch (err) {
+    console.error('Unified UI script error:', err);
+  }
+});
+</script>
 </body>
 </html>
