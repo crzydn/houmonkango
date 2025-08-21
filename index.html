@@ -524,31 +524,32 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
     <small>&copy; 2025 いわき訪問看護ステーション</small>
   </footer>
 
- <script>
+<script>
 document.addEventListener('DOMContentLoaded', function () {
   try {
-    /* ==========================
-       === ハンバーガーメニュー（右スライド）===
-       ※ 必須要素: .nav-toggle と nav 要素（推奨 id="mobile-nav"）
-    ========================== */
+    /* ====== ハンバーガー & オーバーレイの作成 ====== */
     const navToggle = document.querySelector('.nav-toggle');
     const nav = document.getElementById('mobile-nav') || document.querySelector('nav');
-    // オーバーレイを自動で作成（なければ）
+
+    // オーバーレイ（ナビ用）。z-index をモーダルより低めに設定（modal:2000）
     let overlay = document.getElementById('navOverlay');
     if (!overlay) {
       overlay = document.createElement('div');
       overlay.id = 'navOverlay';
-      // 最低限のスタイル（ユーザーがCSSを追加していない場合でも動作するように）
       Object.assign(overlay.style, {
-        position: 'fixed', inset: '0', background: 'rgba(0,0,0,0.38)',
-        zIndex: '2500', display: 'none', transition: 'opacity .28s ease', opacity: '0'
+        position: 'fixed',
+        inset: '0',
+        background: 'rgba(0,0,0,0.38)',
+        zIndex: '1200',   // ← 重要：モーダル(2000)より下にする
+        display: 'none',
+        transition: 'opacity .28s ease',
+        opacity: '0'
       });
       document.body.appendChild(overlay);
     }
 
     function showOverlay() {
       overlay.style.display = 'block';
-      // allow transition
       requestAnimationFrame(()=> overlay.style.opacity = '1');
     }
     function hideOverlay() {
@@ -564,7 +565,6 @@ document.addEventListener('DOMContentLoaded', function () {
       showOverlay();
       document.body.style.overflow = 'hidden';
       if (navToggle) navToggle.setAttribute('aria-expanded', 'true');
-      // フォーカス移動
       const first = nav.querySelector('a, button, input, [tabindex]:not([tabindex="-1"])');
       if (first) setTimeout(()=> first.focus(), 120);
     }
@@ -573,72 +573,64 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!nav) return;
       nav.classList.remove('active', 'open');
       nav.setAttribute('aria-hidden', 'true');
-      if (nav.style.right !== undefined) nav.style.right = ''; // CSS 側に戻す
+      if (nav.style.right !== undefined) nav.style.right = '';
       hideOverlay();
       document.body.style.overflow = '';
-      if (navToggle) {
-        navToggle.setAttribute('aria-expanded', 'false');
-        navToggle.focus();
-      }
+      if (navToggle) { navToggle.setAttribute('aria-expanded', 'false'); navToggle.focus(); }
     }
 
     if (navToggle && nav) {
-      navToggle.addEventListener('click', function (e) {
+      navToggle.addEventListener('click', (e) => {
         e.stopPropagation();
         if (nav.classList.contains('open')) closeNav(); else openNav();
       });
     }
 
-    // クリックで閉じる（オーバーレイクリック）
-    overlay.addEventListener('click', function () { closeNav(); });
+    // オーバーレイクリックでナビを閉じる（ただしモーダル表示時は overlay は非表示のため影響なし）
+    overlay.addEventListener('click', () => { closeNav(); });
 
-    // メニュー内リンククリックで閉じる（モバイルUX）
-    document.addEventListener('click', function (e) {
+    // メニュー内リンククリックで閉じる（モバイル）
+    document.addEventListener('click', (e) => {
       if (!nav || !nav.classList.contains('open')) return;
       const link = e.target.closest('nav a');
-      if (link) setTimeout(closeNav, 120); // ナビ遷移を阻害しない
+      if (link) setTimeout(closeNav, 120);
     });
 
-    // ESC で閉じる（ナビ or モーダルで共通）
-    document.addEventListener('keydown', function (e) {
+    // ESC でナビを閉じる（モーダルは下で処理）
+    document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         if (nav && nav.classList.contains('open')) closeNav();
-        // モーダルは下で処理
       }
     });
 
-    /* ==========================
-       === ニュースティッカー ===
-       .news-ticker と .ticker を想定
-    ========================== */
+    /* ====== ニュースティッカー ====== */
     (function initTicker(){
       const wrapper = document.querySelector('.news-ticker');
       const ticker = wrapper ? wrapper.querySelector('.ticker') : null;
       if (!wrapper || !ticker) return;
-
-      // 内容が短い場合は複製して幅を確保
       function ensureWide() {
         const tw = ticker.scrollWidth;
         const ww = wrapper.clientWidth;
         if (tw < ww * 1.8 && ticker.childElementCount < 128) {
-          ticker.innerHTML += ticker.innerHTML; // 複製
-          // 再試行（微遅延）
+          ticker.innerHTML += ticker.innerHTML;
           setTimeout(ensureWide, 40);
         }
       }
       ensureWide();
 
       let x = 0;
-      const speed = 0.6; // px / frame, 必要なら調整
+      const speed = 0.6;
       let paused = false;
 
       function step() {
-        if (paused) { requestAnimationFrame(step); return; }
+        if (!wrapper || !ticker) return;
         const tw = ticker.scrollWidth;
         const ww = wrapper.clientWidth;
-        x -= speed;
-        if (Math.abs(x) >= tw) x = 0;
-        ticker.style.transform = `translateX(${x}px)`;
+        if (!paused) {
+          x -= speed;
+          if (Math.abs(x) >= tw) x = 0;
+          ticker.style.transform = `translateX(${x}px)`;
+        }
         requestAnimationFrame(step);
       }
 
@@ -648,21 +640,16 @@ document.addEventListener('DOMContentLoaded', function () {
       wrapper.addEventListener('touchend', ()=> paused = false, {passive: true});
 
       requestAnimationFrame(step);
-      // サイズ変化への対応
       window.addEventListener('resize', ()=> { x = 0; });
     })();
 
-    /* ==========================
-       === モーダル（openModal / closeModal）===
-       .modal 要素、閉じるボタンは [data-modal-close] または .modal-close を想定
-       openModal('id') が既に HTML の onclick で使われている想定
-    ========================== */
-    const FOCUSABLE_SELECTORS = 'a[href], button:not([disabled]), textarea, input:not([type="hidden"]), select, [tabindex]:not([tabindex="-1"])';
+    /* ====== モーダル（openModal / closeModal） ====== */
+    const FOCUSABLE = 'a[href], button:not([disabled]), textarea, input:not([type="hidden"]), select, [tabindex]:not([tabindex="-1"])';
     const modals = Array.from(document.querySelectorAll('.modal'));
-    const modalState = new Map(); // id -> { cleanup, previouslyFocused }
+    const modalState = new Map();
 
     function trapFocus(container) {
-      const focusables = Array.from(container.querySelectorAll(FOCUSABLE_SELECTORS)).filter(el => el.offsetParent !== null);
+      const focusables = Array.from(container.querySelectorAll(FOCUSABLE)).filter(el => el.offsetParent !== null);
       if (!focusables.length) return () => {};
       const first = focusables[0], last = focusables[focusables.length - 1];
       function handler(e) {
@@ -680,14 +667,13 @@ document.addEventListener('DOMContentLoaded', function () {
     window.openModal = function(id) {
       const el = document.getElementById(id);
       if (!el) { console.warn('openModal: modal not found', id); return; }
-      // show
+      // hide overlay while modal is open so it won't block clicks
+      if (overlay) overlay.style.display = 'none';
       el.setAttribute('aria-hidden', 'false');
       el.style.display = 'block';
       document.body.style.overflow = 'hidden';
-      // focus
       const closeBtn = el.querySelector('[data-modal-close]') || el.querySelector('.modal-close') || el.querySelector('button, a');
       if (closeBtn) setTimeout(()=> closeBtn.focus(), 80);
-      // trap focus
       const content = el.querySelector('.modal-content') || el;
       const cleanup = trapFocus(content);
       modalState.set(id, { cleanup, previouslyFocused: document.activeElement });
@@ -705,23 +691,22 @@ document.addEventListener('DOMContentLoaded', function () {
         if (state.previouslyFocused && state.previouslyFocused.focus) state.previouslyFocused.focus();
         modalState.delete(id);
       }
+      // nav が開いている場合はオーバーレイを表示（通常は nav が同時に開いていない想定）
+      if (nav && nav.classList.contains('open')) showOverlay();
     };
 
-    // ワイヤリング：閉じるボタン、背景クリック
+    // close wiring
     document.addEventListener('click', function(e){
-      // close buttons
       if (e.target.closest('[data-modal-close]') || e.target.closest('.modal-close')) {
         const modal = e.target.closest('.modal');
         if (modal && modal.id) closeModal(modal.id);
         return;
       }
-      // background click closes modal
       if (e.target.classList && e.target.classList.contains('modal')) {
         if (e.target.id) closeModal(e.target.id);
       }
     });
 
-    // ESC closes any open modal (and nav handled above)
     document.addEventListener('keydown', function(e){
       if (e.key === 'Escape') {
         modals.forEach(m => {
@@ -732,15 +717,11 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    // 初期化: 全モーダルは aria-hidden=true にして display:none（なければ強制）
+    // init modal visibility state if not set
     modals.forEach(m => {
-      if (m.getAttribute('aria-hidden') === null) m.setAttribute('aria-hidden', 'true');
+      if (m.getAttribute('aria-hidden') === null) m.setAttribute('aria-hidden','true');
       if (!m.style.display) m.style.display = (m.getAttribute('aria-hidden') === 'false') ? 'block' : 'none';
     });
-
-    // もしページ内に古い nav スクリプトが残っている場合は console に注意喚起
-    // (開発者が複数スクリプト混在させないように)
-    // console.info('Unified UI script initialized.');
 
   } catch (err) {
     console.error('Unified UI script error:', err);
