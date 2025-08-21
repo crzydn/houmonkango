@@ -1,234 +1,225 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>サービス詳細 | いわき訪問看護ステーション</title>
   <meta name="description" content="傾聴サポート、メンタルヘルスチェック、服薬管理、緊急対応、セルフケア指導、生活保護申請サポートの詳細ページです。" />
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
 
   <style>
-    /* ---------------- 基本 (メインと揃えた簡易版) ---------------- */
-    :root{
-      --brand:#2b8f6e;
-      --brand-2:#4caf93;
-      --muted:#eef4f7;
-      --card-bg:#fff;
-      --max-w:1024px;
-    }
+    /* --- ベース --- */
     html { scroll-behavior: smooth; font-size:16px; }
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:'Hiragino Sans','Noto Sans JP',sans-serif; background:var(--muted); color:#222; line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
-    a { text-decoration:none; color:inherit; }
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body { font-family:'Hiragino Sans','Noto Sans JP',sans-serif; background:#eef4f7; color:#222; line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+    a { color:inherit; text-decoration:none; }
+    .container { width:100%; max-width:1024px; margin:0 auto; padding:0 1rem; }
 
-    .container { width:100%; max-width:var(--max-w); margin:0 auto; padding:0 1rem; }
-
-    /* ---------------- ヘッダー ---------------- */
-    header { position:sticky; top:0; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.06); z-index:2200; }
+    /* --- ヘッダー --- */
+    header { position: sticky; top:0; background:#fff; z-index:2000; box-shadow:0 2px 6px rgba(0,0,0,0.08); }
     .header-inner { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:0.6rem 1rem; }
     .logo img { height:48px; display:block; }
 
-    /* Desktop nav (simple) */
-    nav.primary { display:flex; align-items:center; gap:1rem; }
-    nav.primary a { font-size:0.95rem; padding:0.35rem 0.6rem; color:#214a3b; display:inline-block; }
-    .header-btn { background:var(--brand-2); color:#fff; padding:0.45rem 0.9rem; border-radius:20px; font-weight:600; display:inline-flex; align-items:center; gap:0.5rem; box-shadow:0 2px 6px rgba(0,0,0,0.08); }
+    /* デスクトップナビは小さい画面で隠す設計（ページはシンプルなので非表示でも可） */
+    nav.desktop-nav { display:none; }
 
-    /* Hamburger */
-    .nav-toggle { background:transparent; border:none; font-size:1.35rem; padding:8px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; color:#333; }
+    /* ハンバーガー */
+    .nav-toggle { background:transparent; border:none; font-size:1.4rem; padding:8px; cursor:pointer; z-index:2600; color:#333; }
 
-    /* ---------------- モバイルナビ（右オフキャンバス） ---------------- */
-    .nav-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.36); opacity:0; transition:opacity .28s ease; z-index:2000; display:none; }
+    /* --- モバイルメニュー（右スライド） --- */
+    .nav-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.36); opacity:0; display:none; transition:opacity .28s ease; z-index:2400; }
     .nav-overlay.visible { display:block; opacity:1; }
-
-    .mobile-nav { position:fixed; top:0; right:0; height:100vh; width:320px; max-width:86%; background:#fff; transform:translateX(110%); transition:transform .28s cubic-bezier(.2,.9,.2,1); z-index:2100; padding:18px 16px; box-shadow:-8px 0 26px rgba(0,0,0,0.08); display:flex; flex-direction:column; }
+    .mobile-nav { position:fixed; top:0; right:0; width:320px; max-width:86%; height:100vh; background:#fff; transform:translateX(110%); transition:transform .28s cubic-bezier(.2,.9,.2,1); box-shadow:-8px 0 26px rgba(0,0,0,0.08); z-index:2500; padding:18px 16px 20px 16px; display:flex; flex-direction:column; }
     .mobile-nav.open { transform:translateX(0); }
-    .mobile-nav-close { position:absolute; top:10px; right:10px; background:transparent; border:none; font-size:1.4rem; cursor:pointer; color:#333; padding:6px; }
-    .mobile-nav-list { margin-top:8px; display:flex; flex-direction:column; gap:8px; list-style:none; padding:0; }
-    .mobile-nav-list a { display:block; padding:12px 10px; border-radius:8px; color:#214a3b; font-size:1rem; }
-    .mobile-nav-list a:hover { background:#f1f7f4; color:var(--brand); }
+    .mobile-nav-close { background:transparent; border:none; font-size:1.4rem; position:absolute; top:10px; right:10px; padding:6px; cursor:pointer; color:#333; }
+    .mobile-nav-list { list-style:none; margin-top:6px; padding:0; display:flex; flex-direction:column; gap:6px; }
+    .mobile-nav-list a { display:block; padding:12px 10px; border-radius:8px; color:#214a3b; font-size:1.05rem; }
+    .mobile-nav-list a:hover, .mobile-nav-list a:focus { background:#f1f7f4; color:#1f7a63; outline:none; }
+    .mobile-nav-list .header-btn { background:#00c300; color:#fff; padding:12px; border-radius:12px; display:inline-flex; justify-content:center; align-items:center; }
 
-    /* ---------------- ヒーロー（シンプル） ---------------- */
-    .hero { position:relative; text-align:left; padding:2rem 0; background:linear-gradient(180deg, rgba(43,143,110,0.08), rgba(255,255,255,0)); }
-    .hero .container { display:flex; gap:1rem; align-items:flex-start; }
-    .hero h1 { font-size:1.6rem; color:var(--brand); line-height:1.2; margin-bottom:0.4rem; }
-    .hero p { color:#444; font-size:0.98rem; }
+    /* --- ページ共通 --- */
+    .page-hero { background:#fff; margin:0.8rem 0; padding:1.2rem; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.04); }
+    .page-hero h1 { font-size:1.5rem; color:#2b8f6e; display:flex; align-items:center; gap:0.5rem; }
+    .page-hero p { margin-top:0.6rem; color:#444; }
 
-    /* ---------------- メインコンテンツ ---------------- */
-    main { padding:1rem 0 2rem; }
-    .section { background:var(--card-bg); border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.04); margin:1rem 0; padding:1.2rem; }
-    .section h2 { font-size:1.15rem; color:var(--brand); display:flex; align-items:center; gap:0.6rem; margin-bottom:0.6rem; }
-    .section p { font-size:0.97rem; color:#333; line-height:1.65; }
+    .section { background:#fff; border-radius:10px; padding:1rem; margin:1rem 0; box-shadow:0 2px 8px rgba(0,0,0,0.04); }
+    .section h2 { color:#2b8f6e; font-size:1.15rem; margin-bottom:0.6rem; display:flex; align-items:center; gap:0.5rem; }
+    .section p { color:#444; font-size:0.98rem; line-height:1.6; }
 
-    .contact-btn { display:inline-flex; align-items:center; gap:0.6rem; margin-top:1rem; background:var(--brand-2); color:#fff; padding:0.6rem 1rem; border-radius:25px; font-weight:700; box-shadow:0 4px 14px rgba(76,175,147,0.12); }
-    .back-link { display:inline-block; margin-top:0.85rem; color:var(--brand); font-size:0.93rem; }
+    .contact-row { display:flex; gap:12px; align-items:center; margin-top:1rem; }
+    .btn-primary { background:#00c300; color:#fff; padding:0.7rem 1rem; border-radius:20px; font-weight:600; display:inline-flex; align-items:center; gap:0.5rem; box-shadow:0 4px 12px rgba(0,0,0,0.06); }
+    .back-link { display:inline-block; margin-top:0.8rem; color:#2b8f6e; font-size:0.95rem; }
 
-    /* ---------------- フッター ---------------- */
-    footer { background:var(--brand); color:#fff; text-align:center; padding:1rem 0; font-size:0.9rem; margin-top:1.2rem; }
+    footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; margin-top:2rem; }
 
-    /* ---------------- レスポンシブ ---------------- */
-    @media (min-width:769px){
-      /* show desktop nav inline */
+    /* --- レスポンシブ微調整 --- */
+    @media (min-width: 900px) {
+      /* 大きい画面ではデスクトップナビ表示（もし使うなら） */
+      nav.desktop-nav { display:flex; }
       .nav-toggle { display:none; }
-      .mobile-nav, .nav-overlay { display:none !important; }
-      .header-inner { gap:1.5rem; }
+      .mobile-nav { display:none; }
+      .nav-overlay { display:none !important; }
     }
-    @media (max-width:768px){
-      nav.primary { display:none; }
-      .hero .container { flex-direction:column; }
-      .hero h1 { font-size:1.35rem; }
-      .section { padding:1rem; }
-      .container { padding:0 0.9rem; }
+
+    @media (max-width:480px) {
+      .page-hero h1 { font-size:1.2rem; }
+      .section { padding:0.9rem; }
+      .btn-primary { width:100%; justify-content:center; }
     }
   </style>
 </head>
 <body>
   <!-- ヘッダー -->
-  <header aria-label="サイトヘッダー">
+  <header>
     <div class="container header-inner">
       <div class="logo">
-        <a href="index.html" aria-label="ホームへ"><img src="iwaki-logo.png" alt="いわき訪問看護ステーション ロゴ"></a>
+        <a href="/"><img src="iwaki-logo.png" alt="いわき訪問看護ステーション ロゴ"></a>
       </div>
 
-      <!-- desktop nav (kept for large screens) -->
-      <nav class="primary" aria-label="グローバルナビ">
-        <a href="index.html#services">サービス</a>
-        <a href="index.html#region">活動地域</a>
-        <a href="index.html#contact" class="header-btn"><i class="fa-brands fa-line" aria-hidden="true"></i> 無料相談</a>
+      <!-- desktop nav left for completeness (hidden on small screens) -->
+      <nav class="desktop-nav" aria-label="グローバルナビ">
+        <ul>
+          <li><a href="/#hero">ホーム</a></li>
+          <li><a href="/#services">サービス</a></li>
+          <li><a href="/#contact" class="header-btn"><i class="fa-brands fa-line"></i> 無料相談</a></li>
+        </ul>
       </nav>
 
-      <!-- hamburger -->
+      <!-- mobile toggle -->
       <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="メニュー">
         <i class="fa fa-bars" aria-hidden="true"></i>
       </button>
     </div>
   </header>
 
-  <!-- overlay + mobile nav -->
+  <!-- overlay -->
   <div id="navOverlay" class="nav-overlay" aria-hidden="true"></div>
 
+  <!-- mobile nav (off-canvas) -->
   <nav id="mobile-nav" class="mobile-nav" aria-hidden="true" aria-label="モバイルメニュー">
-    <button class="mobile-nav-close" aria-label="閉じるメニュー"><i class="fa fa-times" aria-hidden="true"></i></button>
+    <button class="mobile-nav-close" aria-label="閉じるメニュー"><i class="fa fa-times"></i></button>
     <ul class="mobile-nav-list">
-      <li><a href="index.html#hero">ホーム</a></li>
-      <li><a href="index.html#services">サービス</a></li>
-      <li><a href="index.html#region">活動地域</a></li>
-      <li><a href="index.html#fees">料金表</a></li>
-      <li><a href="index.html#contracts">契約書</a></li>
-      <li><a href="index.html#staff">スタッフ対応</a></li>
-      <li><a href="index.html#contact" class="header-btn"><i class="fa-brands fa-line" aria-hidden="true"></i> 無料相談</a></li>
+      <li><a href="/#hero">ホーム</a></li>
+      <li><a href="/#services">サービス</a></li>
+      <li><a href="/#region">活動地域</a></li>
+      <li><a href="/#fees">料金表</a></li>
+      <li><a href="/#contracts">契約書</a></li>
+      <li><a href="/#staff">スタッフ対応</a></li>
+      <li><a href="/#contact" class="header-btn"><i class="fa-brands fa-line"></i> 無料相談</a></li>
     </ul>
   </nav>
 
-  <!-- hero / page title -->
-  <section class="hero" role="region" aria-label="サービスページトップ">
-    <div class="container">
-      <div>
-        <h1><i class="fa-solid fa-hands-holding-heart" aria-hidden="true"></i> サービス詳細</h1>
-        <p>傾聴サポートや服薬管理、生活保護申請のサポートまで、専門の精神科看護師が寄り添います。</p>
-      </div>
-    </div>
+  <!-- ページヘッダー / ヒーロー -->
+  <section class="page-hero container" aria-hidden="false">
+    <h1><i class="fa-solid fa-file-circle-info" style="color:#2b8f6e;"></i> サービス詳細</h1>
+    <p>当ステーションが提供する主なサービスの詳細です。気になる項目をお読みいただき、ご相談ください。</p>
   </section>
 
   <main class="container" id="main">
-    <section class="section" id="service1">
-      <h2><i class="fa-solid fa-headset" aria-hidden="true"></i> 傾聴サポート</h2>
-      <p>利用者様の話にじっくり耳を傾け、安心して何でも話せる場を提供します。仕事帰りのストレスや孤独感を軽減し、心身の安定をサポートします。</p>
-    </section>
+    <!-- 各サービスの詳細（シンプルに） -->
+    <section id="service-list" class="section" aria-labelledby="service-list-title">
+      <h2 id="service-list-title"><i class="fa-solid fa-list"></i> 提供サービス一覧</h2>
 
-    <section class="section" id="service2">
-      <h2><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i> メンタルヘルスチェック</h2>
-      <p>定期的に心の状態を評価し、不安や抑うつの兆候を早期に発見します。必要に応じて医療機関や行政と連携し、適切な支援へ繋げます。</p>
-    </section>
+      <article id="service-1" style="margin-bottom:1rem;">
+        <h2><i class="fa-solid fa-headset"></i> 傾聴サポート</h2>
+        <p>利用者様のお話にじっくり耳を傾け、安心して話せる場を提供します。仕事帰りの疲れや孤独感の軽減、感情整理のサポートを行います。</p>
+      </article>
 
-    <section class="section" id="service3">
-      <h2><i class="fa-solid fa-pills" aria-hidden="true"></i> 服薬管理</h2>
-      <p>薬の飲み忘れを防ぎ、治療計画に沿った安全な服薬支援を行います。ご本人の生活リズムに合わせた実践的な提案をします。</p>
-    </section>
+      <article id="service-2" style="margin-bottom:1rem;">
+        <h2><i class="fa-solid fa-heart-pulse"></i> メンタルヘルスチェック</h2>
+        <p>定期的に心理的な評価を行い、不調の兆候を早期に発見します。必要に応じて医療機関や関係機関と連携した支援を行います。</p>
+      </article>
 
-    <section class="section" id="service4">
-      <h2><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 緊急対応</h2>
-      <p>急な不調や危機的状況に迅速に対応します。必要時は医療機関や関係機関と連携して安全確保を行います（24時間対応可）。</p>
-    </section>
+      <article id="service-3" style="margin-bottom:1rem;">
+        <h2><i class="fa-solid fa-pills"></i> 服薬管理</h2>
+        <p>薬の飲み忘れ防止、飲み方の確認、服薬の継続を支援します。ご本人やご家族と連携して無理のない方法を一緒に考えます。</p>
+      </article>
 
-    <section class="section" id="service5">
-      <h2><i class="fa-solid fa-person-walking-arrow-loop-left" aria-hidden="true"></i> セルフケア指導</h2>
-      <p>呼吸法や簡単なリラクセーション法など、自宅でできるセルフケアを指導します。日常で使える実践的な技術でストレス管理を支援します。</p>
-    </section>
+      <article id="service-4" style="margin-bottom:1rem;">
+        <h2><i class="fa-solid fa-triangle-exclamation"></i> 緊急対応</h2>
+        <p>急な体調変化や危機的状況に迅速に対応します。緊急度に応じた適切な措置や支援を行い、安全確保を最優先に行動します。</p>
+      </article>
 
-    <section class="section" id="service6">
-      <h2><i class="fa-solid fa-file-circle-check" aria-hidden="true"></i> 生活保護申請サポート</h2>
-      <p>申請手続きの流れを整理し、必要書類の準備や面談の準備を支援します。生活保護を受けるための不安や疑問に寄り添います（無料相談あり）。</p>
-    </section>
+      <article id="service-5" style="margin-bottom:1rem;">
+        <h2><i class="fa-solid fa-person-walking-arrow-loop-left"></i> セルフケア指導</h2>
+        <p>呼吸法や簡単なリラクセーション、日常でできる自助スキルをお伝えします。自分でできる対処法を増やし、日常生活の安定をサポートします。</p>
+      </article>
 
-    <a href="index.html#contact" class="contact-btn"><i class="fa-brands fa-line" aria-hidden="true"></i> お問い合わせ・無料相談はこちら</a>
-    <div><a href="index.html#services" class="back-link">← サービス一覧へ戻る</a></div>
+      <article id="service-6" style="margin-bottom:1rem;">
+        <h2><i class="fa-solid fa-file-circle-check"></i> 生活保護申請サポート</h2>
+        <p>生活保護申請に必要な手続きや書類整理を丁寧にサポートします。行政とのやり取りに不安がある方も安心して進められるよう支援します。</p>
+      </article>
+
+      <div class="contact-row">
+        <a class="btn-primary" href="/#contact"><i class="fa-brands fa-line"></i> 無料相談（LINE）</a>
+        <a class="back-link" href="/#services">← サービス一覧に戻る</a>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <small>&copy; 2025 いわき訪問看護ステーション</small>
+    <div class="container">
+      <small>&copy; 2025 いわき訪問看護ステーション</small>
+    </div>
   </footer>
 
   <script>
-    // シンプルなモバイルナビ制御（オーバーレイ、Escで閉じる、フォーカス管理の簡易）
-    document.addEventListener('DOMContentLoaded', function(){
-      const toggle = document.querySelector('.nav-toggle');
+    // シンプルなハンバーガー制御（メインと同じ挙動）
+    document.addEventListener('DOMContentLoaded', function () {
+      const navToggle = document.querySelector('.nav-toggle');
       const mobileNav = document.getElementById('mobile-nav');
-      let overlay = document.getElementById('navOverlay');
+      const overlay = document.getElementById('navOverlay');
       const closeBtn = mobileNav ? mobileNav.querySelector('.mobile-nav-close') : null;
 
-      if (!overlay) {
-        overlay = document.createElement('div');
-        overlay.id = 'navOverlay';
-        overlay.className = 'nav-overlay';
+      function showOverlay() {
+        if (!overlay) return;
+        overlay.style.display = 'block';
+        requestAnimationFrame(()=> overlay.classList.add('visible'));
+        overlay.setAttribute('aria-hidden','false');
+      }
+      function hideOverlay() {
+        if (!overlay) return;
+        overlay.classList.remove('visible');
         overlay.setAttribute('aria-hidden','true');
-        document.body.appendChild(overlay);
+        setTimeout(()=> { if (!overlay.classList.contains('visible')) overlay.style.display = 'none'; }, 300);
       }
 
-      function openNav(){
+      function openNav() {
         if (!mobileNav) return;
         mobileNav.classList.add('open');
         mobileNav.setAttribute('aria-hidden','false');
-        overlay.classList.add('visible');
-        overlay.setAttribute('aria-hidden','false');
         document.body.classList.add('nav-open');
-        if (toggle) toggle.setAttribute('aria-expanded','true');
-        // focus to first link
+        if (navToggle) navToggle.setAttribute('aria-expanded','true');
+        showOverlay();
         const first = mobileNav.querySelector('a, button');
         if (first) setTimeout(()=> first.focus(), 120);
       }
-      function closeNav(){
+      function closeNav() {
         if (!mobileNav) return;
         mobileNav.classList.remove('open');
         mobileNav.setAttribute('aria-hidden','true');
-        overlay.classList.remove('visible');
-        overlay.setAttribute('aria-hidden','true');
         document.body.classList.remove('nav-open');
-        if (toggle) toggle.setAttribute('aria-expanded','false');
-        if (toggle) toggle.focus();
+        if (navToggle) { navToggle.setAttribute('aria-expanded','false'); navToggle.focus(); }
+        hideOverlay();
       }
 
-      if (toggle) toggle.addEventListener('click', function(e){
-        e.stopPropagation();
-        if (mobileNav && mobileNav.classList.contains('open')) closeNav();
-        else openNav();
+      if (navToggle) navToggle.addEventListener('click', function(e){ e.stopPropagation(); if (mobileNav && mobileNav.classList.contains('open')) closeNav(); else openNav(); });
+      if (closeBtn) closeBtn.addEventListener('click', closeNav);
+      if (overlay) overlay.addEventListener('click', closeNav);
+
+      // メニュー内リンクを押したら閉じる
+      document.addEventListener('click', function(e){
+        if (!mobileNav || !mobileNav.classList.contains('open')) return;
+        const link = e.target.closest('#mobile-nav a');
+        if (link) setTimeout(closeNav, 120);
       });
 
-      if (closeBtn) closeBtn.addEventListener('click', closeNav);
-      overlay.addEventListener('click', closeNav);
-
-      // close on ESC
+      // ESCで閉じる
       document.addEventListener('keydown', function(e){
         if (e.key === 'Escape') {
           if (mobileNav && mobileNav.classList.contains('open')) closeNav();
         }
-      });
-
-      // close nav when clicking a link inside nav (useful on mobile)
-      document.addEventListener('click', function(e){
-        if (!mobileNav || !mobileNav.classList.contains('open')) return;
-        const a = e.target.closest('#mobile-nav a');
-        if (a) setTimeout(closeNav, 120);
       });
     });
   </script>
