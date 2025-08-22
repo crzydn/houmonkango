@@ -139,22 +139,20 @@ body.nav-open { overflow: hidden; }
 .ticker span { display:inline-block; padding:0.5rem 1.75rem; color:#214a3b; font-size:0.95rem; }
 
 /* テーブル */
-.table-responsive { overflow-x:auto; margin-bottom:1.5rem; }
-table { width:100%; border-collapse:collapse; table-layout:auto; }
-th, td { border:1px solid #e6e6e6; padding:0.75rem; text-align:center; font-size:0.95rem; vertical-align:middle; }
-th { background:#e8f9f1; color:#214a3b; font-weight:700; }
-tbody tr:nth-child(odd) { background:#fbfdfc; }
-th:nth-child(1), td:nth-child(1) { width:52%; }
-th:nth-child(2), td:nth-child(2) { width:24%; }
-th:nth-child(3), td:nth-child(3) { width:24%; }
-@media (max-width:768px) {
-  table, thead, tbody, th, td, tr { display:block; }
-  thead tr { display:none; }
-  tbody tr { margin-bottom:0.9rem; border-radius:8px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.03); background:#fff; }
-  td { position:relative; padding-left:50%; text-align:right; white-space:normal; }
-  td::before { content: attr(data-label); position:absolute; left:0.9rem; width:calc(50% - 1.8rem); text-align:left; font-weight:700; color:#333; }
-  td:first-child { padding-left:0.9rem; text-align:left; }
-}
+.staff-card { background:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.05); padding:1rem; text-align:center; flex:1 1 calc(50% - 1rem); }
+    .staff-card img { width:120px; height:120px; object-fit:cover; border-
+
+radius:50%; margin-bottom:0.5rem; }
+    .staff-card h3 { font-size:1.2rem; color:#4caf93; margin-bottom:0.3rem; }
+    .staff-card p { font-size:0.95rem; line-height:1.4; }
+    .table-responsive { overflow-x:auto; margin:1.5rem 0; }
+    table { width:100%; border-collapse:collapse; }
+    th, td { border:1px solid #ddd; padding:0.8rem; text-align:center; }
+    th { background:#4caf93; color:#fff; }
+    .badge-ok { background:#4caf93; color:#fff; padding:3px 6px; border-radius:4px; font-size:0.8rem; }
+
+@media(max-width:768px){ .staff-card { flex:1 1 100%; } }
+
 
 /* バッジ */
 .badge-ok { background:#2b8f6e; color:#fff; padding:6px 10px; border-radius:8px; font-size:0.86rem; display:inline-block; }
@@ -320,19 +318,19 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
       <p style="text-align:right; margin-top:1rem;"><a href="contracts-detail.html" class="btn-primary">詳しく聞く →</a></p>
     </section>
 
-    <!-- Staff -->
-    <section id="staff" class="section" aria-labelledby="staff-title">
-      <h2 id="staff-title"><i class="fa-solid fa-user-nurse" aria-hidden="true"></i> スタッフ訪問対応</h2>
-      <div class="table-responsive" role="region" aria-label="スタッフ対応時間">
+   <!-- Staff -->
+    <section id="staff" class="section">
+      <h2><i class="fa-solid fa-user-nurse" aria-hidden="true"></i> スタッフ訪問対応</h2>
+     <div class="table-responsive">
         <table>
-          <thead>
-            <tr><th scope="col">時間帯</th><th scope="col">男性看護師</th><th scope="col">女性看護師</th></tr>
-          </thead>
+          <thead><tr><th>時間帯</th><th>男性看護師</th><th>女性看護師</th></tr></thead>
           <tbody>
-            <tr><td data-label="時間帯">08:00〜12:00</td><td data-label="男性看護師"><span class="badge-ok">対応可</span></td><td data-label="女性看護師"><span class="badge-ok">対応可</span></td></tr>
-            <tr><td data-label="時間帯">12:00〜16:00</td><td data-label="男性看護師"><span class="badge-ok">対応可</span></td><td data-label="女性看護師"><span class="badge-ok">対応可</span></td></tr>
-            <tr><td data-label="時間帯">16:00〜20:00</td><td data-label="男性看護師"><span class="badge-ok">対応可</span></td><td data-label="女性看護師"><span class="badge-consult">要相談</span></td></tr>
-            <tr><td data-label="時間帯">20:00〜24:00</td><td data-label="男性看護師"><span class="badge-consult">要相談</span></td><td data-label="女性看護師"><span class="badge-ok">対応可</span></td></tr>
+            <tr><td data-label="時間帯">08:00〜12:00</td><td data-label="男性"><span class="badge-ok">対応可</span></td><td data-label="女性"><span class="badge-ok">対応可</span></td></tr>
+            <tr><td>12:00〜16:00</td><td><span class="badge-ok">対応可</span></td><td><span class="badge-ok">対応可</span></td></tr>
+            <tr><td>16:00〜20:00</td><td><span class="badge-ok">対応可</span></td><td><span class="badge-consult">要相談</span></td></tr>
+            <tr><td>20:00〜24:00</td><td><span class="badge-consult">要相談</span></td><td><span class="badge-ok">
+
+対応可</span></td></tr>
           </tbody>
         </table>
       </div>
