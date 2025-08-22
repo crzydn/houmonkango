@@ -180,6 +180,36 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
   .region-list li { font-size:0.88rem; padding:0.35rem 0.6rem; }
   .btn-primary, .btn-download { width:100%; justify-content:center; }
 }
+    /* --- モバイルでデスクトップナビの「項目のみ」非表示（ロゴ・ハンバーガー・最後のLINEボタンは残す） --- */
+@media (max-width: 768px) {
+  /* 全項目を一旦非表示 */
+  nav.desktop-nav ul > li { display: none !important; }
+
+  /* ただし末尾（無料相談ボタンが入っているリスト項目）は表示する */
+  nav.desktop-nav ul > li:last-child {
+    display: inline-flex !important;
+    align-items: center;
+    margin-left: auto; /* 右寄せ */
+  }
+
+  /* 末尾のボタン内の .header-btn を見やすく */
+  nav.desktop-nav ul > li:last-child .header-btn {
+    padding: 0.35rem 0.8rem;
+    border-radius: 18px;
+    font-size: 0.9rem;
+  }
+
+  /* ヘッダー高さが圧迫されるのを防ぐ（任意） */
+  .header-inner { padding-top: 0.55rem; padding-bottom: 0.55rem; }
+
+  /* デスクトップナビ自体のpointerを無効化（残ったボタンのみ操作可能に） */
+  nav.desktop-nav { pointer-events: none; }
+  nav.desktop-nav ul > li:last-child { display: none; } /* 末尾ボタンは操作可 */
+
+  /* 必要ならハンバーガーを確実に右端に固定 */
+  .nav-toggle { margin-left: 8px; }
+}
+
   </style>
 </head>
 <body>
