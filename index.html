@@ -330,14 +330,16 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
     <!-- Fees -->
     <section id="fees" class="section" aria-labelledby="fees-title">
       <h2 id="fees-title"><i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i> 料金表</h2>
-      <button class="btn-download" onclick="openModal('modal-fees')"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i> PDFを見る</button>
+      <button class="btn-download" type="button" onclick="openModal('modal-fees')" aria-haspopup="dialog" aria-controls="modal-fees">
+  <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>&nbsp; PDFを見る</button>
       <p style="text-align:right; margin-top:1rem;"><a href="fees-detail.html" class="btn-primary">詳しく見る →</a></p>
     </section>
 
     <!-- Contracts -->
     <section id="contracts" class="section" aria-labelledby="contracts-title">
       <h2 id="contracts-title"><i class="fa-solid fa-file-contract" aria-hidden="true"></i> 契約書</h2>
-      <button class="btn-download" onclick="openModal('modal-contracts')"><i class="fa-solid fa-file-contract" aria-hidden="true"></i> PDFを見る</button>
+      <button class="btn-download" type="button" onclick="openModal('modal-contracts')" aria-haspopup="dialog" aria-controls="modal-contracts">
+  <i class="fa-solid fa-file-contract" aria-hidden="true"></i>&nbsp; PDFを見る</button>
       <p style="text-align:right; margin-top:1rem;"><a href="contracts-detail.html" class="btn-primary">詳しく聞く →</a></p>
     </section>
 
