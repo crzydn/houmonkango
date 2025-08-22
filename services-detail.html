@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>サービス詳細 | いわき訪問看護ステーション</title>
   <meta name="description" content="傾聴サポート、メンタルヘルスチェック、服薬管理、緊急対応、セルフケア指導、生活保護申請サポートの詳細ページです。" />
-  <!-- Font Awesome -->
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
-  <!-- 共通詳細ページCSS -->
+  
   <style>
 :root{
   --site-max-width: 1024px;
@@ -38,32 +38,40 @@ h2{font-size:1.15rem; color:var(--primary); display:flex; align-items:center; ga
 .page-header{background:var(--card-bg); border-radius:10px; padding:1rem; box-shadow:var(--shadow); margin:1rem 0}
 .page-intro{background:transparent; margin-top:.6rem; color:var(--muted)}
 
+/* 目次（中央表示） */
+.toc{max-width:760px; margin:1rem auto 0; text-align:center}
+.toc ul{display:flex; flex-wrap:wrap; justify-content:center; gap:.6rem; list-style:none; padding:0; margin:0.6rem 0 0}
+.toc a{display:inline-block; padding:.45rem .85rem; border-radius:8px; background:linear-gradient(180deg,#ffffff,#f8fff8); box-shadow:0 2px 8px rgba(0,0,0,0.04); color:var(--accent)}
+.toc a:focus{outline:3px solid rgba(43,143,110,0.14)}
+
 /* セクションカード */
 .section{background:var(--card-bg); border-radius:10px; padding:1.2rem; box-shadow:var(--shadow); margin:1rem 0}
 .section p{color:var(--text); font-size:0.98rem}
 .section ol, .section ul{margin:0.6rem 0 0.6rem 1.1rem}
 
-/* ボタン類 */
+/* サービス一覧グリッド */
+.services-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; align-items:start}
+@media(max-width:680px){.services-grid{grid-template-columns:1fr}}
+
+/* 各サービスの色味（さりげないアクセント） */
+.services-grid article{border-left:4px solid transparent; background:linear-gradient(180deg,#fff,#ffffff); transition:transform .18s ease}
+.services-grid article:hover{transform:translateY(-4px)}
+.services-grid article:nth-child(1){border-left-color:rgba(76,175,147,0.95); background:linear-gradient(180deg,#fff,#f7fff8)}
+.services-grid article:nth-child(2){border-left-color:rgba(33,150,243,0.95); background:linear-gradient(180deg,#fff,#f3fbff)}
+.services-grid article:nth-child(3){border-left-color:rgba(255,193,7,0.95); background:linear-gradient(180deg,#fff,#fff9ec)}
+.services-grid article:nth-child(4){border-left-color:rgba(244,67,54,0.9); background:linear-gradient(180deg,#fff,#fff6f6)}
+.services-grid article:nth-child(5){border-left-color:rgba(76,175,124,0.85); background:linear-gradient(180deg,#fff,#f8fff9)}
+.services-grid article:nth-child(6){border-left-color:rgba(156,39,176,0.12); background:linear-gradient(180deg,#fff,#fbf8ff)}
+
+/* ボタン類（統一の動き） */
 .btn{display:inline-flex; align-items:center; gap:.5rem; text-decoration:none; cursor:pointer}
-.btn-primary{background:var(--cta); color:#fff; padding:.6rem 1rem; border-radius:22px; font-weight:600; box-shadow:0 6px 18px rgba(0,0,0,0.08); border:none}
-.btn-primary:hover, .btn-primary:focus{transform:translateY(-2px); outline:none}
+.btn-primary{background:var(--cta); color:#fff; padding:.6rem 1rem; border-radius:22px; font-weight:600; box-shadow:0 6px 18px rgba(0,0,0,0.08); border:none; transition:transform .18s ease}
+.btn-primary:hover, .btn-primary:focus{transform:translateY(-3px); outline:none}
 .btn-download{background:linear-gradient(135deg,var(--primary),var(--accent)); color:#fff; padding:.55rem 1rem; border-radius:22px; font-weight:600; box-shadow:0 6px 18px rgba(0,0,0,0.06); border:none}
 .btn-download:hover{transform:translateY(-2px)}
-.contact-cta{background:var(--cta); color:#fff; padding:.7rem 1.2rem; border-radius:26px; font-weight:700}
 
 /* back-link */
 .back-link{display:inline-block; color:var(--primary); margin-top:.6rem; font-size:0.95rem}
-
-/* カード・リスト類 */
-.cards{display:flex; gap:1rem; flex-wrap:wrap}
-.card{background:var(--card-bg); padding:1rem; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.04); flex:1 1 calc(50% - 1rem); min-width:220px}
-@media(max-width:680px){.card{flex:1 1 100%}}
-
-/* スタッフリスト */
-.staff-list{display:flex; gap:1rem; flex-wrap:wrap}
-.staff-card{background:var(--card-bg); padding:1rem; border-radius:8px; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,0.04); flex:1 1 calc(50% - 1rem); min-width:220px}
-.staff-card img{width:120px; height:120px; object-fit:cover; border-radius:50%; margin:0 auto .6rem}
-@media(max-width:768px){.staff-card{flex:1 1 100%}}
 
 /* テーブル（レスポンシブ） */
 .table-responsive{overflow-x:auto; margin:1rem 0}
@@ -76,13 +84,9 @@ h2{font-size:1.15rem; color:var(--primary); display:flex; align-items:center; ga
 .badge-ok{background:var(--primary); color:#fff}
 .badge-consult{background:#ff9800; color:#fff}
 
-/* ニュースティッカー互換（軽度） */
-.news-ticker{background:#f2fbf6;border-radius:8px;padding:.4rem .6rem}
-.news-ticker .ticker{white-space:nowrap; overflow:hidden}
-
-/* フォーム/リンク類の小調整 */
-.contact-row{display:flex; gap:.6rem; align-items:center; margin-top:1rem}
-.contact-row a{display:inline-flex; align-items:center}
+/* スキップリンク */
+.skip-link{position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden}
+.skip-link:focus{position:fixed; left:1rem; top:1rem; width:auto; height:auto; padding:.5rem .8rem; background:#000; color:#fff; z-index:4000; border-radius:6px}
 
 /* アクセシビリティ: フォーカス可視化 */
 :focus{outline:3px solid rgba(43,143,110,0.18); outline-offset:3px}
@@ -92,7 +96,25 @@ h2{font-size:1.15rem; color:var(--primary); display:flex; align-items:center; ga
 .align-center{text-align:center}
 .mt-1{margin-top:1rem}
 
-/* ===== レスポンシブ小画面補正 ===== */
+/* service-card background illustrations via emoji pseudo-elements */
+.service-card{position:relative; padding-right:1rem; overflow:hidden}
+.service-card::before{
+  content:"";
+  position:absolute;
+  right:12px;
+  top:12px;
+  font-size:64px;
+  opacity:0.08;
+  pointer-events:none;
+  transform:translateZ(0);
+}
+.s1::before{content:"🎧"}
+.s2::before{content:"💓"}
+.s3::before{content:"💊"}
+.s4::before{content:"⚠️"}
+.s5::before{content:"🧘"}
+.s6::before{content:"📝"}
+
 @media(max-width:900px){
   .container{padding:0 .75rem}
   h1{font-size:1.4rem}
@@ -105,65 +127,99 @@ h2{font-size:1.15rem; color:var(--primary); display:flex; align-items:center; ga
   a::after{content:" (" attr(href) ")"}
 }
 
-/* ===== 互換性注意コメント =====
- - 既存のページで個別に style="" を使っている箇所や
-   独自クラスがある場合、detail.css は上書きされます。
- - 必要に応じて重要度の高いルールで上書きする（.section { ... }）
-*/
+
+/* Header centering override to ensure logo+title are centered regardless of container flex rules */
+.page-header{display:block}
+.page-header > div{display:flex; flex-direction:column; align-items:center; text-align:center; max-width:880px; margin:0 auto}
+
+.page-header.container{display:flex !important;flex-direction:column !important;align-items:center !important;text-align:center !important;width:100% !important;max-width:100% !important;margin:0 auto !important;padding-left:0.75rem !important;padding-right:0.75rem !important}
 </style>
 </head>
 <body>
-  <!-- ヘッダー -->
-  <header class="page-header container" role="banner">
-    <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem;">
-      <div style="display:flex; align-items:center; gap:.8rem;">
-        <a href="/" aria-label="ホームに戻る"><img src="iwaki-logo.png" alt="いわき訪問看護ステーション ロゴ" style="height:44px; display:block; border-radius:6px;"></a>
-        <h1><i class="fa-solid fa-file-circle-info" aria-hidden="true"></i> サービス詳細</h1>
-      </div>
-      <nav aria-label="ページナビゲーション">
-        <a href="/#contact" class="btn-primary"><i class="fa-brands fa-line" aria-hidden="true"></i> 無料相談</a>
-      </nav>
-    </div>
-    <p class="page-intro">当ステーションが提供する主なサービスの詳細です。気になる項目をお読みいただき、ご相談ください。</p>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  
+  <header class="page-header container" role="banner" style="display:flex; flex-direction:column; align-items:center; text-align:center; padding:1.2rem;">
+    <a href="/" aria-label="ホームに戻る" style="display:block;">
+      <img src="iwaki-logo.png" alt="いわき訪問看護ステーション ロゴ" style="height:56px; display:block; border-radius:8px; margin:0 auto;">
+    </a>
+    <h1 style="margin:.6rem 0 0 0; font-size:1.6rem;"><i class="fa-solid fa-file-circle-info" aria-hidden="true"></i> サービス詳細</h1>
+    <p class="page-intro" style="margin-top:0.4rem; max-width:880px;">当ステーションが提供する主なサービスの詳細です。気になる項目をお読みいただき、ご相談ください。</p>
   </header>
 
+  
+  
+
   <main class="container" id="main">
-    <!-- 各サービスの詳細（シンプルに、共通 .section を活用） -->
+    
     <section id="service-list" class="section" aria-labelledby="service-list-title">
-      <h2 id="service-list-title"><i class="fa-solid fa-list" aria-hidden="true"></i> 提供サービス一覧</h2>
+      <h2 id="service-list-title" class="align-center"><i class="fa-solid fa-list" aria-hidden="true"></i> 提供サービス一覧</h2>
 
-      <article id="service-1" class="section" aria-labelledby="service-1-title">
-        <h3 id="service-1-title"><i class="fa-solid fa-headset" aria-hidden="true"></i> 傾聴サポート</h3>
-        <p>利用者様のお話にじっくり耳を傾け、安心して話せる場を提供します。仕事帰りの疲れや孤独感の軽減、感情整理のサポートを行います。</p>
-      </article>
+      <div class="services-grid" role="list">
 
-      <article id="service-2" class="section" aria-labelledby="service-2-title">
-        <h3 id="service-2-title"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i> メンタルヘルスチェック</h3>
-        <p>定期的に心理的な評価を行い、不調の兆候を早期に発見します。必要に応じて医療機関や関係機関と連携した支援を行います。</p>
-      </article>
+        <article id="service-1" class="section service-card s1" role="listitem" aria-labelledby="service-1-title">
+          <h3 id="service-1-title"><i class="fa-solid fa-headset" aria-hidden="true"></i> 傾聴サポート</h3>
+          <p>利用者様のお話にじっくり耳を傾け、安心して話せる場を提供します。仕事帰りの疲れや孤独感の軽減、感情整理のサポートを行います。</p>
+          <ul class="text-muted" style="margin-top:.6rem;">
+            <li>対象：孤立感や不安感を感じている方</li>
+            <li>目安：週1回〜（状況に応じて調整）</li>
+            <li>所要時間：30分〜60分（ご要望に応じます）</li>
+          </ul>
+        </article>
 
-      <article id="service-3" class="section" aria-labelledby="service-3-title">
-        <h3 id="service-3-title"><i class="fa-solid fa-pills" aria-hidden="true"></i> 服薬管理</h3>
-        <p>薬の飲み忘れ防止、飲み方の確認、服薬の継続を支援します。ご本人やご家族と連携して無理のない方法を一緒に考えます。</p>
-      </article>
+        <article id="service-2" class="section service-card s2" role="listitem" aria-labelledby="service-2-title">
+          <h3 id="service-2-title"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i> メンタルヘルスチェック</h3>
+          <p>定期的に心理的な評価を行い、不調の兆候を早期に発見します。必要に応じて医療機関や関係機関と連携した支援を行います。</p>
+          <ul class="text-muted" style="margin-top:.6rem;">
+            <li>対象：不眠・気分低下・不安が続く方</li>
+            <li>目安：隔週〜月1回の定期評価が一般的</li>
+            <li>所要時間：約20〜40分（チェックと簡単な面談を含む）</li>
+          </ul>
+        </article>
 
-      <article id="service-4" class="section" aria-labelledby="service-4-title">
-        <h3 id="service-4-title"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 緊急対応</h3>
-        <p>急な体調変化や危機的状況に迅速に対応します。緊急度に応じた適切な措置や支援を行い、安全確保を最優先に行動します。</p>
-      </article>
+        <article id="service-3" class="section service-card s3" role="listitem" aria-labelledby="service-3-title">
+          <h3 id="service-3-title"><i class="fa-solid fa-pills" aria-hidden="true"></i> 服薬管理</h3>
+          <p>薬の飲み忘れ防止、飲み方の確認、服薬の継続を支援します。ご本人やご家族と連携して無理のない方法を一緒に考えます。</p>
+          <ul class="text-muted" style="margin-top:.6rem;">
+            <li>対象：服薬に不安がある方や管理が必要な方</li>
+            <li>目安：毎回の訪問で状況確認・服薬サポート</li>
+            <li>所要時間：10〜20分（薬の確認や指導を含む）</li>
+          </ul>
+        </article>
 
-      <article id="service-5" class="section" aria-labelledby="service-5-title">
-        <h3 id="service-5-title"><i class="fa-solid fa-person-walking-arrow-loop-left" aria-hidden="true"></i> セルフケア指導</h3>
-        <p>呼吸法や簡単なリラクセーション、日常でできる自助スキルをお伝えします。自分でできる対処法を増やし、日常生活の安定をサポートします。</p>
-      </article>
+        <article id="service-4" class="section service-card s4" role="listitem" aria-labelledby="service-4-title">
+          <h3 id="service-4-title"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 緊急対応</h3>
+          <p>急な体調変化や危機的状況に迅速に対応します。緊急度に応じた適切な措置や支援を行い、安全確保を最優先に行動します。</p>
+          <ul class="text-muted" style="margin-top:.6rem;">
+            <li>対象：急変や自傷・重度の不安で援助が必要な場合</li>
+            <li>目安：電話での初期対応 → 必要時訪問（可能範囲で迅速対応）</li>
+            <li>所要時間：状況により変動（まずは安全確保が最優先）</li>
+          </ul>
+        </article>
 
-      <article id="service-6" class="section" aria-labelledby="service-6-title">
-        <h3 id="service-6-title"><i class="fa-solid fa-file-circle-check" aria-hidden="true"></i> 生活保護申請サポート</h3>
-        <p>生活保護申請に必要な手続きや書類整理を丁寧にサポートします。行政とのやり取りに不安がある方も安心して進められるよう支援します。</p>
-      </article>
+        <article id="service-5" class="section service-card s5" role="listitem" aria-labelledby="service-5-title">
+          <h3 id="service-5-title"><i class="fa-solid fa-person-walking-arrow-loop-left" aria-hidden="true"></i> セルフケア指導</h3>
+          <p>呼吸法や簡単なリラクセーション、日常でできる自助スキルをお伝えします。自分でできる対処法を増やし、日常生活の安定をサポートします。</p>
+          <ul class="text-muted" style="margin-top:.6rem;">
+            <li>対象：ストレス対処法を学びたい方</li>
+            <li>目安：週1回〜（練習の頻度は個別に調整）</li>
+            <li>所要時間：15〜30分（練習とフィードバック）</li>
+          </ul>
+        </article>
 
-      <div class="contact-row">
-        <a class="contact-cta btn" href="https://lin.ee/mlItwhZB" target="_blank" rel="noopener noreferrer" aria-label="LINEで無料相談"><i class="fa-brands fa-line" aria-hidden="true"></i> LINEで無料相談</a>
+        <article id="service-6" class="section service-card s6" role="listitem" aria-labelledby="service-6-title">
+          <h3 id="service-6-title"><i class="fa-solid fa-file-circle-check" aria-hidden="true"></i> 生活保護申請サポート</h3>
+          <p>生活保護申請に必要な手続きや書類整理を丁寧にサポートします。行政とのやり取りに不安がある方も安心して進められるよう支援します。</p>
+          <ul class="text-muted" style="margin-top:.6rem;">
+            <li>対象：生活資金や住居支援が必要な方</li>
+            <li>目安：申請準備〜面談同行まで個別対応</li>
+            <li>所要時間：面談・書類対応で30分〜（状況により変動）</li>
+          </ul>
+        </article>
+
+      </div>
+
+      <div class="contact-row mt-1">
+        <a class="btn-primary btn" href="https://lin.ee/mlItwhZB" target="_blank" rel="noopener noreferrer" aria-label="LINEで無料相談"><i class="fa-brands fa-line" aria-hidden="true"></i> LINEで無料相談</a>
         <a class="btn-primary btn" href="tel:06-7894-2216" aria-label="電話で相談"> <i class="fa-solid fa-phone" aria-hidden="true"></i> 電話する</a>
       </div>
 
@@ -176,22 +232,25 @@ h2{font-size:1.15rem; color:var(--primary); display:flex; align-items:center; ga
   </footer>
 
   <script>
-    // 簡易ハンバーガー用のスクリプトはトップページ側と共有している想定のため
-    // 詳細ページでは必要最小限のイベントだけ残します（ナビが存在しない場合は何もしません）
     document.addEventListener('DOMContentLoaded', function(){
       const navToggle = document.querySelector('.nav-toggle');
       const mobileNav = document.getElementById('mobile-nav');
       const overlay = document.getElementById('navOverlay');
       const closeBtn = mobileNav ? mobileNav.querySelector('.mobile-nav-close') : null;
-      if (!navToggle) return;
-      function showOverlay(){ if (!overlay) return; overlay.style.display='block'; requestAnimationFrame(()=> overlay.classList.add('visible')); overlay.setAttribute('aria-hidden','false'); }
-      function hideOverlay(){ if (!overlay) return; overlay.classList.remove('visible'); overlay.setAttribute('aria-hidden','true'); setTimeout(()=>{ if (!overlay.classList.contains('visible')) overlay.style.display='none'; },300); }
-      function openNav(){ if (!mobileNav) return; mobileNav.classList.add('open'); mobileNav.setAttribute('aria-hidden','false'); document.body.classList.add('nav-open'); showOverlay(); const first = mobileNav.querySelector('a, button'); if(first) setTimeout(()=> first.focus(),120); }
-      function closeNav(){ if (!mobileNav) return; mobileNav.classList.remove('open'); mobileNav.setAttribute('aria-hidden','true'); document.body.classList.remove('nav-open'); hideOverlay(); }
-      navToggle.addEventListener('click', function(e){ e.stopPropagation(); if (mobileNav && mobileNav.classList.contains('open')) closeNav(); else openNav(); });
-      if (closeBtn) closeBtn.addEventListener('click', closeNav);
-      if (overlay) overlay.addEventListener('click', closeNav);
-      document.addEventListener('keydown', function(e){ if (e.key === 'Escape') { if (mobileNav && mobileNav.classList.contains('open')) closeNav(); } });
+      if (navToggle) {
+        function showOverlay(){ if (!overlay) return; overlay.style.display='block'; requestAnimationFrame(()=> overlay.classList.add('visible')); overlay.setAttribute('aria-hidden','false'); }
+        function hideOverlay(){ if (!overlay) return; overlay.classList.remove('visible'); overlay.setAttribute('aria-hidden','true'); setTimeout(()=>{ if (!overlay.classList.contains('visible')) overlay.style.display='none'; },300); }
+        function openNav(){ if (!mobileNav) return; mobileNav.classList.add('open'); mobileNav.setAttribute('aria-hidden','false'); document.body.classList.add('nav-open'); showOverlay(); const first = mobileNav.querySelector('a, button'); if(first) setTimeout(()=> first.focus(),120); }
+        function closeNav(){ if (!mobileNav) return; mobileNav.classList.remove('open'); mobileNav.setAttribute('aria-hidden','true'); document.body.classList.remove('nav-open'); hideOverlay(); }
+        navToggle.addEventListener('click', function(e){ e.stopPropagation(); if (mobileNav && mobileNav.classList.contains('open')) closeNav(); else openNav(); });
+        if (closeBtn) closeBtn.addEventListener('click', closeNav);
+        if (overlay) overlay.addEventListener('click', closeNav);
+      }
+
+      // 目次でクリックした場合にフォーカスを当てる（アクセシビリティ補助）
+      document.querySelectorAll('nav[aria-label="このページの目次"] a').forEach(a=>{
+        a.addEventListener('click', function(e){ const id = this.getAttribute('href').replace('#',''); const el = document.getElementById(id); if(el) setTimeout(()=> { el.setAttribute('tabindex','-1'); el.focus(); }, 120); });
+      });
     });
   </script>
 </body>
