@@ -1,64 +1,85 @@
-<!DOCTYPE html>
-<html lang="ja">
+<!DOCTYPE html><html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>関連会社 | ○○訪問看護ステーション</title>
-  <meta name="description" content="○○訪問看護ステーションの関連会社ページ。訪問介護、福祉用具レンタル、地域支援事業など、連携企業のサービス詳細をご案内します。">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>関連会社 | いわき訪問看護ステーション</title>
+  <meta name="description" content="いわき訪問看護ステーションの関連会社ページ。訪問介護・福祉用具レンタル・地域支援など、連携企業のサービスを簡潔にご案内します。" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
   <style>
-    html { scroll-behavior:smooth; font-size:16px; }
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:'Hiragino Sans','Noto 
+:root{
+  --site-max-width:1024px; --site-gap:1rem; --bg:#eef4f7; --card-bg:#fff; --primary:#4caf93; --accent:#2b8f6e; --cta:#00c300; --text:#222; --muted:#666; --shadow:0 6px 18px rgba(0,0,0,0.06);
+}
+*{box-sizing:border-box}
+html{font-family:'Noto Sans JP','Hiragino Sans',system-ui,-apple-system,'Segoe UI',Roboto,Arial; font-size:16px; scroll-behavior:smooth}
+body{margin:0; background:var(--bg); color:var(--text); line-height:1.6}
+a{color:inherit; text-decoration:none}
+.container{width:100%; max-width:var(--site-max-width); margin:0 auto; padding:0 var(--site-gap)}.page-header{background:var(--card-bg); border-radius:10px; padding:1rem; box-shadow:var(--shadow); margin:1rem 0; display:flex; flex-direction:column; align-items:center; text-align:center} .page-header > div{width:100%; max-width:880px; margin:0 auto; display:flex; flex-direction:column; align-items:center} .page-header img{height:48px; border-radius:6px; display:block; margin:0 auto} .page-header h1{color:var(--primary); margin:.6rem 0 0 0} .page-intro{color:var(--muted); margin-top:.4rem; max-width:880px}
 
-Sans JP',sans-serif; background:#eef4f7; color:#333; }
-    a { text-decoration:none; color:inherit; }
-    .container { max-width:960px; margin:auto; padding:1rem; }
-    header { background:#4caf93; color:#fff; text-align:center; padding:1rem 0; }
-    header h1 { font-size:1.8rem; display:flex; justify-content:center; align-items:center; gap:0.5rem; }
-    .section { background:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1); padding:1.5rem; margin:1.5rem 0; }
-    .section h2 { font-size:1.4rem; color:#4caf93; margin-bottom:1rem; }
-    .partner-list { list-style:disc; padding-left:1.2rem; }
-    .partner-list li { margin-bottom:0.8rem; }
-    .partner-list a { color:#007acc; }
-    .back-link { display:inline-block; margin-top:1rem; color:#4caf93; font-size:0.9rem; }
+.section{background:var(--card-bg); border-radius:10px; padding:1.2rem; box-shadow:var(--shadow); margin:1rem 0} h2{font-size:1.15rem; color:var(--primary); display:flex; align-items:center; gap:.5rem}
 
-    footer { background:#4caf93; color:#fff; text-align:center; padding:1rem 0; font-size:0.85rem; }
-    @media(max-width:768px){ .partner-list { padding-left:1rem; } }
-  </style>
+.partner-list{display:grid; grid-template-columns:repeat(2,1fr); gap:1rem} @media(max-width:900px){.partner-list{grid-template-columns:1fr}} .partner-card{background:linear-gradient(180deg,#fff,#fbfffb); border-radius:10px; padding:1rem; box-shadow:var(--shadow)} .partner-card h3{color:var(--accent); margin:0 0 .4rem 0} .partner-card p{color:var(--text); font-size:0.95rem; margin:0 0 .6rem} .partner-card a{display:inline-flex; align-items:center; gap:.5rem; background:linear-gradient(135deg,var(--primary),var(--accent)); color:#fff; padding:.5rem .8rem; border-radius:12px; font-weight:700; text-decoration:none}
+
+.contact-row{display:flex; justify-content:center; gap:.6rem; align-items:center; margin-top:1rem} .btn-primary{display:inline-flex; align-items:center; gap:.6rem; background:var(--cta); color:#fff; border-radius:22px; font-weight:700; border:none; text-decoration:none; padding:.9rem 1.2rem; box-shadow:0 6px 18px rgba(0,0,0,0.08)} @media(min-width:900px){.btn-primary{padding:1rem 1.6rem; font-size:1.05rem}} @media(max-width:640px){.btn-primary{padding:.9rem 1rem} .contact-row{flex-wrap:wrap} }
+
+.back-link{display:inline-block; color:var(--primary); margin-top:.6rem; text-align:center}
+
+:focus{outline:3px solid rgba(43,143,110,0.18); outline-offset:3px} @media print{body{background:#fff}.page-header,.section{box-shadow:none}} </style>
+
 </head>
 <body>
-  <header>
-    <h1><i class="fa-solid fa-building-circle-check"></i> 関連会社</h1>
-  </header>
+  <a class="skip-link" href="#main" style="position:absolute;left:-999px">本文へ移動</a>  <header class="page-header container" role="banner">
+    <div>
+      <a href="/" aria-label="ホームに戻る"><img src="iwaki-logo.png" alt="いわき訪問看護ステーション ロゴ"></a>
+      <h1><i class="fa-solid fa-building" aria-hidden="true"></i> 関連会社</h1>
+      <p class="page-intro">連携している企業・団体をご紹介します。必要に応じてご紹介・連携調整を行いますので、お気軽にご相談ください。</p>
+    </div>
+  </header>  <main id="main" class="container"><section class="section" aria-labelledby="partners-title">
+  <h2 id="partners-title"><i class="fa-solid fa-hands-holding-circle" aria-hidden="true"></i> 連携先の主なサービス</h2>
 
-  <main class="container">
-    <section class="section">
-      <h2>株式会社○○メディカルサービス（訪問介護）</h2>
-      <p>ご高齢者や障がいをお持ちの方への訪問介護サービスを提供。身体介助・生活援助から短時間サポートまで幅広く対応します。</p>
-      <p><a href="https://kurumi.makecare.co.jp/" target="_blank">公
+  <div class="partner-list">
+    <article class="partner-card">
+      <h3>株式会社岩希（訪問介護）</h3>
+      <p>身体介助・生活援助・通院同行などを行う訪問介護サービス。訪問看護と連携して総合的な在宅支援を提供します。</p>
+      <a href="https://iwaki-corp.com/" target="_blank" rel="noopener noreferrer">公式サイトを見る →</a>
+    </article>
 
-式サイトへ →</a></p>
-    </section>
+    <article class="partner-card">
+      <h3>合同会社○○ライフケア（福祉用具レンタル）</h3>
+      <p>介護ベッドや車椅子、歩行器などの福祉用具レンタル。利用者の生活に合わせた選定・設置を支援します。</p>
+      <a href="#" target="_blank" rel="noopener noreferrer">サービス詳細 →</a>
+    </article>
 
-    <section class="section">
-      <h2>合同会社○○ライフケア（福祉用具レンタル）</h2>
-      <p>車椅子や歩行器、介護ベッドなどの福祉用具をレンタル。お一人お一人の生活スタイルに合わせたプランを提案します。</p>
-      <p><a href="#" target="_blank">サービス詳細へ →</a></p>
-    </section>
+    <article class="partner-card">
+      <h3>社会福祉法人○○会（地域支援）</h3>
+      <p>地域包括支援センターや認知症カフェの運営、地域の福祉サービスを統合的に支援する団体です。</p>
+      <a href="#" target="_blank" rel="noopener noreferrer">事業内容を見る →</a>
+    </article>
 
-    <section class="section">
-      <h2>社会福祉法人○○会（地域支援事業）</h2>
-      <p>地域包括支援センター運営や、認知症カフェ、地域交流イベントを実施。地域の皆さまの生活を総合的にサポートします。</p>
-      <p><a href="#" target="_blank">事業内容を見る →</a></p>
-    </section>
+    <article class="partner-card">
+      <h3>医療連携クリニック（四つ橋クリニック）</h3>
+      <p>精神科・内科の専門クリニックと連携し、診療連携・処方の調整を行っています。訪問看護と医療連携で安心の在宅療養を支援。</p>
+      <a href="#" target="_blank" rel="noopener noreferrer">クリニック情報 →</a>
+    </article>
+  </div>
 
+  <p class="text-muted" style="margin-top:.8rem; text-align:center">※上記以外にも必要に応じて提携先のご紹介が可能です。対応可否はエリア・内容により異なるため、まずはご相談ください。</p>
+</section>
 
-    <div><a href="index.html#partners" class="back-link">← トップへ戻る</a></div>
-  </main>
+<section class="section" aria-labelledby="contact-title">
+  <h2 id="contact-title"><i class="fa-solid fa-address-book" aria-hidden="true"></i> 連携相談・紹介依頼</h2>
+  <p class="text-muted">連携のご相談や提携のご依頼は下記からご連絡ください。簡単なヒアリングで最適な窓口をご案内します。</p>
 
-  <footer>
-    <small>&copy; 2025 ○○訪問看護ステーション</small>
+  <div class="contact-row">
+    <a class="btn-primary" href="tel:06-7894-2216" aria-label="電話で相談"><i class="fa-solid fa-phone" aria-hidden="true"></i> 電話で相談</a>
+    <a class="btn-primary" href="https://lin.ee/mlItwhZB" target="_blank" rel="noopener noreferrer" aria-label="LINEで相談"><i class="fa-brands fa-line" aria-hidden="true"></i> LINEで相談</a>
+  </div>
+
+</section>
+
+<p class="back-link" style="text-align:center"><a href="/#partners">← トップへ戻る</a></p>
+
+  </main>  <footer class="container" role="contentinfo" style="margin-top:1rem;text-align:center">
+    <small>&copy; 2025 いわき訪問看護ステーション</small>
   </footer>
 </body>
 </html>
