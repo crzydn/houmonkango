@@ -367,7 +367,13 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
     <!-- Contracts -->
     <section id="contracts" class="section" aria-labelledby="contracts-title">
       <h2 id="contracts-title"><i class="fa-solid fa-file-contract" aria-hidden="true"></i> 契約書</h2>
-      <button class="btn-download" type="button" onclick="openModal('modal-contracts')" aria-haspopup="dialog" aria-controls="modal-contracts">
+      <button class="btn-download" type="button" onclick="openModal('modal-contracts1')" aria-haspopup="dialog" aria-controls="modal-contracts">
+  <i class="fa-solid fa-file-contract" aria-hidden="true"></i>&nbsp; PDFを見る</button>
+       <button class="btn-download" type="button" onclick="openModal('modal-contracts2')" aria-haspopup="dialog" aria-controls="modal-contracts">
+  <i class="fa-solid fa-file-contract" aria-hidden="true"></i>&nbsp; PDFを見る</button>
+       <button class="btn-download" type="button" onclick="openModal('modal-contracts3')" aria-haspopup="dialog" aria-controls="modal-contracts">
+  <i class="fa-solid fa-file-contract" aria-hidden="true"></i>&nbsp; PDFを見る</button>
+       <button class="btn-download" type="button" onclick="openModal('modal-contracts4')" aria-haspopup="dialog" aria-controls="modal-contracts">
   <i class="fa-solid fa-file-contract" aria-hidden="true"></i>&nbsp; PDFを見る</button>
       <p style="text-align:right; margin-top:1rem;"><a href="contracts-detail.html" class="btn-primary">詳しく聞く →</a></p>
     </section>
@@ -474,10 +480,25 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
 
   <!-- モーダル：契約書 -->
   <div id="modal-contracts" class="modal" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="modal-contracts-title">
-    <div class="modal-content">
+    <div class="modal-content1">
       <button class="modal-close" aria-label="閉じる" data-modal-close>&times;</button>
-      <h3 id="modal-contracts-title" style="margin:0 0 .6rem 0;">契約書（PDF）</h3>
-      <iframe src="contracts.pdf" title="契約書"></iframe>
+      <h3 id="modal-contracts-title" style="margin:0 0 .6rem 0;">訪問看護契約書（PDF）</h3>
+      <iframe src="訪問看護契約書.pdf" title="契約書"></iframe>
+    </div>
+     <div class="modal-content2">
+      <button class="modal-close" aria-label="閉じる" data-modal-close>&times;</button>
+      <h3 id="modal-contracts-title" style="margin:0 0 .6rem 0;">重要事項説明書（訪問看護）（PDF）</h3>
+      <iframe src="重要事項説明書（訪問看護）.pdf" title="契約書"></iframe>
+    </div>
+     <div class="modal-content3">
+      <button class="modal-close" aria-label="閉じる" data-modal-close>&times;</button>
+      <h3 id="modal-contracts-title" style="margin:0 0 .6rem 0;">個人情報保護に関する同意書（PDF）</h3>
+      <iframe src="個人情報保護に関する同意書.pdf" title="契約書"></iframe>
+    </div>
+     <div class="modal-content4">
+      <button class="modal-close" aria-label="閉じる" data-modal-close>&times;</button>
+      <h3 id="modal-contracts-title" style="margin:0 0 .6rem 0;">緊急時訪問看護加算同意書（PDF）</h3>
+      <iframe src="緊急時訪問看護加算同意書.pdf" title="契約書"></iframe>
     </div>
   </div>
 
