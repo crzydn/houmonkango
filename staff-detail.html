@@ -1,91 +1,184 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>スタッフ紹介 | ○○訪問看護ステーション</title>
-  <meta name="description" content="○○訪問看護ステーションのスタッフ紹介ページ。経験豊富な男性・女性看護師のプロフィールと対応時間を掲載しています。">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>スタッフ紹介 | いわき訪問看護ステーション</title>
+  <meta name="description" content="いわき訪問看護ステーションのスタッフ紹介ページ。常勤看護師7名のプロフィールと対応時間、対応可能な業務を掲載しています。" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
   <style>
-    html { scroll-behavior: smooth; font-size:16px; }
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:'Hiragino Sans','Noto 
+:root{
+  --site-max-width:1024px; --site-gap:1rem; --bg:#eef4f7; --card-bg:#fff; --primary:#4caf93; --accent:#2b8f6e; --cta:#00c300; --text:#222; --muted:#666; --shadow:0 6px 18px rgba(0,0,0,0.06);
+}
+*{box-sizing:border-box}
+html{font-family:'Noto Sans JP','Hiragino Sans',system-ui,-apple-system,'Segoe UI',Roboto,Arial; font-size:16px; scroll-behavior:smooth}
+body{margin:0; background:var(--bg); color:var(--text); line-height:1.6}
+a{color:inherit; text-decoration:none}
+.container{width:100%; max-width:var(--site-max-width); margin:0 auto; padding:0 var(--site-gap)}
 
-Sans JP',sans-serif; background:#eef4f7; color:#333; }
-    a { text-decoration:none; color:inherit; }
-    .container { max-width:960px; margin:auto; padding:1rem; }
-    header { background:#4caf93; color:#fff; text-align:center; padding:1rem 0; }
-    header h1 { display:flex; justify-content:center; align-items:center; gap:0.5rem; font-size:1.8rem; }
-    nav ul { display:flex; justify-content:center; gap:1rem; list-style:none; margin-top:0.5rem; }
-    nav a { color:#fff; font-size:0.9rem; }
-    .staff-list { display:flex; flex-wrap:wrap; gap:1rem; margin:1rem 0; }
-    .staff-card { background:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.05); padding:1rem; text-align:center; flex:1 1 calc(50% - 1rem); }
-    .staff-card img { width:120px; height:120px; object-fit:cover; border-
+/* header: mirror other pages to ensure consistent central alignment */
+.page-header{background:var(--card-bg); border-radius:10px; padding:1rem; box-shadow:var(--shadow); margin:1rem 0}
+.page-header > div{display:flex; flex-direction:column; align-items:center; text-align:center; width:100%; max-width:880px; margin:0 auto}
+.page-header.container{display:flex !important; flex-direction:column !important; align-items:center !important; justify-content:center !important; text-align:center !important; width:100% !important}
+.page-header img{display:block; margin:0 auto; max-height:64px}
+.page-header h1{color:var(--primary); margin:0.6rem 0 0 0}
+.page-intro{color:var(--muted); margin-top:.4rem; text-align:center}
 
-radius:50%; margin-bottom:0.5rem; }
-    .staff-card h3 { font-size:1.2rem; color:#4caf93; margin-bottom:0.3rem; }
-    .staff-card p { font-size:0.95rem; line-height:1.4; }
-    .table-responsive { overflow-x:auto; margin:1.5rem 0; }
-    table { width:100%; border-collapse:collapse; }
-    th, td { border:1px solid #ddd; padding:0.8rem; text-align:center; }
-    th { background:#4caf93; color:#fff; }
-    .badge-ok { background:#4caf93; color:#fff; padding:3px 6px; border-radius:4px; font-size:0.8rem; }
-    .badge-consult { background:#ff9800; color:#fff; padding:3px 6px; border-radius:4px; font-size:0.8rem; }
-    .contact-btn { display:inline-block; background:#00c300; color:#fff; padding:0.6rem 1.2rem; border-radius:25px; font-weight:bold; margin-top:1rem; }
+/* staff grid */
+.staff-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem}
+@media(max-width:980px){.staff-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.staff-grid{grid-template-columns:1fr}}
 
-    .contact-btn:hover { background:#00a000; }
-    .back-link { display:inline-block; margin-top:1rem; color:#4caf93; font-size:0.9rem; }
-    footer { background:#4caf93; color:#fff; text-align:center; padding:1rem 0; margin-top:2rem; }
-    @media(max-width:768px){ .staff-card { flex:1 1 100%; } }
-  </style>
+.staff-card{background:linear-gradient(180deg,#fff,#fcfff9); border-radius:10px; padding:1rem; box-shadow:var(--shadow); text-align:center; position:relative; overflow:hidden}
+.staff-photo{width:120px; height:120px; object-fit:cover; border-radius:50%; display:block; margin:0 auto 0.6rem; border:4px solid rgba(43,143,110,0.08); box-shadow:0 6px 12px rgba(0,0,0,0.06)}
+.staff-card h3{color:var(--accent); margin:0 0 .25rem 0}
+.staff-card p{color:var(--text); font-size:0.95rem; margin:0 0 .6rem}
+.staff-meta{font-size:0.92rem; color:var(--muted); margin-bottom:.6rem}
+.staff-card::before{content:''; position:absolute; right:12px; top:12px; font-size:56px; opacity:0.06}
+.s1::before{content:'👩‍⚕️'}
+.s2::before{content:'👨‍⚕️'}
+.s3::before{content:'🩺'}
+.s4::before{content:'🧭'}
+.s5::before{content:'📝'}
+.s6::before{content:'🤝'}
+.s7::before{content:'💬'}
+
+/* schedule table */
+.table-responsive{overflow-x:auto; margin:1rem 0; background:var(--card-bg); border-radius:10px; padding:.6rem; box-shadow:var(--shadow)}
+table{width:100%; border-collapse:collapse}
+th, td{border:1px solid #e7e7e7; padding:.7rem; text-align:center}
+th{background:var(--primary); color:#fff}
+.table-responsive table th, .table-responsive table td { min-width:120px }
+.badge{display:inline-block; padding:6px 8px; border-radius:6px; font-size:0.85rem}
+.badge-ok{background:var(--primary); color:#fff}
+.badge-consult{background:#ff9800; color:#fff}
+
+/* CTA centralization */
+.contact-row{display:flex; justify-content:center; align-items:center; gap:.6rem; margin-top:1rem}
+.btn-primary{display:inline-flex; align-items:center; gap:.5rem; background:var(--cta); color:#fff; padding:.6rem 1rem; border-radius:22px; font-weight:600; box-shadow:0 6px 18px rgba(0,0,0,0.08); border:none}
+.btn-primary:hover{transform:translateY(-3px)}
+
+/* gentle color accents for variety */
+.accent-1{background:linear-gradient(180deg,#fff,#f7fff8)}
+.accent-2{background:linear-gradient(180deg,#fff,#f3fbff)}
+.accent-3{background:linear-gradient(180deg,#fff,#fff9ec)}
+
+.back-link{display:inline-block; color:var(--primary); margin-top:.6rem; text-align:center}
+
+/* responsive tweaks for mobile visibility */
+@media(max-width:640px){
+  .staff-photo{width:140px; height:140px}
+  .staff-card{padding:1.25rem}
+  h1{font-size:1.4rem}
+}
+
+/* accessibility focus */
+:focus{outline:3px solid rgba(43,143,110,0.18); outline-offset:3px}
+
+@media print{body{background:#fff}.page-header,.section{box-shadow:none}}
+</style>
 </head>
 <body>
-  <header>
-    <h1><i class="fa-solid fa-user-nurse"></i> スタッフ紹介</h1>
-    <nav>
-      <ul><li><a href="index.html#staff">トップへ戻る</a></li></ul>
-    </nav>
+  <a class="skip-link" href="#main" style="position:absolute;left:-999px">本文へ移動</a>
+
+  <header class="page-header container" role="banner">
+    <div>
+      <a href="/" aria-label="ホームに戻る"><img src="iwaki-logo.png" alt="いわき訪問看護ステーション ロゴ" style="height:44px; display:block; margin:0 auto; border-radius:6px"></a>
+      <h1 style="margin-top:.6rem"><i class="fa-solid fa-user-nurse" aria-hidden="true"></i> スタッフ紹介</h1>
+      <p class="page-intro">常勤看護師7名のプロフィールと対応時間を掲載しています。対応時間は原則 09:00〜18:00（応相談）です。柔軟な対応が必要な場合は事前にご相談ください。</p>
+    </div>
   </header>
 
-  <main class="container">
+  <main id="main" class="container">
 
-    <section class="staff-list">
-      <div class="staff-card">
-        <img src="https://via.placeholder.com/120" alt="男性看護師：田中太郎">
-        <h3>田中 太郎</h3>
-        <p>精神科訪問看護師。落ち着いた雰囲気で安心感を提供。傾聴力に定評があります。</p>
+    <section class="section" aria-labelledby="team-title">
+      <h2 id="team-title" class="align-center"><i class="fa-solid fa-people-roof" aria-hidden="true"></i> チーム紹介（常勤看護師）</h2>
+
+      <div class="staff-grid">
+        <div class="staff-card s1 accent-1">
+          <img src="photos/tanaka.jpg" alt="看護師：田中 太郎">
+          <h3>田中 太郎</h3>
+          <p class="staff-meta">精神科看護師・認定精神看護師（仮）</p>
+          <p>穏やかな対応で傾聴を得意とします。生活保護申請支援の経験が豊富です。</p>
+        </div>
+
+        <div class="staff-card s2 accent-2">
+          <img src="photos/tanaka.jpg" alt="看護師：佐藤 花子">
+          <h3>佐藤 花子</h3>
+          <p class="staff-meta">訪問看護師</p>
+          <p>服薬管理や家族支援を丁寧に行います。コミュニケーション力に定評があります。</p>
+        </div>
+
+        <div class="staff-card s3 accent-3">
+          <img src="photos/tanaka.jpg" alt="看護師：鈴木 一郎">
+          <h3>鈴木 一郎</h3>
+          <p class="staff-meta">精神科看護師</p>
+          <p>緊急対応や危機介入を含む実務経験が豊富です。迅速な安全確保を行います。</p>
+        </div>
+
+        <div class="staff-card s4 accent-1">
+          <img src="photos/tanaka.jpg" alt="看護師：高橋 美咲">
+          <h3>高橋 美咲</h3>
+          <p class="staff-meta">訪問看護師・相談員</p>
+          <p>生活支援や行政手続きの案内をサポートします。面談での整理整頓が得意です。</p>
+        </div>
+
+        <div class="staff-card s5 accent-2">
+          <img src="photos/tanaka.jpg" alt="看護師：中村 弘">
+          <h3>中村 弘</h3>
+          <p class="staff-meta">訪問看護師</p>
+          <p>高齢者ケアや慢性疾患の管理に対応。丁寧な観察と報告を心がけています。</p>
+        </div>
+
+        <div class="staff-card s6 accent-3">
+          <img src="photos/tanaka.jpg" alt="看護師：小林 菜々子">
+          <h3>小林 菜々子</h3>
+          <p class="staff-meta">精神科看護師</p>
+          <p>セルフケア指導やリラクセーションの指導を行います。対話中心の支援が得意です。</p>
+        </div>
+
+        <div class="staff-card s7 accent-1">
+          <img src="photos/tanaka.jpg" alt="看護師：松本 剛">
+          <h3>松本 剛</h3>
+          <p class="staff-meta">訪問看護師（チームリーダー）</p>
+          <p>チーム全体の調整や研修を担当。現場の安全管理と連携を主に担当します。</p>
+        </div>
+
       </div>
-      <div class="staff-card">
-        <img src="https://via.placeholder.com/120" alt="女性看護師：佐藤花子">
-        <h3>佐藤 花子</h3>
-        <p>精神科訪問看護師。温かい対応で心に寄り添います。生活保護申請サポートも得意。</p>
-      </div>
+
+      <p class="text-muted" style="margin-top:.8rem; text-align:center;">※プロフィールは一例です。担当は状況やご要望により調整します。</p>
     </section>
 
-    <section class="section">
-      <h2><i class="fa-solid fa-clock"></i> 男女別・時間帯対応表</h2>
+    <section class="section" aria-labelledby="hours-title">
+      <h2 id="hours-title"><i class="fa-solid fa-clock" aria-hidden="true"></i> 対応時間</h2>
 
       <div class="table-responsive">
         <table>
-          <thead><tr><th>時間帯</th><th>男性看護師</th><th>女性看護師</th></tr></thead>
+          <thead>
+            <tr><th>時間帯</th><th>男性看護師</th><th>女性看護師</th></tr>
+          </thead>
           <tbody>
-            <tr><td data-label="時間帯">08:00〜12:00</td><td data-label="男性"><span class="badge-ok">対応可</span></td><td data-label="女性"><span class="badge-ok">対応可</span></td></tr>
-            <tr><td>12:00〜16:00</td><td><span class="badge-ok">対応可</span></td><td><span class="badge-ok">対応可</span></td></tr>
-            <tr><td>16:00〜20:00</td><td><span class="badge-ok">対応可</span></td><td><span class="badge-consult">要相談</span></td></tr>
-            <tr><td>20:00〜24:00</td><td><span class="badge-consult">要相談</span></td><td><span class="badge-ok">
-
-対応可</span></td></tr>
+            <tr><td>09:00〜12:00</td><td><span class="badge badge-ok">対応可</span></td><td><span class="badge badge-ok">対応可</span></td></tr>
+            <tr><td>13:00〜15:00</td><td><span class="badge badge-ok">対応可</span></td><td><span class="badge badge-ok">対応可</span></td></tr>
+            <tr><td>15:00〜17:00</td><td><span class="badge badge-ok">対応可</span></td><td><span class="badge badge-ok">対応可</span></td></tr>
+            <tr><td>17:00〜18:00</td><td><span class="badge badge-ok">対応可</span></td><td><span class="badge badge-consult">要相談</span></td></tr>
           </tbody>
         </table>
       </div>
+
+      <p class="text-muted table-note" style="text-align:center">※1上記は原則の対応時間です。応相談で対応可能な場合があります。</p>
     </section>
 
-    <a href="contact-detail.html" class="contact-btn"><i class="fa-brands fa-line"></i> お問い合わせ・無料相談はこちら</a>
-    <div><a href="index.html#staff" class="back-link">← トップへ戻る</a></div>
+    <div class="contact-row">
+      <a class="btn-primary" href="https://lin.ee/mlItwhZB" target="_blank" rel="noopener noreferrer" aria-label="LINEで無料相談"><i class="fa-brands fa-line" aria-hidden="true"></i> LINEで無料相談</a>
+      <a class="btn-primary" href="tel:06-7894-2216" aria-label="電話で相談"><i class="fa-solid fa-phone" aria-hidden="true"></i> 電話する</a>
+    </div>
+
+    <p class="back-link"><a href="/#staff">← トップへ戻る</a></p>
   </main>
 
-  <footer>
-    <small>&copy; 2025 ○○訪問看護ステーション</small>
+  <footer class="container" role="contentinfo" style="margin-top:1rem;text-align:center">
+    <small>&copy; 2025 いわき訪問看護ステーション</small>
   </footer>
 </body>
 </html>
