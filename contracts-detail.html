@@ -1,75 +1,156 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>契約書詳細 | ○○訪問看護ステーション</title>
-  <meta name="description" content="○○訪問看護ステーションの契約書詳細ページ。契約までの流れやサンプルPDF、注意事項を掲載しています。" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>契約書詳細 | いわき訪問看護ステーション</title>
+  <meta name="description" content="契約までの流れ、契約書サンプルのPDF、重要な注意事項やよくある質問を掲載しています。契約前に確認したい項目をわかりやすくまとめました。" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
   <style>
-    html { scroll-behavior: smooth; font-size:16px; }
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:'Hiragino Sans','Noto 
+:root{
+  --site-max-width:1024px;
+  --site-gap:1rem;
+  --bg:#eef4f7;
+  --card-bg:#fff;
+  --primary:#4caf93;
+  --accent:#2b8f6e;
+  --cta:#00c300;
+  --text:#222;
+  --muted:#666;
+  --shadow:0 6px 18px rgba(0,0,0,0.06);
+}
+*{box-sizing:border-box}
+html{font-family: 'Noto Sans JP','Hiragino Sans',system-ui,-apple-system,'Segoe UI',Roboto,Arial; font-size:16px; scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:inherit}
+.container{width:100%;max-width:var(--site-max-width);margin:0 auto;padding:0 var(--site-gap)}
 
-Sans JP',sans-serif; background:#eef4f7; color:#333; }
-    a { text-decoration:none; color:inherit; }
-    .container { max-width:960px; margin:auto; padding:1rem; }
-    header { background:#4caf93; color:#fff; text-align:center; padding:1rem 0; }
-    header h1 { display:flex; justify-content:center; align-items:center; gap:0.5rem; font-size:1.8rem; }
-    nav ul { display:flex; justify-content:center; gap:1rem; list-style:none; margin-top:0.5rem; }
-    nav a { color:#fff; font-size:0.9rem; }
-    .section { background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.05); margin:1.5rem 0; padding:1.5rem; }
-    .section h2 { display:flex; align-items:center; gap:0.5rem; font-size:1.4rem; color:#4caf93; margin-bottom:1rem; }
-    .section p, .section ol { font-size:0.95rem; 
+.page-header{background:var(--card-bg);border-radius:10px;padding:1rem;box-shadow:var(--shadow);margin:1rem 0}
+.page-header > div{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:880px;margin:0 auto}
+.page-intro{color:var(--muted);margin-top:.4rem}
 
-line-height:1.6; margin-bottom:1rem; }
-    .section ol { padding-left:1.2rem; }
-    .btn-download { display:inline-block; background:linear-gradient(135deg,#4caf93,#3e9b7d); color:#fff; padding:0.6rem 1.2rem; border-radius:25px; font-size:0.95rem; transition:transform .3s; }
-    .btn-download:hover { transform:translateY(-2px); }
-    .contact-btn { display:inline-block; background:#00c300; color:#fff; padding:0.6rem 1.2rem; border-radius:25px; font-weight:bold; margin-top:1rem; }
-    .contact-btn:hover { background:#00a000; }
-    .back-link { display:inline-block; margin-top:1rem; color:#4caf93; font-size:0.9rem; }
-    footer { background:#4caf93; color:#fff; text-align:center; padding:1rem 0; font-size:0.85rem; }
-    @media (max-width:768px) { .section { 
+.section{background:var(--card-bg);border-radius:10px;padding:1.2rem;box-shadow:var(--shadow);margin:1rem 0}
+h2{font-size:1.15rem;color:var(--primary);display:flex;align-items:center;gap:.5rem}
 
-padding:1rem; } }
-  </style>
+ol.flow{padding-left:1.1rem;margin-top:.6rem}
+.flow li{margin-bottom:.6rem}
+
+.table-responsive{overflow-x:auto;margin:1rem 0}
+.table-responsive table{width:100%;border-collapse:collapse;min-width:520px}
+.table-responsive th,.table-responsive td{border:1px solid #e7e7e7;padding:.7rem;text-align:left}
+th{background:var(--primary);color:#fff;text-align:center}
+
+.btn{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none}
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:var(--cta);color:#fff;padding:.6rem 1rem;border-radius:22px;font-weight:600;box-shadow:0 6px 18px rgba(0,0,0,0.08);border:none;transition:transform .18s ease}
+.btn-primary:hover,.btn-primary:focus{transform:translateY(-3px);outline:none}
+.btn-download{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:.55rem 1rem;border-radius:22px;font-weight:600;box-shadow:0 6px 18px rgba(0,0,0,0.06);border:none}
+
+.back-link{display:inline-block;color:var(--primary);margin-top:.6rem;text-align:center}
+
+.text-muted{color:var(--muted)}
+.align-center{text-align:center}
+
+.page-header.container{display:flex !important;flex-direction:column !important;align-items:center !important;justify-content:center !important;text-align:center !important;width:100% !important;max-width:var(--site-max-width) !important;margin:1rem auto !important;padding:1rem !important}
+.page-header h1{color:var(--primary) !important}
+.page-header .page-intro{color:var(--muted) !important}
+
+@media(max-width:900px){.container{padding:0 .75rem}}
+@media print{body{background:#fff}.section,.page-header{box-shadow:none}a::after{content:" (" attr(href) ")"}}
+    /* 追加：色味の強調とPDFボタンレイアウト、CTA中央化（上書き） */
+  .section h2::after{content:''; display:block; width:56px; height:4px; background:var(--accent); border-radius:3px; margin-top:.5rem}
+  .pdf-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:0.8rem; margin-top:0.8rem}
+  @media(max-width:680px){ .pdf-grid{grid-template-columns:1fr} }
+  .pdf-btn{display:inline-flex; align-items:center; gap:.6rem; padding:.6rem 0.9rem; border-radius:12px; background:linear-gradient(135deg,var(--primary),var(--accent)); color:#fff; font-weight:700; text-decoration:none}
+  .pdf-btn i{font-size:1.05rem}
+  .pdf-note{font-size:0.95rem; color:var(--muted); margin-top:0.6rem; text-align:center}
+  .contact-row{justify-content:center}
+.contact-row{display:flex !important; justify-content:center !important; align-items:center !important; gap:.6rem !important; width:100% !important}
+.contact-row .btn-primary{margin:0 !important}
+
+</style>
 </head>
 <body>
-  <header>
-    <h1><i class="fa-solid fa-file-contract"></i> 契約書詳細</h1>
-    <nav>
-      <ul><li><a href="index.html#contracts">トップへ戻る</a></li></ul>
-    </nav>
+  <a class="skip-link" href="#main" style="position:absolute;left:-999px">本文へ移動</a>
+
+  <header class="page-header container" role="banner">
+    <div>
+      <a href="/" aria-label="ホームに戻る"><img src="iwaki-logo.png" alt="いわき訪問看護ステーション ロゴ" style="height:44px;display:block;margin:0 auto;border-radius:6px"></a>
+      <h1 style="margin-top:.6rem;"><i class="fa-solid fa-file-contract" aria-hidden="true"></i> 契約書詳細</h1>
+      <p class="page-intro">ご利用開始までの流れ・契約書サンプル・重要な注意事項を掲載しています。ご不明点はLINEまたはお電話でご相談ください。</p>
+    </div>
   </header>
 
-  <main class="container">
-    <section class="section">
-      <h2><i class="fa-solid fa-list-ol"></i> ご利用開始までの流れ</h2>
-      <ol>
-        <li><strong>お問い合わせ・事前ヒアリング</strong><br>LINE・電話・メールからご連絡ください。ご希望や状況を伺います。</li>
-        <li><strong>事前面談</strong><br>ご自
+  <main id="main" class="container">
 
-宅またはオンラインで、訪問看護の内容や手続きをご説明します。</li>
-        <li><strong>契約内容のご確認</strong><br>契約書の条項を詳しくご案内し、ご不明点にお答えします。</li>
-        <li><strong>書面へのご署名</strong><br>ご納得のうえで契約書に署名いただきます。</li>
-        <li><strong>サービス開始</strong><br>初回訪問日を調整し、訪問看護サービスを開始します。</li>
+    <section class="section" aria-labelledby="flow-title">
+      <h2 id="flow-title"><i class="fa-solid fa-list-ol"></i> ご利用開始までの流れ</h2>
+      <ol class="flow">
+        <li><strong>お問い合わせ・事前ヒアリング</strong><br>LINE・電話・メールでご連絡ください。希望日時や現状を伺い、訪問可否や初回面談の日程を調整します。</li>
+        <li><strong>事前面談（訪問またはオンライン）</strong><br>サービス内容・訪問頻度・同意事項を確認します。訪問ルートや安全確保のための確認も行います。</li>
+        <li><strong>契約内容の確認</strong><br>契約書の項目（提供範囲・費用・解約条件）を丁寧にご説明します。疑問点はその場でご相談ください。</li>
+        <li><strong>署名・契約完了</strong><br>双方が内容に同意のうえ、署名または電子同意で契約を締結し、サービスを開始します。</li>
+        <li><strong>サービス開始後のフォロー</strong><br>初回訪問後にフォロー連絡を行い、必要に応じてサービス内容の微調整を行います。</li>
       </ol>
     </section>
 
-    <section class="section">
-      <h2><i class="fa-solid fa-file-pdf"></i> 契約書サンプルPDF</h2>
-      <p>契約書の詳細は下記のPDFからご確認ください。</p>
-      <a href="/pdf/contracts.pdf" class="btn-download" target="_blank"><i class="fa-solid fa-file-pdf"></i> 契約書PDFを開く</a>
-
+    <section class="section" aria-labelledby="contract-key">
+      <h2 id="contract-key"><i class="fa-solid fa-list-check"></i> 契約書の主なポイント</h2>
+      <ul>
+        <li><strong>サービス内容の範囲：</strong>訪問看護で提供するケアの範囲（傾聴、服薬管理、簡易処置、生活支援等）を明記します。</li>
+        <li><strong>料金・支払い方法：</strong>保険適用の有無、自己負担額の目安、支払い方法（口座振替／請求書）について記載します。</li>
+        <li><strong>キャンセル・解約：</strong>訪問のキャンセルポリシーや解約手続きについて明確にします。</li>
+        <li><strong>守秘義務：</strong>個人情報および医療情報の取り扱いについての遵守事項を定めています。</li>
+      </ul>
     </section>
 
-    <a href="contact-detail.html" class="contact-btn"><i class="fa-brands fa-line"></i> ご相談はこちら</a>
-    <div><a href="index.html#contracts" class="back-link">← トップへ戻る</a></div>
+    <section class="section" aria-labelledby="pdf-title">
+      <h2 id="pdf-title"><i class="fa-solid fa-file-pdf"></i> 契約書サンプル（PDF）</h2>
+      <p class="text-muted">以下はサンプルPDFです。正式な契約書は面談時にご説明のうえお渡しします。該当ファイルをクリックしてご確認ください。</p>
+
+      <div class="pdf-grid">
+        <a class="pdf-btn" href="/pdf/contract_visiting_nursing.pdf" target="_blank" rel="noopener noreferrer" aria-label="訪問看護契約書を開く" download><i class="fa-solid fa-file-lines"></i> 訪問看護契約書</a>
+        <a class="pdf-btn" href="/pdf/important_explanation_visiting_nursing.pdf" target="_blank" rel="noopener noreferrer" aria-label="重要事項説明書（訪問看護）を開く" download><i class="fa-solid fa-file-circle-exclamation"></i> 重要事項説明書（訪問看護）</a>
+        <a class="pdf-btn" href="/pdf/privacy_consent.pdf" target="_blank" rel="noopener noreferrer" aria-label="個人情報保護に関する同意書を開く" download><i class="fa-solid fa-user-shield"></i> 個人情報保護に関する同意書</a>
+        <a class="pdf-btn" href="/pdf/emergency_addendum_consent.pdf" target="_blank" rel="noopener noreferrer" aria-label="緊急時訪問看護加算同意書を開く" download><i class="fa-solid fa-ambulance"></i> 緊急時訪問看護加算同意書</a>
+      </div>
+
+      <p class="pdf-note">※ダウンロード後、内容をご確認のうえご不明点はLINEまたはお電話でお問い合わせください。</p>
+    </section>
+
+    <section class="section" aria-labelledby="notes-title">
+      <h2 id="notes-title"><i class="fa-solid fa-triangle-exclamation"></i> 注意事項・よくある質問</h2>
+      <ul>
+        <li><strong>外出先での訪問：</strong>病院や施設、職場での訪問も可能ですが、安全確認・事前調整が必要です。</li>
+        <li><strong>訪問不可地域：</strong>交通事情や距離により訪問出来ない地域があります。まずはご相談ください。</li>
+        <li><strong>保険適用の判断：</strong>医療保険か介護保険かの適用は、主治医や自治体の判定に準じます。判断に迷う場合は当方で一緒に確認します。</li>
+        <li><strong>プライバシー：</strong>訪問時の記録は適切に管理し、ご本人の同意がある場合を除き第三者へ開示しません。</li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="faq-title">
+      <h2 id="faq-title"><i class="fa-solid fa-question-circle"></i> よくある質問</h2>
+      <dl style="margin-top:.6rem">
+        <dt><strong>Q: 契約後にサービス内容を変更できますか？</strong></dt>
+        <dd class="text-muted" style="margin-bottom:.6rem">A: はい、利用状況に応じて契約内容の変更（訪問頻度の増減など）は可能です。まずは担当者にご相談ください。</dd>
+
+        <dt><strong>Q: 書面での受け取りはできますか？</strong></dt>
+        <dd class="text-muted" style="margin-bottom:.6rem">A: はい。郵送または初回訪問時に紙でお渡しできます。希望があれば事前にお申し付けください。</dd>
+
+        <dt><strong>Q: 契約前にお試し訪問は可能ですか？</strong></dt>
+        <dd class="text-muted">A: 事前相談の範囲で短時間のお試し訪問を行うことがあります。詳しくはお問い合わせください。</dd>
+      </dl>
+    </section>
+
+    <div class="contact-row">
+      <a class="btn-primary" href="https://lin.ee/mlItwhZB" target="_blank" rel="noopener noreferrer" aria-label="LINEで無料相談"><i class="fa-brands fa-line" aria-hidden="true"></i> LINEで無料相談</a>
+      <a class="btn-primary" href="tel:06-7894-2216" aria-label="電話で相談"><i class="fa-solid fa-phone" aria-hidden="true"></i> 電話する</a>
+    </div>
+
+    <p class="back-link" style="text-align:center"><a href="/#contracts">← トップへ戻る</a></p>
   </main>
 
-  <footer>
-    <small>&copy; 2025 ○○訪問看護ステーション</small>
+  <footer class="container" role="contentinfo" style="margin-top:1rem;text-align:center">
+    <small>&copy; 2025 いわき訪問看護ステーション</small>
   </footer>
 </body>
 </html>
