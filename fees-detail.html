@@ -1,92 +1,179 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>料金表詳細 | ○○訪問看護ステーション</title>
-  <meta name="description" content="○○訪問看護ステーションの料金表詳細ページ。介護保険・医療保険適用時の自己負担額やPDFダウンロードリンクを掲載しています。" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>料金表詳細 | いわき訪問看護ステーション</title>
+  <meta name="description" content="介護保険・医療保険適用時の自己負担額の目安や計算例、PDFダウンロードができる料金表ページです。" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+
   <style>
-    html { font-size:16px; }
-    body{font-family:'Hiragino Sans','Noto Sans JP',sans-serif; background:#eef4f7; color:#333; margin:0;}
+:root{
+  --site-max-width:1024px;
+  --site-gap:1rem;
+  --bg:#eef4f7;
+  --card-bg:#fff;
+  --primary:#4caf93;
+  --accent:#2b8f6e;
+  --cta:#00c300;
+  --text:#222;
+  --muted:#666;
+  --shadow:0 6px 18px rgba(0,0,0,0.06);
+}
+*{box-sizing:border-box}
+html{font-family: 'Noto Sans JP','Hiragino Sans',system-ui,-apple-system,'Segoe UI',Roboto,Arial; font-size:16px; scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:inherit}
+.container{width:100%;max-width:var(--site-max-width);margin:0 auto;padding:0 var(--site-gap)}
 
-    .container{max-width:1024px; margin:auto; padding:1rem;}
-    header{background:#4caf93; color:#fff; text-align:center; padding:1rem;}
-    nav ul{display:flex; justify-content:center; gap:1rem; list-style:none; margin:0; padding:0;}
-    nav a{color:#fff; text-decoration:none;}
-    .section{background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.05); margin:1.5rem 0; padding:1.5rem;}
-    .section h2{display:flex; align-items:center; gap:0.5rem; color:#4caf93; font-size:1.4rem; margin-bottom:1rem;}
-    .section h2 i{font-size:1.3rem;}
-    .table-responsive{overflow-x:auto; margin-bottom:1rem;}
-    table{width:100%; border-collapse:collapse;}
-    th, td{border:1px solid #ddd; padding:0.8rem; text-align:center;}
 
-    th{background:#4caf93; color:#fff;}
-    p{margin-bottom:1rem;}
-    .btn-download{background:linear-gradient(135deg,#4caf93,#3e9b7d); color:#fff; padding:0.6rem 1.2rem; border-radius:25px; font-size:0.95rem; text-decoration:none; display:inline-block; transition:transform .3s;}
-    .btn-download:hover{transform:translateY(-2px);}
-    .contact-btn{display:inline-block; margin-top:1.5rem; background:#00c300; color:#fff; padding:0.6rem 1.2rem; border-radius:25px; text-decoration:none; font-weight:bold;}
-    .contact-btn:hover{background:#00a000;}
-    .back-link{display:inline-block; margin-top:1rem; color:#4caf93; text-decoration:none;}
-    footer{background:#4caf93; color:#fff; text-align:center; padding:1rem 0;}
-    @media(max-width:768px){.section{padding:1rem;} }
+.page-header{background:var(--card-bg);border-radius:10px;padding:1rem;box-shadow:var(--shadow);margin:1rem 0}
+.page-header > div{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:880px;margin:0 auto}
+.page-intro{color:var(--muted);margin-top:.4rem}
 
-  </style>
+
+.section{background:var(--card-bg);border-radius:10px;padding:1.2rem;box-shadow:var(--shadow);margin:1rem 0}
+h2{font-size:1.15rem;color:var(--primary);display:flex;align-items:center;gap:.5rem}
+
+
+.table-responsive{overflow-x:auto;margin:1rem 0}
+table{width:100%;border-collapse:collapse;min-width:520px}
+th,td{border:1px solid #e7e7e7;padding:.7rem;text-align:center}
+th{background:var(--primary);color:#fff}
+.description{font-size:0.95rem;color:var(--muted);margin-top:.6rem}
+
+
+.calc-box{background:linear-gradient(180deg,#fff,#f8fff8);border-left:4px solid rgba(76,175,147,0.9);padding:0.9rem;border-radius:8px;margin-top:.8rem}
+
+
+.btn{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none}
+.btn-download{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:.6rem 1rem;border-radius:22px;font-weight:600;box-shadow:0 6px 18px rgba(0,0,0,0.06);border:none}
+.btn-download:hover{transform:translateY(-2px)}
+
+
+.contact-row{display:flex;gap:.6rem;align-items:center;margin-top:1rem;justify-content:center}
+.btn-primary{background:var(--cta);color:#fff;padding:.6rem 1rem;border-radius:22px;font-weight:600;box-shadow:0 6px 18px rgba(0,0,0,0.08);border:none}
+
+.back-link{display:inline-block;color:var(--primary);margin-top:.6rem;text-align:center}
+
+
+.text-muted{color:var(--muted)}
+.align-center{text-align:center}
+
+@media(max-width:900px){.container{padding:0 .75rem}}
+
+@media print{body{background:#fff}.section,.page-header{box-shadow:none}a::after{content:" (" attr(href) ")"}}
+  
+/* ヘッダー中央配置・色合わせとCTAの統一（上書きルール） */
+.page-header.container{display:flex !important;flex-direction:column !important;align-items:center !important;justify-content:center !important;text-align:center !important;width:100% !important;max-width:var(--site-max-width) !important;margin:1rem auto !important;padding:1rem !important}
+.page-header h1{color:var(--primary) !important}
+.page-header .page-intro{color:var(--muted) !important}
+
+/* CTA（LINE / 電話）を同一クラスで動作・色味を統一 */
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:var(--cta) !important;color:#fff !important;padding:.6rem 1rem;border-radius:22px;font-weight:600;box-shadow:0 6px 18px rgba(0,0,0,0.08);border:none;transition:transform .18s ease}
+.btn-primary:hover,.btn-primary:focus{transform:translateY(-3px);outline:none}
+
+</style>
 </head>
 <body>
-  <header>
-    <h1><i class="fa-solid fa-file-invoice-dollar"></i> 料金表詳細</h1>
-    <nav>
-      <ul><li><a href="index.html#fees">トップへ戻る</a></li></ul>
-    </nav>
+  <a class="skip-link" href="#main" style="position:absolute;left:-999px">本文へ移動</a>
+
+  <header class="page-header container" role="banner">
+    <div>
+      <a href="/" aria-label="ホームに戻る"><img src="iwaki-logo.png" alt="いわき訪問看護ステーション ロゴ" style="height:44px;display:block;margin:0 auto;border-radius:6px"></a>
+      <h1 style="margin-top:.6rem;"><i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i> 料金表詳細</h1>
+      <p class="page-intro">介護保険・医療保険それぞれの自己負担の目安、計算例、PDFダウンロードを用意しています。実際の請求は加算等によって変動しますのでご相談ください。</p>
+    </div>
   </header>
 
-  <main class="container">
-    <section class="section">
-      <h2><i class="fa-solid fa-file-medical"></i> 介護保険適用時（1割負担の目安）</h2>
-      <p>介護保険を適用した場合のおおよその自己負担額です。実際の金額はサービス内容や加算項目によって変動します。</p>
+  <main id="main" class="container">
+    <section class="section" aria-labelledby="care-title">
+      <h2 id="care-title"><i class="fa-solid fa-file-medical"></i> 介護保険適用時（自己負担の目安）</h2>
+      <p class="description">介護保険（原則1割負担、所得により2〜3割の場合あり）。下表はあくまで目安です。訪問時間や提供するサービス種別、各種加算で最終金額が変わります。</p>
+
       <div class="table-responsive">
         <table>
-          <thead><tr><th>訪問時間</th><th>自
-
-己負担額</th></tr></thead>
+          <thead><tr><th>訪問時間</th><th>目安（1割負担）</th><th>備考</th></tr></thead>
           <tbody>
-            <tr><td>20分未満</td><td>約300円</td></tr>
-            <tr><td>30分未満</td><td>約450円</td></tr>
-            <tr><td>60分未満</td><td>約800円</td></tr>
+            <tr><td>20分未満</td><td>約300円</td><td>短時間サービスの例</td></tr>
+            <tr><td>30分未満</td><td>約450円</td><td>日常的な確認や傾聴</td></tr>
+            <tr><td>60分未満</td><td>約800円</td><td>ケア・指導を含む訪問</td></tr>
           </tbody>
         </table>
       </div>
+
+      <div class="calc-box">
+        <strong>計算例（介護保険・1割負担）</strong>
+        <p style="margin:.4rem 0 0">60分訪問でサービス単価が8,000円（介護報酬の例）→ 1割負担：<strong>約800円</strong></p>
+        <p class="text-muted" style="margin:.3rem 0 0">※加算（夜間・緊急対応、訪問看護加算等）が付く場合、実際の自己負担は変動します。</p>
+      </div>
+
     </section>
 
-    <section class="section">
-      <h2><i class="fa-solid fa-notes-medical"></i> 医療保険適用時（1割負担の目安）</h2>
-      <p>医療保険を適用した場合のおおよその自己負担額です。訪問回数や特定加算により変動します。</p>
+    <section class="section" aria-labelledby="medical-title">
+      <h2 id="medical-title"><i class="fa-solid fa-notes-medical"></i> 医療保険適用時（自己負担の目安）</h2>
+      <p class="description">医療保険を使った訪問看護の場合の目安です。保険の種類や医療行為の有無で算定方法が異なります。</p>
+
       <div class="table-responsive">
         <table>
-
-          <thead><tr><th>訪問時間</th><th>自己負担額</th></tr></thead>
+          <thead><tr><th>訪問時間</th><th>目安（1割負担）</th><th>備考</th></tr></thead>
           <tbody>
-            <tr><td>30分未満</td><td>約450円</td></tr>
-            <tr><td>60分未満</td><td>約800円</td></tr>
+            <tr><td>30分未満</td><td>約450円</td><td>診療補助や観察が中心</td></tr>
+            <tr><td>60分未満</td><td>約800円</td><td>処置や指導を含む訪問</td></tr>
           </tbody>
         </table>
       </div>
+
+      <div class="calc-box">
+        <strong>計算例（医療保険・1割負担）</strong>
+        <p style="margin:.4rem 0 0">30分訪問で診療同等の報酬が4,500円→ 1割負担：<strong>約450円</strong></p>
+        <p class="text-muted" style="margin:.3rem 0 0">※処置や特別加算がある場合は別途加算されます。</p>
+      </div>
     </section>
 
-    <section class="section">
-      <h2><i class="fa-solid fa-file-pdf"></i> 詳細PDF</h2>
-      <p>以下のボタンからPDFをご確認いただけます。</p>
-      <a href="/pdf/fee_schedule.pdf" class="btn-download" target="_blank"><i class="fa-solid fa-file-pdf"></i> 料金表PDFを開く</a>
+    <section class="section" aria-labelledby="pdf-title">
+      <h2 id="pdf-title"><i class="fa-solid fa-file-pdf"></i> 詳細PDF・注意事項</h2>
+      <p class="description">詳細な料金表はPDFでご確認いただけます。以下はよくある質問と注意点の要約です。</p>
+
+      <ul>
+        <li><strong>加算について：</strong>夜間対応・緊急訪問・訪問看護加算などは別途算定されます。</li>
+        <li><strong>保険負担割合：</strong>原則1割負担ですが、所得によって2〜3割になる場合があります。</li>
+        <li><strong>高額療養費制度：</strong>一定の自己負担額を超えた場合は高額療養費の対象となることがあります（医療保険適用時）。</li>
+        <li><strong>訪問不可地域：</strong>交通事情や距離により訪問が難しい場合があります。まずはお問い合わせください。</li>
+      </ul>
+
+      <p style="margin-top:.8rem" class="align-center">
+        <a class="btn-download" href="/pdf/fee_schedule.pdf" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> 料金表PDFを開く</a>
+      </p>
     </section>
 
+    <section class="section" aria-labelledby="examples-title">
+      <h2 id="examples-title"><i class="fa-solid fa-calculator"></i> 具体的な請求イメージ（例）</h2>
+      <p class="description">ケース別に大まかな負担イメージを示します。正確な料金は事前の契約・保険適用範囲で確定します。</p>
 
-    <a href="contact-detail.html" class="contact-btn"><i class="fa-brands fa-line"></i> ご相談はこちら</a>
-    <div><a href="index.html#fees" class="back-link">← トップへ戻る</a></div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;">
+        <div class="calc-box">
+          <strong>ケースA：定期訪問（医療保険）</strong>
+          <p style="margin:.4rem 0">週1回、30分の訪問。処置は少なめで観察中心 → 1割負担で <strong>約450円/回</strong>（目安）</p>
+        </div>
+        <div class="calc-box">
+          <strong>ケースB：生活支援＋申請補助（介護保険）</strong>
+          <p style="margin:.4rem 0">月数回の訪問で書類支援や面談を含む → 60分訪問換算で <strong>約800円/回</strong>（目安）</p>
+        </div>
+      </div>
+
+    </section>
+
+    <div class="contact-row">
+      <a class="btn-primary" href="https://lin.ee/mlItwhZB" target="_blank" rel="noopener noreferrer" aria-label="LINEで無料相談"><i class="fa-brands fa-line" aria-hidden="true"></i> LINEで相談する</a>
+      <a class="btn-primary" href="tel:06-7894-2216" aria-label="電話で相談"><i class="fa-solid fa-phone" aria-hidden="true"></i> 電話する</a>
+    </div>
+
+    <p class="back-link" style="text-align:center"><a href="/#fees">← トップへ戻る</a></p>
   </main>
 
-  <footer>
-    <small>&copy; 2025 ○○訪問看護ステーション</small>
+  <footer class="container" role="contentinfo" style="margin-top:1rem;text-align:center">
+    <small>&copy; 2025 いわき訪問看護ステーション</small>
   </footer>
 </body>
 </html>
