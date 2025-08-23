@@ -1,105 +1,181 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>活動地域詳細 | ○○訪問看護ステーション</title>
-  <meta name="description" content="○○訪問看護ステーションの訪問地域詳細ページ。西成区、浪速区、阿倍野区、住吉区、平野区、住之江区でのサービス提供エリアをご紹介します。" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>活動地域詳細 | いわき訪問看護ステーション</title>
+  <meta name="description" content="大阪市西成区を中心に、周辺区市町村へ訪問看護を行っています。各地域の特徴と得意なサポートを簡潔にまとめました。" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+
   <style>
-    /* 共通リセット＆ベース */
-    html { scroll-behavior: smooth; font-size: 16px; }
-    * { box-sizing: border-box; margin: 0; 
+:root{
+  --site-max-width: 1024px;
+  --site-gap: 1rem;
+  --bg: #eef4f7;
+  --card-bg: #fff;
+  --primary: #4caf93;
+  --accent: #2b8f6e;
+  --cta: #00c300;
+  --text: #222;
+  --muted: #666;
+  --shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+*{box-sizing:border-box}
+html{font-family: 'Noto Sans JP','Hiragino Sans',system-ui,-apple-system,'Segoe UI',Roboto,Arial; font-size:16px; scroll-behavior:smooth}
+body{margin:0; background:var(--bg); color:var(--text); line-height:1.6}
+a{color:inherit}
+.container{width:100%; max-width:var(--site-max-width); margin:0 auto; padding:0 var(--site-gap)}
 
-padding: 0; }
-    body { font-family: 'Hiragino Sans','Noto Sans JP',sans-serif; background: #eef4f7; color: #333; line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
-    .container { width: 100%; max-width: 1024px; margin: auto; padding: 0 1rem; }
 
-    /* ヘッダー */
-    header { background: #4caf93; color: #fff; text-align: center; padding: 1rem 0; }
-    header h1 { font-size: 1.8rem; display: flex; justify-content: center; align-items: center; gap: 0.5rem; }
-    header h1 i { font-size: 1.5rem; }
-    nav ul { display: flex; justify-content: center; gap: 1rem; margin-top: 0.5rem; }
-    nav a { color: #fff; font-size: 0.9rem; }
+.page-header{background:var(--card-bg); border-radius:10px; padding:1rem; box-shadow:var(--shadow); margin:1rem 0; display:flex; flex-direction:column; align-items:center; text-align:center}
+.page-header img{height:44px; border-radius:6px}
+.page-intro{color:var(--muted); margin-top:.4rem; max-width:880px}
 
-    /* セクション */
-    .section { background: #fff; border-radius: 10px; box-shadow: 0 2px 8px 
 
-rgba(0,0,0,0.05); margin: 1.5rem 0; padding: 1.5rem; }
-    .section h2 { display: flex; align-items: center; gap: 0.5rem; font-size: 1.4rem; color: #4caf93; margin-bottom: 0.8rem; }
-    .section h2 i { font-size: 1.3rem; }
-    .section p { font-size: 0.95rem; margin-bottom: 1rem; }
+.region-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1rem}
+@media(max-width:720px){.region-grid{grid-template-columns:1fr}}
 
-    /* 地域マップ */
-    .region-map img { width: 100%; height: auto; border-radius: 6px; }
+.region-card{background:var(--card-bg); border-radius:10px; padding:1.1rem; box-shadow:var(--shadow); position:relative; overflow:hidden}
+.region-card h3{color:var(--accent); margin:0 0 .4rem 0}
+.region-card p{margin:0; color:var(--text)}
+.region-card ul{margin-top:.6rem; margin-left:1rem; color:var(--muted)}
+.region-card::before{content:''; position:absolute; right:12px; top:12px; font-size:64px; opacity:0.06; pointer-events:none}
+.r1::before{content:'🎧'}
+.r2::before{content:'💬'}
+.r3::before{content:'🏥'}
+.r4::before{content:'👪'}
+.r5::before{content:'🩺'}
+.r6::before{content:'⚓'}
 
-    /* お問い合わせボタン */
-    .contact-btn { display: inline-block; background: #00c300; color: #fff; padding: 0.6rem 1.2rem; border-radius: 25px; font-weight: bold; transition: background 0.3s; margin-top: 1rem; }
-    .contact-btn:hover { background: #00a000; }
 
-    /* 戻るリンク */
-    .back-link { display: inline-block; margin-top: 1rem; color: #4caf93; font-size: 0.9rem; }
+.contact-row{display:flex; gap:.6rem; align-items:center; margin-top:1rem; justify-content:center}
+.btn{display:inline-flex; align-items:center; gap:.5rem; padding:.6rem 1rem; border-radius:22px; font-weight:600; color:#fff; text-decoration:none}
+.btn-primary{background:var(--cta)}
+.btn-primary:hover{background:#05a145}
 
-    /* フッター */
-    footer { text-align: center; padding: 1rem 0; background: #4caf93; color: #fff; font-size: 0.85rem; }
+.back-link{display:inline-block; color:var(--primary); margin-top:.6rem; text-align:center}
 
-    /* レスポンシブ */
-    @media (max-width: 768px) {
-      nav ul { flex-direction: column; }
-      .section { padding: 1rem; }
-      .section h2 { font-size: 1.2rem; }
-    }
-  </style>
+
+:focus{outline:3px solid rgba(43,143,110,0.18); outline-offset:3px}
+
+@media(max-width:900px){ .container{padding:0 .75rem} }
+  .page-header.container{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;max-width:var(--site-max-width);margin:1rem auto;padding:1rem}
+@media (min-width: 681px){
+  /* 「その他の区」カードをデスクトップで横2枚分（グリッド2カラム分）に広げる */
+  .region-card.full-col { grid-column: span 2; }
+}
+
+
+/* 微調整: ヘッダー文字色を他ページと合わせ、地域カードにサービス詳細ページを参考にした色強調を追加 */
+.page-header h1{ color:var(--primary) !important; }
+.page-header .page-intro{ color:var(--muted) !important; }
+
+.region-grid article:nth-child(1){ border-left-color: rgba(76,175,147,0.95); background: linear-gradient(180deg,#fff,#f7fff8); }
+.region-grid article:nth-child(2){ border-left-color: rgba(33,150,243,0.95); background: linear-gradient(180deg,#fff,#f3fbff); }
+.region-grid article:nth-child(3){ border-left-color: rgba(255,193,7,0.95); background: linear-gradient(180deg,#fff,#fff9ec); }
+.region-grid article:nth-child(4){ border-left-color: rgba(244,67,54,0.9); background: linear-gradient(180deg,#fff,#fff6f6); }
+.region-grid article:nth-child(5){ border-left-color: rgba(76,175,124,0.85); background: linear-gradient(180deg,#fff,#f8fff9); }
+.region-grid article:nth-child(6){ border-left-color: rgba(156,39,176,0.12); background: linear-gradient(180deg,#fff,#fbf8ff); }
+
+</style>
 </head>
 <body>
-  <header>
-    <h1><i class="fa-solid fa-map-location-dot"></i> 活動地域のご案内</h1>
-    <nav>
+  <a class="skip-link" href="#main" style="position:absolute;left:-999px">本文へ移動</a>
 
-      <ul>
-        <li><a href="index.html#region">地域一覧へ戻る</a></li>
-      </ul>
-    </nav>
+  <header class="page-header container" role="banner">
+    <a href="/" aria-label="ホームに戻る"><img src="iwaki-logo.png" alt="いわき訪問看護ステーション ロゴ"></a>
+    <h1 style="margin-top:.6rem;"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> 活動地域のご案内</h1>
+    <p class="page-intro">大阪市西成区を中心に、周辺区市町村へ訪問看護を行っています。各地域の特徴と得意なサポートを簡潔にまとめました。</p>
   </header>
 
-  <main class="container">
-    <section class="section">
-      <h2><i class="fa-solid fa-map-pin"></i> 西成区</h2>
-      <p>一人暮らしの方や生活保護受給中の方が多く暮らす地域です。地域に根ざした訪問看護で、夜間対応や緊急時のケアにも迅速に対応します。</p>
-    </section>
-    <section class="section">
-      <h2><i class="fa-solid fa-map-pin"></i> 浪速区</h2>
-      <p>繁華街に近いエリアで、仕事帰りの夜間訪問を希望される方に最適です。夜間・早朝の対応もお問い合わせください。</p>
+  <main id="main" class="container">
+    <section class="region-list">
+      <h2 style="text-align:center; color:var(--primary); margin:0 0 1rem 0;"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 対応エリア</h2>
 
-    </section>
-    <section class="section">
-      <h2><i class="fa-solid fa-map-pin"></i> 阿倍野区</h2>
-      <p>住宅街が広がる地域。地域の医療機関と連携しながら、在宅療養を続ける方に安心のサポートを提供します。</p>
-    </section>
-    <section class="section">
-      <h2><i class="fa-solid fa-map-pin"></i> 住吉区</h2>
-      <p>ファミリー層や高齢者が多いエリアです。ご家族支援や高齢者ケアにも対応し、安心した在宅生活をサポートします。</p>
-    </section>
-    <section class="section">
-      <h2><i class="fa-solid fa-map-pin"></i> 平野区</h2>
-      <p>医療機関と密接に連携し、定期訪問による安定したケアを提供しています。不規則勤務の方への柔軟な対応も可能です。</p>
-    </section>
+      <div class="region-grid" role="list">
 
-    <section class="section">
-      <h2><i class="fa-solid fa-map-pin"></i> 住之江区</h2>
-      <p>港湾地域や工業地帯も含む広範囲エリア。勤務時間が不規則な方や企業への訪問支援も行っています。</p>
+        <article class="region-card r1" role="listitem" aria-labelledby="r1-title">
+          <h3 id="r1-title">西成区</h3>
+          <p>一人暮らしの方や生活保護受給中の方が多く暮らす地域です。夜間対応や福祉制度の案内に強みがあります。</p>
+          <ul>
+            <li>得意分野：夜間訪問・生活支援</li>
+            <li>訪問目安：柔軟に対応（地域内優先）</li>
+          </ul>
+        </article>
+
+        <article class="region-card r2" role="listitem" aria-labelledby="r2-title">
+          <h3 id="r2-title">浪速区</h3>
+          <p>繁華街に近く、日中・夜間のニーズが混在します。仕事帰りの短時間訪問の相談が多いエリアです。</p>
+          <ul>
+            <li>得意分野：夜間傾聴・短時間対応</li>
+            <li>訪問目安：夕方〜夜の時間帯対応可能</li>
+          </ul>
+        </article>
+
+        <article class="region-card r3" role="listitem" aria-labelledby="r3-title">
+          <h3 id="r3-title">阿倍野区</h3>
+          <p>住宅街が広がる地域で、在宅療養や介護と医療の連携が必要なケースに対応しています。</p>
+          <ul>
+            <li>得意分野：医療連携・定期訪問</li>
+            <li>訪問目安：定期訪問中心（週1〜）</li>
+          </ul>
+        </article>
+
+        <article class="region-card r4" role="listitem" aria-labelledby="r4-title">
+          <h3 id="r4-title">住吉区</h3>
+          <p>高齢者や家族支援が多いエリア。家族への説明や介護方法の指導も行います。</p>
+          <ul>
+            <li>得意分野：高齢者ケア・家族支援</li>
+            <li>訪問目安：日中中心（必要に応じ夜間相談）</li>
+          </ul>
+        </article>
+
+        <article class="region-card r5" role="listitem" aria-labelledby="r5-title">
+          <h3 id="r5-title">平野区</h3>
+          <p>医療機関との連携が必要なケースの支援に強みがあります。不規則勤務の方への柔軟な対応も可能です。</p>
+          <ul>
+            <li>得意分野：医療連携・柔軟な訪問時間</li>
+            <li>訪問目安：個別に調整</li>
+          </ul>
+        </article>
+
+        <article class="region-card r6" role="listitem" aria-labelledby="r6-title">
+          <h3 id="r6-title">住之江区</h3>
+          <p>港湾や工業地域を含む広範囲。企業や夜勤勤務の方のサポート実績があります。</p>
+          <ul>
+            <li>得意分野：勤務帯に合わせた訪問・職場連携</li>
+            <li>訪問目安：早朝/深夜の相談も可能（要事前調整）</li>
+          </ul>
+        </article>
+
+      </div>
+
+      <!-- 追加：その他の大阪市内エリアカード（複数職種で対応可能であることを示すセクション） -->
+      <section class="section" aria-labelledby="other-areas-title">
+        <h2 id="other-areas-title" class="align-center"><i class="fa-solid fa-city" aria-hidden="true"></i> その他の区</h2>
+        <div class="region-grid" role="list">
+          <article class="region-card full-col" role="listitem">
+            <h3>その他の区</h3>
+            <p>上記以外の区でも、まずはご相談ください。距離等により訪問が難しい場合もありますので、事前のご相談のうえ対応可否を判断いたします。</p>
+            <ul>
+              <li>対応スタッフ：看護師・介護職・リハビリ職など複数職種で対応（要相談）</li>
+            </ul>
+          </article>
+        </div>
+        <p style="margin-top:.6rem; color:var(--muted); text-align:center;">遠方の場合は訪問が難しいことがあります。まずはお気軽にご相談ください。対応可否は個別に判断いたします。</p>
+      </section>
+
+      <div class="contact-row">
+        <a class="btn btn-primary" href="https://lin.ee/mlItwhZB" target="_blank" rel="noopener noreferrer" aria-label="LINEで無料相談"><i class="fa-brands fa-line" aria-hidden="true"></i> LINEで無料相談</a>
+        <a class="btn btn-primary" href="tel:06-7894-2216" aria-label="電話で相談"><i class="fa-solid fa-phone" aria-hidden="true"></i> 電話する</a>
+      </div>
+
+      <p class="back-link" style="text-align:center"><a href="/">← トップへ戻る</a></p>
     </section>
-    <section class="section">
-      <h2><i class="fa-solid fa-globe"></i> その他地域の対応</h2>
-      <p>大阪市内全域、さらには近隣の市町村にお住まいの方も、まずはお気軽にご相談ください。可能な場合は対応エリアを拡大したり、提携先をご紹介します。</p>
-    </section>
-    <a href="contact-detail.html" class="contact-btn"><i class="fa-brands fa-line"></i> お問い合わせ・無料相談はこちら</a>
   </main>
 
-  <footer>
-
-    <small>&copy; 2025 ○○訪問看護ステーション</small>
+  <footer class="container" role="contentinfo" style="margin-top:1rem; text-align:center;">
+    <small>&copy; 2025 いわき訪問看護ステーション</small>
   </footer>
 </body>
 </html>
