@@ -38,12 +38,6 @@ h2{font-size:1.15rem; color:var(--primary); display:flex; align-items:center; ga
 .page-header{background:var(--card-bg); border-radius:10px; padding:1rem; box-shadow:var(--shadow); margin:1rem 0}
 .page-intro{background:transparent; margin-top:.6rem; color:var(--muted)}
 
-/* 目次（中央表示） */
-.toc{max-width:760px; margin:1rem auto 0; text-align:center}
-.toc ul{display:flex; flex-wrap:wrap; justify-content:center; gap:.6rem; list-style:none; padding:0; margin:0.6rem 0 0}
-.toc a{display:inline-block; padding:.45rem .85rem; border-radius:8px; background:linear-gradient(180deg,#ffffff,#f8fff8); box-shadow:0 2px 8px rgba(0,0,0,0.04); color:var(--accent)}
-.toc a:focus{outline:3px solid rgba(43,143,110,0.14)}
-
 /* セクションカード */
 .section{background:var(--card-bg); border-radius:10px; padding:1.2rem; box-shadow:var(--shadow); margin:1rem 0}
 .section p{color:var(--text); font-size:0.98rem}
@@ -65,10 +59,9 @@ h2{font-size:1.15rem; color:var(--primary); display:flex; align-items:center; ga
 
 /* ボタン類（統一の動き） */
 .btn{display:inline-flex; align-items:center; gap:.5rem; text-decoration:none; cursor:pointer}
-.btn-primary{background:var(--cta); color:#fff; padding:.6rem 1rem; border-radius:22px; font-weight:600; box-shadow:0 6px 18px rgba(0,0,0,0.08); border:none; transition:transform .18s ease}
-.btn-primary:hover, .btn-primary:focus{transform:translateY(-3px); outline:none}
-.btn-download{background:linear-gradient(135deg,var(--primary),var(--accent)); color:#fff; padding:.55rem 1rem; border-radius:22px; font-weight:600; box-shadow:0 6px 18px rgba(0,0,0,0.06); border:none}
-.btn-download:hover{transform:translateY(-2px)}
+.contact-row{display:flex; justify-content:center; align-items:center; gap:.6rem; margin-top:1rem}
+.btn-primary{display:inline-flex; align-items:center; gap:.5rem; background:var(--cta); color:#fff; padding:.6rem 1rem; border-radius:22px; font-weight:600; box-shadow:0 6px 18px rgba(0,0,0,0.08); border:none}
+.btn-primary:hover{transform:translateY(-3px)}
 
 /* back-link */
 .back-link{display:inline-block; color:var(--primary); margin-top:.6rem; font-size:0.95rem}
@@ -218,7 +211,7 @@ h2{font-size:1.15rem; color:var(--primary); display:flex; align-items:center; ga
 
       </div>
 
-      <div class="contact-row mt-1">
+      <div class="contact-row">
         <a class="btn-primary btn" href="https://lin.ee/mlItwhZB" target="_blank" rel="noopener noreferrer" aria-label="LINEで無料相談"><i class="fa-brands fa-line" aria-hidden="true"></i> LINEで無料相談</a>
         <a class="btn-primary btn" href="tel:06-7894-2216" aria-label="電話で相談"> <i class="fa-solid fa-phone" aria-hidden="true"></i> 電話する</a>
       </div>
@@ -246,12 +239,6 @@ h2{font-size:1.15rem; color:var(--primary); display:flex; align-items:center; ga
         if (closeBtn) closeBtn.addEventListener('click', closeNav);
         if (overlay) overlay.addEventListener('click', closeNav);
       }
-
-      // 目次でクリックした場合にフォーカスを当てる（アクセシビリティ補助）
-      document.querySelectorAll('nav[aria-label="このページの目次"] a').forEach(a=>{
-        a.addEventListener('click', function(e){ const id = this.getAttribute('href').replace('#',''); const el = document.getElementById(id); if(el) setTimeout(()=> { el.setAttribute('tabindex','-1'); el.focus(); }, 120); });
-      });
-    });
   </script>
 </body>
 </html>
