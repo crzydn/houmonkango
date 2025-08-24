@@ -24,154 +24,135 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
 
   <style>
-/* ===== 基本 ===== */
+:root{
+  --bg: #f5fbf8;
+  --card-bg: #ffffff;
+  --primary: #2b8f6e;
+  --accent: #1f7a63;
+  --cta: #00c300;
+  --text: #222;
+  --muted: #546b64;
+  --shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+/* 基本 */
 html { scroll-behavior: smooth; font-size: 16px; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Hiragino Sans','Noto Sans JP',sans-serif; background: #eef4f7; color: #222; line-height: 1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+body { font-family: 'Hiragino Sans','Noto Sans JP',sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
 a { text-decoration: none; color: inherit; }
 .container { width: 100%; max-width: 1024px; margin: auto; padding: 0 1rem; }
 
-/* ===== ヘッダー ===== */
-header { position: sticky; top: 0; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.08); z-index: 2000; }
-.header-inner {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.6rem 1rem;
-  justify-content: space-between;
-}
+/* ヘッダー */
+header { position: sticky; top: 0; background: var(--card-bg); box-shadow: 0 2px 6px rgba(0,0,0,0.08); z-index: 2000; }
+.header-inner { display: flex; align-items: center; gap: 1rem; padding: 0.6rem 1rem; justify-content: space-between; }
 .logo { display:flex; align-items:center; flex:0 0 auto; }
-.logo img { height: 48px; width: auto; display:block; }
+.logo img { height: 48px; width: auto; display:block; border-radius:6px; }
 
-/* ===== デスクトップナビ（従来） ===== */
+/* デスクトップナビ */
 nav.desktop-nav { flex: 1 1 auto; display:flex; justify-content:flex-end; align-items:center; }
 nav.desktop-nav ul { display:flex; gap:1rem; align-items:center; margin:0; padding:0; list-style:none; white-space:nowrap; }
-nav.desktop-nav a { font-size:0.95rem; padding:0.35rem 0.6rem; display:inline-block; line-height:1; transition: color 0.18s ease; }
-nav.desktop-nav a:hover, nav.desktop-nav a:focus { color:#2b8f6e; outline:none; }
+nav.desktop-nav a { font-size:0.95rem; padding:0.35rem 0.6rem; display:inline-block; line-height:1; transition: color 0.18s ease; color:var(--muted); }
+nav.desktop-nav a:hover, nav.desktop-nav a:focus { color:var(--accent); outline:none; }
 .header-btn {
-  background:#00c300;
-  color:#fff;
-  padding:0.45rem 0.9rem;
-  border-radius:20px;
-  font-weight:600;
-  font-size:0.92rem;
-  display:inline-flex;
-  align-items:center;
-  gap:0.5rem;
-  box-shadow:0 2px 6px rgba(0,0,0,0.08);
-  white-space:nowrap;
+  background:var(--cta); color:#fff; padding:0.45rem 0.9rem; border-radius:20px; font-weight:600; font-size:0.92rem;
+  display:inline-flex; align-items:center; gap:0.5rem; box-shadow:0 2px 6px rgba(0,0,0,0.08); white-space:nowrap;
 }
 .header-btn i { display:inline-block; font-size:1.05rem; }
 
-/* ===== モバイルナビ関連 ===== */
-/* overlay */
-.nav-overlay {
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.36);
-  opacity: 0;
-  transition: opacity .28s ease;
-  z-index: 2400; /* header(2000) より上 */
-  display: none;
-  -webkit-tap-highlight-color: transparent;
-}
+/* モバイルナビ関連 */
+.nav-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.36); opacity: 0; transition: opacity .28s ease; z-index: 2400; display: none; -webkit-tap-highlight-color: transparent; }
 .nav-overlay.visible { display:block; opacity:1; }
 
-/* off-canvas nav (右スライド) */
-.mobile-nav {
-  position: fixed; top: 0; right: 0;
-  height: 100vh; width: 320px; max-width: 86%;
-  background: #fff;
-  transform: translateX(110%); transition: transform .28s cubic-bezier(.2,.9,.2,1);
-  z-index: 2500; display:flex; flex-direction:column; align-items:stretch;
-  padding: 18px 16px 20px 16px; box-shadow: -8px 0 26px rgba(0,0,0,0.08);
-}
+.mobile-nav { position: fixed; top: 0; right: 0; height: 100vh; width: 320px; max-width: 86%; background: var(--card-bg); transform: translateX(110%); transition: transform .28s cubic-bezier(.2,.9,.2,1); z-index: 2500; display:flex; flex-direction:column; align-items:stretch; padding: 18px 16px 20px 16px; box-shadow: -8px 0 26px rgba(0,0,0,0.08); }
 .mobile-nav.open { transform: translateX(0); }
+.mobile-nav .mobile-nav-close { background: transparent; border: none; font-size: 1.4rem; color: var(--muted); position: absolute; top: 10px; right: 10px; padding: 6px; cursor:pointer; }
 
-/* mobile close button */
-.mobile-nav .mobile-nav-close {
-  background: transparent; border: none; font-size: 1.4rem; color: #333;
-  position: absolute; top: 10px; right: 10px; padding: 6px; cursor:pointer;
-}
+/* remove list markers and any before/marker content for mobile menu */
+.mobile-nav-list, .mobile-nav-list li { list-style: none !important; margin: 0; padding: 0; }
+.mobile-nav-list li::marker { display: none !important; }
+.mobile-nav-list li::before { content: none !important; }
 
-/* list */
-.mobile-nav-list { list-style:none; margin:0; padding:0; margin-top: 6px; display:flex; flex-direction:column; gap:6px; }
-.mobile-nav-list a { display:block; padding:12px 10px; color:#214a3b; font-size:1.05rem; border-radius:8px; }
-.mobile-nav-list a:hover, .mobile-nav-list a:focus { background:#f1f7f4; color:#1f7a63; outline:none; }
-.mobile-nav-list .header-btn { padding:12px; margin-top:8px; border-radius:12px; }
+.mobile-nav-list { margin-top: 6px; display:flex; flex-direction:column; gap:6px; }
+.mobile-nav-list a { display:block; padding:12px 10px; color:var(--accent); font-size:1.05rem; border-radius:8px; }
+.mobile-nav-list a:hover, .mobile-nav-list a:focus { background:#f0fbf6; color:var(--accent); outline:none; }
 
-/* ensure nav toggle visible on mobile and above header */
-.nav-toggle { background: transparent; border: none; font-size: 1.4rem; cursor: pointer; color: #333; display: inline-flex; align-items:center; justify-content:center; padding:8px; z-index:2600; }
-
-/* prevent body scroll when nav open */
+.nav-toggle { background: transparent; border: none; font-size: 1.4rem; cursor: pointer; color: var(--muted); display: inline-flex; align-items:center; justify-content:center; padding:8px; z-index:2600; }
 body.nav-open { overflow: hidden; }
 
-/* ===== ヒーロー ===== */
+/* ヒーロー */
 .hero { position: relative; background: url('IMG_5320.jpg') center/cover no-repeat; text-align: center; color: #fff; padding: calc(2.5rem + 64px) 1rem 2rem; }
-.hero::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.48); }
+.hero::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.42); }
 .hero .content { position: relative; z-index: 1; max-width: 840px; margin: auto; }
-.hero h1 { font-size: 1.9rem; margin-bottom: 0.8rem; line-height: 1.22; }
-.hero p { font-size: 1rem; margin-bottom: 1.2rem; color: rgba(255,255,255,0.95); }
-.btn-primary { background: #fff; color: #2b8f6e; padding: 0.8rem 1.4rem; border-radius: 20px; font-weight: 600; font-size: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.12); transition: transform 0.18s ease; display:inline-flex; align-items:center; gap:0.5rem; }
+.hero h1 { font-size: 1.9rem; margin-bottom: 0.8rem; line-height: 1.22; color:#fff; text-shadow:0 2px 6px rgba(0,0,0,0.24) }
+.hero p { font-size: 1rem; margin-bottom: 1.2rem; color: rgba(255,255,255,0.94); }
+.btn-primary { background: #fff; color: var(--accent); padding: 0.8rem 1.4rem; border-radius: 20px; font-weight: 600; font-size: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.12); transition: transform 0.18s ease; display:inline-flex; align-items:center; gap:0.5rem; }
 .btn-primary:hover { transform: translateY(-3px); }
 
-/* ===== セクション等（省略せず従来） ===== */
-.section { background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin: 1.5rem 0; padding: 1.5rem; }
-.section h2 { font-size: 1.4rem; color: #2b8f6e; margin-bottom: 1rem; position: relative; }
-.section h2::after { content: ''; display: block; width: 56px; height: 3px; background: #2b8f6e; border-radius: 2px; position: absolute; bottom: -8px; left: 0; }
+/* セクションベース */
+.section { background: var(--card-bg); border-radius: 10px; box-shadow: var(--shadow); margin: 1.5rem 0; padding: 1.5rem; }
+.section h2 { font-size: 1.4rem; color: var(--primary); margin-bottom: 1rem; position: relative; }
+.section h2::after { content: ''; display: block; width: 56px; height: 3px; background: var(--accent); border-radius: 2px; position: absolute; bottom: -8px; left: 0; }
 
-/* カード */
+/* section gentle tones (slightly dimmed, not overpowering) */
+#services.section { background: linear-gradient(180deg,#ffffff,#f6fff9); }
+#region.section   { background: linear-gradient(180deg,#ffffff,#f3fbff); }
+#news.section     { background: linear-gradient(180deg,#ffffff,#fffaf2); }
+#fees.section     { background: linear-gradient(180deg,#ffffff,#fffdf8); }
+#contracts.section{ background: linear-gradient(180deg,#ffffff,#fbf8ff); }
+#staff.section    { background: linear-gradient(180deg,#ffffff,#f9fff9); }
+#contact.section  { background: linear-gradient(180deg,#ffffff,#fffef8); }
+#sns.section      { background: linear-gradient(180deg,#ffffff,#f7fbff); }
+#careers.section  { background: linear-gradient(180deg,#ffffff,#fff9f3); }
+#partners.section { background: linear-gradient(180deg,#ffffff,#f8fbf9); }
+
+/* cards */
 .cards { display:flex; flex-wrap:wrap; gap:1rem; }
-.card { flex: 1 1 calc(50% - 1rem); background:#fafafa; padding:1rem; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,0.04); transition: transform .18s ease; min-width:220px; }
-.card h3 { font-size:1.1rem; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.5rem; }
-.card p { font-size:0.95rem; color:#444; }
-.cute-icon { font-size:1.6rem; color:#2b8f6e; margin-right:0.5rem; }
+.card {
+  flex: 1 1 calc(50% - 1rem);
+  background: linear-gradient(180deg,#fff,#fbfffb);
+  padding:1rem;
+  border-radius:10px;
+  box-shadow:0 6px 12px rgba(0,0,0,0.04);
+  transition: transform .22s cubic-bezier(.2,.9,.2,1), box-shadow .22s cubic-bezier(.2,.9,.2,1);
+  min-width:220px;
+}
+.card:hover, .card:focus-within { transform: translateY(-6px); box-shadow:0 18px 36px rgba(0,0,0,0.12); }
+.card h3 { font-size:1.1rem; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.5rem; color:var(--accent) }
+.card p { font-size:0.95rem; color:var(--muted) }
+.cute-icon { font-size:1.6rem; color:var(--primary); margin-right:0.5rem; }
 
 @media (max-width:680px) { .card { flex: 1 1 100%; } }
 
-/* 活動地域など */
+/* region */
 .region-map img { width:100%; height:auto; border-radius:8px; display:block; }
 .region-list { display:flex; flex-wrap:wrap; gap:0.8rem; margin-top:1rem; }
-.region-list li { background:#2b8f6e; color:#fff; padding:0.45rem 0.9rem; border-radius:6px; font-size:0.92rem; }
+.region-list li { background:var(--accent); color:#fff; padding:0.45rem 0.9rem; border-radius:6px; font-size:0.92rem; }
 
-/* ニュースティッカー */
-.news-ticker { background:#eef9f4; overflow:hidden; border-radius:8px; padding:0.35rem 0; }
+/* news ticker */
+.news-ticker { background:#eefaf6; overflow:hidden; border-radius:8px; padding:0.35rem 0; }
 .ticker { display:inline-block; white-space:nowrap; transform:translateX(0); will-change:transform; }
-.ticker span { display:inline-block; padding:0.5rem 1.75rem; color:#214a3b; font-size:0.95rem; }
+.ticker span { display:inline-block; padding:0.5rem 1.75rem; color:var(--accent); font-size:0.95rem; }
 
-/* テーブル */
-.staff-card { background:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.05); padding:1rem; text-align:center; flex:1 1 calc(50% - 1rem); }
-    .staff-card img { width:120px; height:120px; object-fit:cover; border-
-
-radius:50%; margin-bottom:0.5rem; }
-    .staff-card h3 { font-size:1.2rem; color:#4caf93; margin-bottom:0.3rem; }
-    .staff-card p { font-size:0.95rem; line-height:1.4; }
-    .table-responsive { overflow-x:auto; margin:1.5rem 0; }
-    table { width:100%; border-collapse:collapse; }
-    th, td { border:1px solid #ddd; padding:0.8rem; text-align:center; }
-    th { background:#4caf93; color:#fff; }
-    .badge-ok { background:#4caf93; color:#fff; padding:3px 6px; border-radius:4px; font-size:0.8rem; }
-
-@media(max-width:768px){ .staff-card { flex:1 1 100%; } }
-
-
-/* バッジ */
-.badge-ok { background:#2b8f6e; color:#fff; padding:6px 10px; border-radius:8px; font-size:0.86rem; display:inline-block; }
+/* table */
+.table-responsive{overflow-x:auto; margin:1.5rem 0; background:transparent}
+table { width:100%; border-collapse:collapse; }
+th, td { border:1px solid rgba(0,0,0,0.06); padding:0.8rem; text-align:center; }
+th { background:var(--primary); color:#fff; }
+.badge-ok { background:var(--primary); color:#fff; padding:6px 10px; border-radius:8px; font-size:0.86rem; display:inline-block; }
 .badge-consult { background:#ff9800; color:#fff; padding:6px 10px; border-radius:8px; font-size:0.86rem; display:inline-block; }
 
-/* モーダル */
+/* modal */
 .modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:2000; padding:2rem 1rem; }
 .modal[aria-hidden="false"] { display:block; }
-.modal-content { background:#fff; margin:0 auto; padding:1rem; width:100%; max-width:840px; border-radius:10px; position:relative; box-shadow:0 12px 36px rgba(0,0,0,0.14); }
-.modal-close { position:absolute; top:12px; right:12px; font-size:1.2rem; cursor:pointer; background:transparent; border:none; color:#666; padding:6px; border-radius:6px; }
+.modal-content { background:var(--card-bg); margin:0 auto; padding:1rem; width:100%; max-width:840px; border-radius:10px; position:relative; box-shadow:0 12px 36px rgba(0,0,0,0.14); }
+.modal-close { position:absolute; top:12px; right:12px; font-size:1.2rem; cursor:pointer; background:transparent; border:none; color:var(--muted); padding:6px; border-radius:6px; }
 
-/* 浮動LINEボタン */
-.floating-line { position:fixed; bottom:18px; right:18px; width:56px; height:56px; background:#00c300; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.12); z-index:1500; }
+/* floating button & footer */
+.floating-line { position:fixed; bottom:18px; right:18px; width:56px; height:56px; background:var(--cta); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.12); z-index:1500; }
 .floating-line a { color:#fff; font-size:1.4rem; display:inline-flex; align-items:center; justify-content:center; }
+footer { text-align:center; padding:1rem 0; background:var(--accent); color:#fff; font-size:0.85rem; }
 
-/* フッター */
-footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font-size:0.85rem; }
-
-/* 微調整 */
+/* responsive tweaks */
 @media (max-width:480px) {
   .hero h1 { font-size:1.4rem; }
   .hero p { font-size:0.95rem; }
@@ -180,33 +161,21 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
   .region-list li { font-size:0.88rem; padding:0.35rem 0.6rem; }
   .btn-primary, .btn-download { width:100%; justify-content:center; }
 }
-    /* --- モバイルでデスクトップナビの「項目のみ」非表示（ロゴ・ハンバーガー・最後のLINEボタンは残す） --- */
 @media (max-width: 768px) {
-  /* 全項目を一旦非表示 */
   nav.desktop-nav ul > li { display: none !important; }
-
-  /* 末尾のボタン内の .header-btn を見やすく */
-  nav.desktop-nav ul > li:last-child .header-btn {
-    padding: 0.35rem 0.8rem;
-    border-radius: 18px;
-    font-size: 0.9rem;
-  }
-
-  /* ヘッダー高さが圧迫されるのを防ぐ（任意） */
+  nav.desktop-nav ul > li:last-child .header-btn { padding: 0.35rem 0.8rem; border-radius: 18px; font-size: 0.9rem; }
   .header-inner { padding-top: 0.55rem; padding-bottom: 0.55rem; }
-
-  /* デスクトップナビ自体のpointerを無効化（残ったボタンのみ操作可能に） */
   nav.desktop-nav { pointer-events: none; }
-  nav.desktop-nav ul > li:last-child { display: none; } /* 末尾ボタンは操作可 */
-
-  /* 必要ならハンバーガーを確実に右端に固定 */
+  nav.desktop-nav ul > li:last-child { display: none; }
   .nav-toggle { margin-left: 8px; }
 }
+
+/* btn-download */
 .btn-download {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  background: linear-gradient(135deg, #2b8f6e, #1f7a63);
+  background: linear-gradient(135deg, var(--accent), #1b6a57);
   color: #fff;
   padding: 0.6rem 1rem;
   border-radius: 25px;
@@ -217,32 +186,16 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
   box-shadow: 0 6px 18px rgba(0,0,0,0.10);
   transition: transform .18s ease, box-shadow .18s ease;
 }
-
-.btn-download:hover,
-.btn-download:focus {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.12);
-  outline: none;
-}
-
-/* アイコンだけ小さくしたい時 */
-.btn-download i { font-size: 1.05rem; }
-
-/* モバイル幅で幅を広げたい場合（任意） */
-@media (max-width:480px) {
-  .btn-download { width: 100%; justify-content: center; padding: 0.75rem 1rem; }
-}
+.btn-download:hover, .btn-download:focus { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(0,0,0,0.12); outline: none; }
   </style>
 </head>
 <body>
-  <!-- ===== ヘッダー（既存ナビはデスクトップ用に残しておく） ===== -->
   <header>
     <div class="container header-inner">
       <div class="logo">
         <a href="index.html"><img src="iwaki-logo.png" alt="いわき訪問看護ステーション ロゴ"></a>
       </div>
 
-      <!-- デスクトップナビ（表示はCSSで制御） -->
       <nav class="desktop-nav" aria-label="グローバルナビ">
         <ul>
           <li><a href="#hero">ホーム</a></li>
@@ -255,20 +208,16 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
         </ul>
       </nav>
 
-      <!-- ハンバーガー（モバイル用） -->
       <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="メニュー">
         <i class="fa fa-bars" aria-hidden="true"></i>
       </button>
     </div>
   </header>
 
-  <!-- overlay（HTML上に置く。hidden は付けない） -->
   <div id="navOverlay" class="nav-overlay" aria-hidden="true"></div>
 
-  <!-- オフキャンバスナビ（右側） -->
   <nav id="mobile-nav" class="mobile-nav" aria-hidden="true" aria-label="モバイルメニュー">
     <button class="mobile-nav-close" aria-label="閉じるメニュー"><i class="fa fa-times" aria-hidden="true"></i></button>
-
     <ul class="mobile-nav-list">
       <li><a href="#hero">ホーム</a></li>
       <li><a href="#services">サービス</a></li>
@@ -280,21 +229,19 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
     </ul>
   </nav>
 
-  <!-- ===== ヒーロー ===== -->
   <section id="hero" class="hero">
     <div class="content container" role="region" aria-label="トップメッセージ">
       <h1>「今日も一人で頑張ったな…」<br>そんな夜を、<br>少しでも安心に包みたい。</h1>
       <p>大阪市西成区で仕事帰りの“聴き手”や、生活保護支援を求めるあなたへ。<br>専門の精神科看護師が、誰にも話せない心の声に寄り添います。</p>
       <a href="#contact" class="btn-primary"><i class="fa-brands fa-line" aria-hidden="true"></i> 無料相談</a>
-      <div class="hero-small">LINE・電話・メールでお気軽にどうぞ</div>
+      <div class="hero-small" style="margin-top:.6rem; color:rgba(255,255,255,0.9)">LINE・電話・メールでお気軽にどうぞ</div>
     </div>
   </section>
 
   <main class="container" id="content">
 
-    <!-- Services -->
     <section id="services" class="section" aria-labelledby="services-title">
-      <h2 id="services-title"><i class="fa-solid fa-brain" aria-hidden="true"></i> 精神科訪問看護でできること</h2>
+      <h2 id="services-title"><i class="fa-solid fa-brain" aria-hidden="true" style="color:var(--accent)"></i> 精神科訪問看護でできること</h2>
       <div class="cards">
         <div class="card" tabindex="0">
           <h3><i class="fa-solid fa-headset cute-icon" aria-hidden="true"></i> 傾聴サポート</h3>
@@ -327,9 +274,8 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
       <p style="text-align:right; margin-top:1rem;"><a href="services-detail.html" class="btn-primary">詳しく見る →</a></p>
     </section>
 
-    <!-- Region -->
     <section id="region" class="section" aria-labelledby="region-title">
-      <h2 id="region-title"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> 活動地域</h2>
+      <h2 id="region-title"><i class="fa-solid fa-map-location-dot" aria-hidden="true" style="color:var(--accent)"></i> 活動地域</h2>
       <div class="region-map">
         <img src="osakamap.jpg" alt="大阪市の地図">
       </div>
@@ -344,9 +290,8 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
       <p style="text-align:right; margin-top:1rem;"><a href="region-detail.html" class="btn-primary">詳しく見る →</a></p>
     </section>
 
-    <!-- News -->
     <section id="news" class="section" aria-labelledby="news-title">
-      <h2 id="news-title"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> おしらせ</h2>
+      <h2 id="news-title"><i class="fa-solid fa-newspaper" aria-hidden="true" style="color:var(--accent)"></i> おしらせ</h2>
       <div class="news-ticker" aria-hidden="false">
         <div class="ticker" aria-live="polite" aria-atomic="true">
           <span>2025.07.09 テスト中です。</span>
@@ -356,153 +301,150 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
       </div>
     </section>
 
-    <!-- Fees -->
     <section id="fees" class="section" aria-labelledby="fees-title">
-      <h2 id="fees-title"><i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i> 料金表</h2>
+      <h2 id="fees-title"><i class="fa-solid fa-file-invoice-dollar" aria-hidden="true" style="color:var(--accent)"></i> 料金表</h2>
       <button class="btn-download" type="button" onclick="openModal('modal-fees')" aria-haspopup="dialog" aria-controls="modal-fees">
   <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>&nbsp; PDFを見る</button>
       <p style="text-align:right; margin-top:1rem;"><a href="fees-detail.html" class="btn-primary">詳しく見る →</a></p>
     </section>
 
-    <!-- Contracts -->
     <section id="contracts" class="section" aria-labelledby="contracts-title">
-      <h2 id="contracts-title"><i class="fa-solid fa-file-contract" aria-hidden="true"></i> 契約書</h2>
-      <button class="btn-download" type="button" onclick="openModal('modal-contracts1')" aria-haspopup="dialog" aria-controls="modal-contracts">
-  <i class="fa-solid fa-file-contract" aria-hidden="true"></i>&nbsp; 契約書を見る</button>
-       <button class="btn-download" type="button" onclick="openModal('modal-contracts2')" aria-haspopup="dialog" aria-controls="modal-contracts">
-  <i class="fa-solid fa-file-contract" aria-hidden="true"></i>&nbsp; 重要事項を見る</button>
-       <button class="btn-download" type="button" onclick="openModal('modal-contracts3')" aria-haspopup="dialog" aria-controls="modal-contracts">
-  <i class="fa-solid fa-file-contract" aria-hidden="true"></i>&nbsp; プライバシー保護に関する同意書を見る</button>
-       <button class="btn-download" type="button" onclick="openModal('modal-contracts4')" aria-haspopup="dialog" aria-controls="modal-contracts">
-  <i class="fa-solid fa-file-contract" aria-hidden="true"></i>&nbsp; 緊急時訪問に関する同意書を見る</button>
+      <h2 id="contracts-title"><i class="fa-solid fa-file-contract" aria-hidden="true" style="color:var(--accent)"></i> 契約書</h2>
+      <div style="display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.6rem;">
+        <button class="btn-download" type="button" onclick="openModal('modal-contracts1')" aria-haspopup="dialog">訪問看護契約書</button>
+        <button class="btn-download" type="button" onclick="openModal('modal-contracts2')" aria-haspopup="dialog">重要事項説明書</button>
+        <button class="btn-download" type="button" onclick="openModal('modal-contracts3')" aria-haspopup="dialog">個人情報同意書</button>
+        <button class="btn-download" type="button" onclick="openModal('modal-contracts4')" aria-haspopup="dialog">緊急時訪問加算同意書</button>
+      </div>
       <p style="text-align:right; margin-top:1rem;"><a href="contracts-detail.html" class="btn-primary">詳しく聞く →</a></p>
     </section>
 
-   <!-- Staff -->
     <section id="staff" class="section">
-      <h2><i class="fa-solid fa-user-nurse" aria-hidden="true"></i> スタッフ訪問対応</h2>
-     <div class="table-responsive">
+      <h2><i class="fa-solid fa-user-nurse" aria-hidden="true" style="color:var(--accent)"></i> スタッフ訪問対応</h2>
+      <div class="table-responsive">
         <table>
           <thead><tr><th>時間帯</th><th>男性看護師</th><th>女性看護師</th></tr></thead>
           <tbody>
-            <tr><td data-label="時間帯">09:00〜12:00</td><td data-label="男性"><span class="badge-ok">対応可</span></td><td data-label="女性"><span class="badge-ok">対応可</span></td></tr>
-            <tr><td>13:00〜15:00</td><td><span class="badge-ok">対応可</span></td><td><span class="badge-ok">対応可</span></td></tr>
-            <tr><td>15:00〜17:00</td><td><span class="badge-ok">対応可</span></td><td><span class="badge-consult">要相談</span></td></tr>
-            <tr><td>17:00〜18:00</td><td><span class="badge-consult">要相談</span></td><td><span class="badge-ok">
-
-対応可</span></td></tr>
+            <tr><td data-label="時間帯">09:00〜11:00</td><td data-label="男性"><span class="badge-ok">対応可</span></td><td data-label="女性"><span class="badge-ok">対応可</span></td></tr>
+            <tr><td>11:00〜13:00</td><td><span class="badge-ok">対応可</span></td><td><span class="badge-ok">対応可</span></td></tr>
+            <tr><td>13:00〜15:00</td><td><span class="badge-ok">対応可</span></td><td><span class="badge-consult">要相談</span></td></tr>
+            <tr><td>15:00〜17:00</td><td><span class="badge-consult">要相談</span></td><td><span class="badge-ok">対応可</span></td></tr>
+            <tr><td>17:00〜18:00</td><td><span class="badge-consult">要相談</span></td><td><span class="badge-ok">対応可</span></td></tr>
           </tbody>
         </table>
       </div>
+      <p style="text-align:center; margin-top:.6rem; color:var(--muted);">※時間は原則 09:00〜18:00（応相談）。詳細はスタッフページをご確認ください。</p>
       <p style="text-align:right; margin-top:1rem;"><a href="staff-detail.html" class="btn-primary">詳しく見る →</a></p>
     </section>
 
-    <!-- Contact -->
     <section id="contact" class="section" aria-labelledby="contact-title">
-      <h2 id="contact-title"><i class="fa-solid fa-comments" aria-hidden="true"></i> お問い合わせ</h2>
-      <p>LINE・電話・メールで24時間受付中。ご相談ください。</p>
-      <div style="margin-top:1rem;"><a href="https://lin.ee/mlItwhZB" class="btn-primary" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-line" aria-hidden="true"></i> LINEで相談</a></div>
-      <p style="margin-top:1rem; font-size:0.95rem;"><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:06-7894-2216">06-7894-2216</a><br>
-      <i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:iwaki-houmonkango.03@outlook.jp">iwaki-houmonkango.03@outlook.jp　　　　 担当：須藤</a></p>
+      <h2 id="contact-title"><i class="fa-solid fa-comments" aria-hidden="true" style="color:var(--accent)"></i> お問い合わせ</h2>
+      <p style="color:var(--muted)">LINE・電話・メールで24時間受付中。ご相談ください。</p>
+      <div style="margin-top:1rem; display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap;">
+        <a href="https://lin.ee/mlItwhZB" class="btn-primary" target="_blank" rel="noopener noreferrer" aria-label="LINEで相談"><i class="fa-brands fa-line" aria-hidden="true"></i> LINEで相談</a>
+        <a href="tel:06-7894-2216" class="btn-primary" aria-label="電話で相談"><i class="fa-solid fa-phone" aria-hidden="true"></i> 電話する</a>
+      </div>
+      <p style="margin-top:1rem; font-size:0.95rem; text-align:center; color:var(--muted);"><i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:iwaki-houmonkango.03@outlook.jp">iwaki-houmonkango.03@outlook.jp</a>　担当：須藤</p>
     </section>
 
-    <!-- SNS -->
     <section id="sns" class="section" aria-labelledby="sns-title">
-      <h2 id="sns-title"><i class="fa-solid fa-hashtag" aria-hidden="true"></i> 各種SNS</h2>
-      <p>最新情報や日々の様子をSNSでも発信しています。ぜひフォローしてください。</p>
+      <h2 id="sns-title"><i class="fa-solid fa-hashtag" aria-hidden="true" style="color:var(--accent)"></i> 各種SNS</h2>
+      <p style="color:var(--muted)">最新情報や日々の様子をSNSでも発信しています。ぜひフォローしてください。</p>
       <div class="cards">
         <div class="card" style="text-align:center;">
           <a href="https://lin.ee/mlItwhZB" target="_blank" rel="noopener noreferrer">
             <i class="fa-brands fa-line cute-icon" aria-hidden="true" style="font-size:2rem;"></i>
-            <h3>LINE公式アカウント</h3>
-            <p>チャットで気軽にご相談</p>
+            <h3 style="color:var(--accent)">LINE公式アカウント</h3>
+            <p style="color:var(--muted)">チャットで気軽にご相談</p>
           </a>
         </div>
         <div class="card" style="text-align:center;">
           <a href="https://twitter.com/xxxxxxxx" target="_blank" rel="noopener noreferrer">
             <i class="fa-brands fa-x cute-icon" aria-hidden="true" style="font-size:2rem;"></i>
-            <h3>X（旧Twitter）</h3>
-            <p>最新のお知らせを配信</p>
+            <h3 style="color:var(--accent)">X（旧Twitter）</h3>
+            <p style="color:var(--muted)">最新のお知らせを配信</p>
           </a>
         </div>
         <div class="card" style="text-align:center;">
           <a href="https://www.instagram.com/iwaki_houmonkango" target="_blank" rel="noopener noreferrer">
             <i class="fa-brands fa-instagram cute-icon" aria-hidden="true" style="font-size:2rem;"></i>
-            <h3>Instagram</h3>
-            <p>活動風景や日常を写真で</p>
+            <h3 style="color:var(--accent)">Instagram</h3>
+            <p style="color:var(--muted)">活動風景や日常を写真で</p>
           </a>
         </div>
         <div class="card" style="text-align:center;">
           <a href="https://www.facebook.com/xxxxxxxx" target="_blank" rel="noopener noreferrer">
             <i class="fa-brands fa-facebook-f cute-icon" aria-hidden="true" style="font-size:2rem;"></i>
-            <h3>Facebook</h3>
-            <p>地域の方との交流や情報発信</p>
+            <h3 style="color:var(--accent)">Facebook</h3>
+            <p style="color:var(--muted)">地域の方との交流や情報発信</p>
           </a>
         </div>
       </div>
     </section>
 
- <!-- Careers -->  
-<section id="careers" class="section" aria-labelledby="careers-title">  
-  <h2 id="careers-title"><i class="fa-solid fa-briefcase" aria-hidden="true"></i> 求人募集</h2>  
-  <p>私たちと一緒に働きませんか？精神科訪問看護に興味のある看護師を募集しています。未経験OK・週1日〜勤務可。</p>  
-  <ul style="list-style:disc; margin:0.8rem 0 1rem 1.2rem;">  
-    <li>職種：正看護師／准看護師</li>  
-    <li>雇用形態：常勤・非常勤</li>  
-    <li>勤務地：大阪市西成区エリア</li>  
-    <li>給与：経験・資格により応相談</li>  
-    <li>待遇：交通費支給・社会保険完備（条件あり）</li>  
-  </ul>  
-  <p style="text-align:right;"><a href="recruit-detail.html" class="btn-primary">詳しく見る →</a></p>  
-</section>  
+    <section id="careers" class="section" aria-labelledby="careers-title">
+      <h2 id="careers-title"><i class="fa-solid fa-briefcase" aria-hidden="true" style="color:var(--accent)"></i> 求人募集</h2>
+      <p style="color:var(--muted)">私たちと一緒に働きませんか？精神科訪問看護に興味のある看護師を募集しています。未経験OK・週1日〜勤務可。</p>
+      <ul style="list-style:disc; margin:0.8rem 0 1rem 1.2rem; color:var(--text);">
+        <li>職種：正看護師／准看護師</li>
+        <li>雇用形態：常勤・非常勤</li>
+        <li>勤務地：大阪市西成区エリア</li>
+        <li>給与：経験・資格により応相談</li>
+        <li>待遇：交通費支給・社会保険完備（条件あり）</li>
+      </ul>
+      <p style="text-align:right;"><a href="recruit-detail.html" class="btn-primary">詳しく見る →</a></p>
+    </section>
 
-<!-- Partners -->  
-<section id="partners" class="section" aria-labelledby="partners-title">  
-  <h2 id="partners-title"><i class="fa-solid fa-building" aria-hidden="true"></i> 関連会社</h2>  
-  <p>当ステーションは以下の関連企業と連携し、包括的なケアを提供しています。</p>  
-  <ul style="list-style:disc; margin:0.8rem 0 1rem 1.2rem;">  
-    <li><a href="https://iwaki-corp.com/" target="_blank" rel="noopener noreferrer">株式会社岩希（訪問介護）</a></li>  
-    <li><a href="#" target="_blank" rel="noopener noreferrer">合同会社○○ライフケア（福祉用具レンタル）</a></li>  
-    <li><a href="#" target="_blank" rel="noopener noreferrer">社会福祉法人○○会（地域支援事業）</a></li>  
-  </ul>  
-  <p style="text-align:right;"><a href="related-detail.html" class="btn-primary">詳しく見る →</a></p>  
-</section>
+    <section id="partners" class="section" aria-labelledby="partners-title">
+      <h2 id="partners-title"><i class="fa-solid fa-building" aria-hidden="true" style="color:var(--accent)"></i> 関連会社</h2>
+      <p style="color:var(--muted)">当ステーションは以下の関連企業と連携し、包括的なケアを提供しています。</p>
+      <ul style="list-style:disc; margin:0.8rem 0 1rem 1.2rem; color:var(--text);">
+        <li><a href="https://iwaki-corp.com/" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">株式会社岩希（訪問介護）</a></li>
+        <li><a href="#" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">合同会社○○ライフケア（福祉用具レンタル）</a></li>
+        <li><a href="#" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">社会福祉法人○○会（地域支援事業）</a></li>
+      </ul>
+      <p style="text-align:right;"><a href="related-detail.html" class="btn-primary">詳しく見る →</a></p>
+    </section>
+
   </main>
 
-  <!-- モーダル：料金 -->
   <div id="modal-fees" class="modal" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="modal-fees-title">
     <div class="modal-content">
       <button class="modal-close" aria-label="閉じる" data-modal-close>&times;</button>
       <h3 id="modal-fees-title" style="margin:0 0 .6rem 0;">料金表（PDF）</h3>
-      <iframe src="料金表.pdf" title="料金表"></iframe>
+      <iframe src="料金表.pdf" title="料金表" style="width:100%; height:60vh; border:0;"></iframe>
     </div>
   </div>
 
-  <!-- モーダル：契約書 -->
-  <div id="modal-contracts" class="modal" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="modal-contracts-title">
-    <div class="modal-content1">
+  <div id="modal-contracts1" class="modal" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="modal-contracts1-title">
+    <div class="modal-content">
       <button class="modal-close" aria-label="閉じる" data-modal-close>&times;</button>
-      <h3 id="modal-contracts-title" style="margin:0 0 .6rem 0;">訪問看護契約書（PDF）</h3>
-      <iframe src="訪問看護契約書.pdf" title="契約書"></iframe>
+      <h3 id="modal-contracts1-title" style="margin:0 0 .6rem 0;">訪問看護契約書（PDF）</h3>
+      <iframe src="訪問看護契約書.pdf" title="契約書" style="width:100%; height:60vh; border:0;"></iframe>
     </div>
-     <div class="modal-content2">
+  </div>
+  <div id="modal-contracts2" class="modal" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="modal-contracts2-title">
+    <div class="modal-content">
       <button class="modal-close" aria-label="閉じる" data-modal-close>&times;</button>
-      <h3 id="modal-contracts-title" style="margin:0 0 .6rem 0;">重要事項説明書（訪問看護）（PDF）</h3>
-      <iframe src="重要事項説明書（訪問看護）.pdf" title="契約書"></iframe>
+      <h3 id="modal-contracts2-title" style="margin:0 0 .6rem 0;">重要事項説明書（訪問看護）（PDF）</h3>
+      <iframe src="重要事項説明書（訪問看護）.pdf" title="重要事項説明書" style="width:100%; height:60vh; border:0;"></iframe>
     </div>
-     <div class="modal-content3">
+  </div>
+  <div id="modal-contracts3" class="modal" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="modal-contracts3-title">
+    <div class="modal-content">
       <button class="modal-close" aria-label="閉じる" data-modal-close>&times;</button>
-      <h3 id="modal-contracts-title" style="margin:0 0 .6rem 0;">個人情報保護に関する同意書（PDF）</h3>
-      <iframe src="個人情報保護に関する同意書.pdf" title="契約書"></iframe>
+      <h3 id="modal-contracts3-title" style="margin:0 0 .6rem 0;">個人情報保護に関する同意書（PDF）</h3>
+      <iframe src="個人情報保護に関する同意書.pdf" title="同意書" style="width:100%; height:60vh; border:0;"></iframe>
     </div>
-     <div class="modal-content4">
+  </div>
+  <div id="modal-contracts4" class="modal" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="modal-contracts4-title">
+    <div class="modal-content">
       <button class="modal-close" aria-label="閉じる" data-modal-close>&times;</button>
-      <h3 id="modal-contracts-title" style="margin:0 0 .6rem 0;">緊急時訪問看護加算同意書（PDF）</h3>
-      <iframe src="緊急時訪問看護加算同意書.pdf" title="契約書"></iframe>
+      <h3 id="modal-contracts4-title" style="margin:0 0 .6rem 0;">緊急時訪問看護加算同意書（PDF）</h3>
+      <iframe src="緊急時訪問看護加算同意書.pdf" title="同意書" style="width:100%; height:60vh; border:0;"></iframe>
     </div>
   </div>
 
-  <!-- 浮動LINEボタン -->
   <div class="floating-line" aria-hidden="true">
     <a href="https://lin.ee/mlItwhZB" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-line" aria-hidden="true"></i></a>
   </div>
@@ -512,22 +454,13 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
   </footer>
 
   <script>
-/*
-  統合スクリプト（ハンバーガー、オーバーレイ、ニュースティッカー、モーダル）
-  - モバイルメニューは #mobile-nav を右からスライドで表示
-  - オーバーレイは #navOverlay を使う（HTML上に置いてある）
-  - モーダルは openModal(id) / closeModal(id) を公開
-*/
-
 document.addEventListener('DOMContentLoaded', function () {
   try {
-    // elements
     const navToggle = document.querySelector('.nav-toggle');
     const mobileNav = document.getElementById('mobile-nav');
     const overlay = document.getElementById('navOverlay');
     const mobileCloseBtn = mobileNav ? mobileNav.querySelector('.mobile-nav-close') : null;
 
-    // ensure overlay initial state consistent
     if (overlay) {
       overlay.classList.remove('visible');
       overlay.setAttribute('aria-hidden', 'true');
@@ -537,7 +470,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function showOverlay() {
       if (!overlay) return;
       overlay.style.display = 'block';
-      // next frame to allow transition
       requestAnimationFrame(() => {
         overlay.classList.add('visible');
         overlay.setAttribute('aria-hidden','false');
@@ -547,10 +479,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!overlay) return;
       overlay.classList.remove('visible');
       overlay.setAttribute('aria-hidden','true');
-      // wait for transition then hide
-      setTimeout(()=> {
-        if (!overlay.classList.contains('visible')) overlay.style.display = 'none';
-      }, 300);
+      setTimeout(()=> { if (!overlay.classList.contains('visible')) overlay.style.display = 'none'; }, 300);
     }
 
     function openMobileNav() {
@@ -560,12 +489,8 @@ document.addEventListener('DOMContentLoaded', function () {
       document.body.classList.add('nav-open');
       if (navToggle) navToggle.setAttribute('aria-expanded','true');
       showOverlay();
-
-      // focus first actionable element
       const first = mobileNav.querySelector('a, button, input, [tabindex]:not([tabindex="-1"])');
       if (first) setTimeout(()=> first.focus(), 120);
-
-      // add simple focus trap for mobile nav
       mobileNav.addEventListener('keydown', mobileNavKeydown);
     }
     function closeMobileNav() {
@@ -575,13 +500,11 @@ document.addEventListener('DOMContentLoaded', function () {
       document.body.classList.remove('nav-open');
       if (navToggle) { navToggle.setAttribute('aria-expanded','false'); navToggle.focus(); }
       hideOverlay();
-
       mobileNav.removeEventListener('keydown', mobileNavKeydown);
     }
     function mobileNavKeydown(e) {
       if (e.key === 'Escape') { closeMobileNav(); return; }
       if (e.key !== 'Tab') return;
-      // focus trap: keep within mobileNav
       const focusable = Array.from(mobileNav.querySelectorAll('a, button, input, [tabindex]:not([tabindex="-1"])')).filter(el => el.offsetParent !== null);
       if (!focusable.length) return;
       const first = focusable[0], last = focusable[focusable.length -1];
@@ -589,48 +512,37 @@ document.addEventListener('DOMContentLoaded', function () {
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
 
-    // wiring buttons
     if (navToggle && mobileNav) {
-      navToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (mobileNav.classList.contains('open')) closeMobileNav(); else openMobileNav();
-      });
+      navToggle.addEventListener('click', (e) => { e.stopPropagation(); if (mobileNav.classList.contains('open')) closeMobileNav(); else openMobileNav(); });
     }
     if (mobileCloseBtn) mobileCloseBtn.addEventListener('click', closeMobileNav);
     if (overlay) overlay.addEventListener('click', closeMobileNav);
 
-    // close mobile nav on link click (small delay)
     document.addEventListener('click', function(e){
       if (!mobileNav || !mobileNav.classList.contains('open')) return;
       const a = e.target.closest('#mobile-nav a');
       if (a) setTimeout(closeMobileNav, 120);
     });
 
-    // ESC closes mobile nav if open (global)
     document.addEventListener('keydown', function(e){
       if (e.key === 'Escape') {
         if (mobileNav && mobileNav.classList.contains('open')) closeMobileNav();
       }
     });
 
-    /* ===== ニュースティッカー ===== */
     (function initTicker(){
       const wrapper = document.querySelector('.news-ticker');
       const ticker = wrapper ? wrapper.querySelector('.ticker') : null;
       if (!wrapper || !ticker) return;
-
-      // ensure long content for smooth loop
       function expand() {
         const tw = ticker.scrollWidth;
         const ww = wrapper.clientWidth;
-        // clone until ticker is sufficiently wider than container
         if (tw < ww * 1.5 && ticker.childElementCount < 64) {
           ticker.innerHTML += ticker.innerHTML;
           setTimeout(expand, 40);
         }
       }
       expand();
-
       let x = 0;
       const speed = 0.6;
       let paused = false;
@@ -644,17 +556,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         requestAnimationFrame(step);
       }
-
       wrapper.addEventListener('mouseenter', ()=> paused = true);
       wrapper.addEventListener('mouseleave', ()=> paused = false);
       wrapper.addEventListener('touchstart', ()=> paused = true, {passive:true});
       wrapper.addEventListener('touchend', ()=> paused = false, {passive:true});
-
       requestAnimationFrame(step);
       window.addEventListener('resize', ()=> { x = 0; });
     })();
 
-    /* ===== モーダル（openModal / closeModal） ===== */
     const FOCUSABLE = 'a[href], button:not([disabled]), textarea, input:not([type="hidden"]), select, [tabindex]:not([tabindex="-1"])';
     const modals = Array.from(document.querySelectorAll('.modal'));
     const modalState = new Map();
@@ -678,7 +587,6 @@ document.addEventListener('DOMContentLoaded', function () {
     window.openModal = function(id) {
       const el = document.getElementById(id);
       if (!el) return;
-      // hide overlay while modal open (so overlay doesn't block modal)
       if (overlay) overlay.style.display = 'none';
       el.setAttribute('aria-hidden','false');
       el.style.display = 'block';
@@ -702,11 +610,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (state.previouslyFocused && state.previouslyFocused.focus) state.previouslyFocused.focus();
         modalState.delete(id);
       }
-      // if mobile nav is open, show overlay again
       if (mobileNav && mobileNav.classList.contains('open')) showOverlay();
     };
 
-    // close wiring for modal
     document.addEventListener('click', function(e){
       if (e.target.closest('[data-modal-close]') || e.target.closest('.modal-close')) {
         const modal = e.target.closest('.modal');
@@ -718,7 +624,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    // ESC closes any open modal
     document.addEventListener('keydown', function(e){
       if (e.key === 'Escape') {
         modals.forEach(m => {
@@ -729,7 +634,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    // initialize modal visibility state
     modals.forEach(m => {
       if (m.getAttribute('aria-hidden') === null) m.setAttribute('aria-hidden','true');
       m.style.display = (m.getAttribute('aria-hidden') === 'false') ? 'block' : 'none';
