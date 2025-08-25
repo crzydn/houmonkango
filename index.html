@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>大阪市西成区の精神科訪問看護なら いわき訪問看護ステーション</title>
-  <meta name="description" content="大阪市西成区で24時間対応の精神科訪問看護ステーション。仕事帰りの傾聴サポートから生活保護申請まで専門看護師が寄り添います。" />
+  <meta name="description" content="大阪市西成区で24時間対応の精神科訪問看護ステーション。仕事帰りの傾聴サポートから生活保護申請まで専門看護師が寄り添います." />
   <meta property="og:title" content="大阪市西成区の精神科訪問看護なら いわき訪問看護ステーション" />
   <meta property="og:description" content="精神科訪問看護を通じて、心に寄り添うサポートを行います。24時間365日対応可能。" />
   <meta property="og:image" content="iwaki-logo.png" />
@@ -15,29 +15,20 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
 
   <style>
-/* ===== 基本 ===== */
 html { scroll-behavior: smooth; font-size: 16px; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Hiragino Sans','Noto Sans JP',sans-serif; background: #eef4f7; color: #222; line-height: 1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
 a { text-decoration: none; color: inherit; }
 .container { width: 100%; max-width: 1024px; margin: auto; padding: 0 1rem; }
 
-/* ===== ヘッダー ===== */
 header { position: sticky; top: 0; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.08); z-index: 2000; }
-.header-inner {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.6rem 1rem;
-  justify-content: space-between;
-}
+.header-inner { display: flex; align-items: center; gap: 1rem; padding: 0.6rem 1rem; justify-content: space-between; }
 .logo { display:flex; align-items:center; flex:0 0 auto; }
 .logo img { height: 48px; width: auto; display:block; }
 
-/* ===== デスクトップナビ（従来） ===== */
 nav.desktop-nav { flex: 1 1 auto; display:flex; justify-content:flex-end; align-items:center; }
 nav.desktop-nav ul { display:flex; gap:1rem; align-items:center; margin:0; padding:0; list-style:none; white-space:nowrap; }
-nav.desktop-nav a { font-size:0.95rem; padding:0.35rem 0.6rem; display:inline-block; line-height:1; transition: color 0.18s ease; }
+nav.desktop-nav a { font-size:0.95rem; padding:0.35rem 0.6rem; display:inline-block; line-height:1; transition: color 0.12s ease; }
 nav.desktop-nav a:hover, nav.desktop-nav a:focus { color:#2b8f6e; outline:none; }
 .header-btn {
   background:#00c300;
@@ -51,146 +42,81 @@ nav.desktop-nav a:hover, nav.desktop-nav a:focus { color:#2b8f6e; outline:none; 
   gap:0.5rem;
   box-shadow:0 2px 6px rgba(0,0,0,0.08);
   white-space:nowrap;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
 }
 .header-btn i { display:inline-block; font-size:1.05rem; }
 
-/* ===== モバイルナビ関連 ===== */
-.nav-overlay {
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.36);
-  opacity: 0;
-  transition: opacity .28s ease;
-  z-index: 2400;
-  display: none;
-  -webkit-tap-highlight-color: transparent;
-}
+.nav-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.36); opacity: 0; transition: opacity .28s ease; z-index: 2400; display: none; -webkit-tap-highlight-color: transparent; }
 .nav-overlay.visible { display:block; opacity:1; }
 
-.mobile-nav {
-  position: fixed; top: 0; right: 0;
-  height: 100vh; width: 320px; max-width: 86%;
-  background: #fff;
-  transform: translateX(110%); transition: transform .28s cubic-bezier(.2,.9,.2,1);
-  z-index: 2500; display:flex; flex-direction:column; align-items:stretch;
-  padding: 18px 16px 20px 16px; box-shadow: -8px 0 26px rgba(0,0,0,0.08);
-}
+.mobile-nav { position: fixed; top: 0; right: 0; height: 100vh; width: 320px; max-width: 86%; background: #fff; transform: translateX(110%); transition: transform .28s cubic-bezier(.2,.9,.2,1); z-index: 2500; display:flex; flex-direction:column; align-items:stretch; padding: 18px 16px 20px 16px; box-shadow: -8px 0 26px rgba(0,0,0,0.08); }
 .mobile-nav.open { transform: translateX(0); }
-
-.mobile-nav .mobile-nav-close {
-  background: transparent; border: none; font-size: 1.4rem; color: #333;
-  position: absolute; top: 10px; right: 10px; padding: 6px; cursor:pointer;
-}
-
+.mobile-nav .mobile-nav-close { background: transparent; border: none; font-size: 1.4rem; color: #333; position: absolute; top: 10px; right: 10px; padding: 6px; cursor:pointer; }
 .mobile-nav-list { list-style:none; margin:0; padding:0; margin-top: 6px; display:flex; flex-direction:column; gap:6px; }
 .mobile-nav-list a { display:block; padding:12px 10px; color:#214a3b; font-size:1.05rem; border-radius:8px; }
 .mobile-nav-list a:hover, .mobile-nav-list a:focus { background:#f1f7f4; color:#1f7a63; outline:none; }
 .mobile-nav-list .header-btn { padding:12px; margin-top:8px; border-radius:12px; }
 
-/* ensure nav toggle visible on mobile and above header */
 .nav-toggle { background: transparent; border: none; font-size: 1.4rem; cursor: pointer; color: #333; display: inline-flex; align-items:center; justify-content:center; padding:8px; z-index:2600; }
-
-/* prevent body scroll when nav open */
 body.nav-open { overflow: hidden; }
 
-/* ===== ヒーロー ===== */
 .hero { position: relative; background: url('/') center/cover no-repeat; text-align: center; color: #fff; padding: calc(2.5rem + 64px) 1rem 2rem; }
 .hero::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.48); }
 .hero .content { position: relative; z-index: 1; max-width: 840px; margin: auto; }
 .hero h1 { font-size: 1.9rem; margin-bottom: 0.8rem; line-height: 1.22; }
 .hero p { font-size: 1rem; margin-bottom: 1.2rem; color: rgba(255,255,255,0.95); }
-.btn-primary { background: #fff; color: #2b8f6e; padding: 0.8rem 1.4rem; border-radius: 20px; font-weight: 600; font-size: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.12); transition: transform 0.18s ease; display:inline-flex; align-items:center; gap:0.5rem; }
-.btn-primary:hover { transform: translateY(-3px); }
+.btn-primary { background: #fff; color: #2b8f6e; padding: 0.8rem 1.4rem; border-radius: 20px; font-weight: 600; font-size: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.12); transition: transform 0.12s ease, box-shadow 0.12s ease; display:inline-flex; align-items:center; gap:0.5rem; }
+.btn-primary:hover { transform: translateY(-4px); }
 
-/* ===== セクション等 ===== */
 .section { background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin: 1.5rem 0; padding: 1.5rem; }
 .section h2 { font-size: 1.4rem; color: #2b8f6e; margin-bottom: 1rem; position: relative; }
 .section h2::after { content: ''; display: block; width: 56px; height: 3px; background: #2b8f6e; border-radius: 2px; position: absolute; bottom: -8px; left: 0; }
 
-/* カード */
 .cards { display:flex; flex-wrap:wrap; gap:1rem; }
-.card { flex: 1 1 calc(50% - 1rem); background:#fafafa; padding:1rem; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,0.04); transition: transform .18s ease; min-width:220px; }
+.card { flex: 1 1 calc(50% - 1rem); background:#fafafa; padding:1rem; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,0.04); transition: transform .18s ease, box-shadow .18s ease, opacity .28s ease; min-width:220px; opacity:0; transform: translateY(18px); }
+.card.in-view { opacity:1; transform: translateY(0); }
 .card h3 { font-size:1.1rem; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.5rem; }
 .card p { font-size:0.95rem; color:#444; }
 .cute-icon { font-size:1.6rem; color:#2b8f6e; margin-right:0.5rem; }
-
+.card:hover, .card:focus-within { transform: translateY(-6px) scale(1.01); box-shadow:0 8px 20px rgba(0,0,0,0.08); }
 @media (max-width:680px) { .card { flex: 1 1 100%; } }
 
-/* 活動地域など */
 .region-map img { width:100%; height:auto; border-radius:8px; display:block; }
 .region-list { display:flex; flex-wrap:wrap; gap:0.8rem; margin-top:1rem; }
 .region-list li { background:#2b8f6e; color:#fff; padding:0.45rem 0.9rem; border-radius:6px; font-size:0.92rem; }
 
-/* ニュースティッカー */
 .news-ticker { background:#eef9f4; overflow:hidden; border-radius:8px; padding:0.35rem 0; }
 .ticker { display:inline-block; white-space:nowrap; transform:translateX(0); will-change:transform; }
 .ticker span { display:inline-block; padding:0.5rem 1.75rem; color:#214a3b; font-size:0.95rem; }
 
-/* テーブル */
 .staff-card { background:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.05); padding:1rem; text-align:center; flex:1 1 calc(50% - 1rem); }
-    .staff-card img { width:120px; height:120px; object-fit:cover; border-radius:50%; margin-bottom:0.5rem; }
-    .staff-card h3 { font-size:1.2rem; color:#4caf93; margin-bottom:0.3rem; }
-    .staff-card p { font-size:0.95rem; line-height:1.4; }
-    .table-responsive { overflow-x:auto; margin:1.5rem 0; }
-    table { width:100%; border-collapse:collapse; }
-    th, td { border:1px solid #ddd; padding:0.8rem; text-align:center; }
-    th { background:#4caf93; color:#fff; }
-    .badge-ok { background:#4caf93; color:#fff; padding:3px 6px; border-radius:4px; font-size:0.8rem; }
-
+.staff-card img { width:120px; height:120px; object-fit:cover; border-radius:50%; margin-bottom:0.5rem; }
+.staff-card h3 { font-size:1.2rem; color:#4caf93; margin-bottom:0.3rem; }
+.staff-card p { font-size:0.95rem; line-height:1.4; }
+.table-responsive { overflow-x:auto; margin:1.5rem 0; }
+table { width:100%; border-collapse:collapse; }
+th, td { border:1px solid #ddd; padding:0.8rem; text-align:center; }
+th { background:#4caf93; color:#fff; }
+.badge-ok { background:#4caf93; color:#fff; padding:3px 6px; border-radius:4px; font-size:0.8rem; }
 @media(max-width:768px){ .staff-card { flex:1 1 100%; } }
 
-/* バッジ */
 .badge-ok { background:#2b8f6e; color:#fff; padding:6px 10px; border-radius:8px; font-size:0.86rem; display:inline-block; }
 .badge-consult { background:#ff9800; color:#fff; padding:6px 10px; border-radius:8px; font-size:0.86rem; display:inline-block; }
 
-/* 浮動LINEボタン */
 .floating-line { position:fixed; bottom:18px; right:18px; width:56px; height:56px; background:#00c300; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.12); z-index:1500; }
 .floating-line a { color:#fff; font-size:1.4rem; display:inline-flex; align-items:center; justify-content:center; }
 
-/* PDF ビューア（ページ内フルスクリーン） */
-#pdf-viewer {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.92);
-  z-index: 5000;
-  display: none;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-}
+#pdf-viewer { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 5000; display: none; flex-direction: column; align-items: stretch; justify-content: flex-start; }
 #pdf-viewer.open { display: flex; }
-#pdf-viewer .pdf-header {
-  height: 56px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 1rem;
-  color:#fff;
-  background: transparent;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
+#pdf-viewer .pdf-header { height: 56px; display:flex; align-items:center; justify-content:space-between; padding:0 1rem; color:#fff; background: transparent; border-bottom: 1px solid rgba(255,255,255,0.06); }
 #pdf-viewer .pdf-title { font-weight:600; font-size:1rem; }
-#pdf-viewer .pdf-close {
-  background:transparent;
-  border:none;
-  color:#fff;
-  font-size:1.25rem;
-  cursor:pointer;
-  padding:8px;
-  border-radius:8px;
-}
+#pdf-viewer .pdf-close { background:transparent; border:none; color:#fff; font-size:1.25rem; cursor:pointer; padding:8px; border-radius:8px; }
 #pdf-viewer .pdf-close:focus { outline:3px solid rgba(255,255,255,0.12) }
-#pdf-viewer .pdf-frame {
-  flex:1 1 auto;
-  width:100%;
-  height: calc(100vh - 56px);
-  border:0;
-}
+#pdf-viewer .pdf-frame { flex:1 1 auto; width:100%; height: calc(100vh - 56px); border:0; }
 body.pdf-open { overflow: hidden; }
 
-/* フッター */
 footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font-size:0.85rem; }
 
-/* 微調整 */
 @media (max-width:480px) {
   .hero h1 { font-size:1.4rem; }
   .hero p { font-size:0.95rem; }
@@ -201,48 +127,23 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
 }
 @media (max-width: 768px) {
   nav.desktop-nav ul > li { display: none !important; }
-  nav.desktop-nav ul > li:last-child .header-btn {
-    padding: 0.35rem 0.8rem;
-    border-radius: 18px;
-    font-size: 0.9rem;
-  }
+  nav.desktop-nav ul > li:last-child .header-btn { padding: 0.35rem 0.8rem; border-radius: 18px; font-size: 0.9rem; }
   .header-inner { padding-top: 0.55rem; padding-bottom: 0.55rem; }
   nav.desktop-nav { pointer-events: none; }
   nav.desktop-nav ul > li:last-child { display: none; }
   .nav-toggle { margin-left: 8px; }
 }
-.btn-download {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  background: linear-gradient(135deg, #2b8f6e, #1f7a63);
-  color: #fff;
-  padding: 0.6rem 1rem;
-  border-radius: 25px;
-  border: none;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.10);
-  transition: transform .18s ease, box-shadow .18s ease;
-}
-.btn-download:hover,
-.btn-download:focus {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.12);
-  outline: none;
-}
+.btn-download { display: inline-flex; align-items: center; gap: 0.6rem; background: linear-gradient(135deg, #2b8f6e, #1f7a63); color: #fff; padding: 0.6rem 1rem; border-radius: 25px; border: none; font-size: 0.95rem; font-weight: 600; cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.10); transition: transform .12s ease, box-shadow .12s ease; }
+.btn-download:hover, .btn-download:focus { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(0,0,0,0.12); outline: none; }
   </style>
 </head>
 <body>
-  <!-- ===== ヘッダー（既存ナビはデスクトップ用に残しておく） ===== -->
   <header>
     <div class="container header-inner">
       <div class="logo">
         <a href="index.html"><img src="iwaki-logo.png" alt="いわき訪問看護ステーション ロゴ"></a>
       </div>
 
-      <!-- デスクトップナビ（表示はCSSで制御） -->
       <nav class="desktop-nav" aria-label="グローバルナビ">
         <ul>
           <li><a href="#hero">ホーム</a></li>
@@ -255,17 +156,14 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
         </ul>
       </nav>
 
-      <!-- ハンバーガー（モバイル用） -->
       <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="メニュー">
         <i class="fa fa-bars" aria-hidden="true"></i>
       </button>
     </div>
   </header>
 
-  <!-- overlay -->
   <div id="navOverlay" class="nav-overlay" aria-hidden="true"></div>
 
-  <!-- オフキャンバスナビ（右側） -->
   <nav id="mobile-nav" class="mobile-nav" aria-hidden="true" aria-label="モバイルメニュー">
     <button class="mobile-nav-close" aria-label="閉じるメニュー"><i class="fa fa-times"></i></button>
 
@@ -285,7 +183,6 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
 </ul>
   </nav>
 
-  <!-- ===== ヒーロー ===== -->
   <section id="hero" class="hero">
     <div class="content container" role="region" aria-label="トップメッセージ">
       <h1>「今日も一人で頑張ったな…」<br>そんな夜を、<br>少しでも安心に包みたい。</h1>
@@ -485,7 +382,6 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
   </p>
 
   <div class="map-container" style="margin-top:1rem; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
-    <!-- ページ内フル幅埋め込み（レスポンシブ） -->
     <iframe
       src="https://www.google.com/maps?q=%E5%A4%A7%E9%98%AA%E5%BA%9C%E5%A4%A7%E9%98%AA%E5%B8%82%E6%B5%AA%E9%80%AA%E5%8C%BA%E6%81%B5%E7%BE%8E%E5%AF%BF%E8%A5%BF%EF%BC%93%E4%B8%81%E7%9B%AE%EF%BC%98%E2%88%92%EF%BC%98+%E3%83%9B%E3%83%AF%E3%82%A4%E3%83%86%E3%82%A3KIMI601%E5%8F%B7&output=embed"
       width="100%" height="360" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
@@ -501,7 +397,6 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
 </section>
   </main>
 
-  <!-- ページ内フルスクリーンPDFビューア（追加） -->
   <div id="pdf-viewer" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="pdf-header">
       <div class="pdf-title" aria-live="polite"></div>
@@ -510,7 +405,6 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
     <iframe class="pdf-frame" src="about:blank" title="PDFプレビュー"></iframe>
   </div>
 
-  <!-- 浮動LINEボタン -->
   <div class="floating-line" aria-hidden="true">
     <a href="https://lin.ee/mlItwhZB" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-line" aria-hidden="true"></i></a>
   </div>
@@ -601,7 +495,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    /* ===== ニュースティッカー ===== */
     (function initTicker(){
       const wrapper = document.querySelector('.news-ticker');
       const ticker = wrapper ? wrapper.querySelector('.ticker') : null;
@@ -640,12 +533,28 @@ document.addEventListener('DOMContentLoaded', function () {
       window.addEventListener('resize', ()=> { x = 0; });
     })();
 
+    // カードの微アニメ（IntersectionObserver）
+    const cards = document.querySelectorAll('.card');
+    if ('IntersectionObserver' in window && cards.length) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      cards.forEach((c) => obs.observe(c));
+    } else {
+      // フォールバック
+      cards.forEach(c => c.classList.add('in-view'));
+    }
+
   } catch (err) {
     console.error('UI init error:', err);
   }
 });
 
-// ページ内フルスクリーンPDFビューア（シンプル）
 function openPdf(url, title) {
   try {
     const viewer = document.getElementById('pdf-viewer');
@@ -658,9 +567,7 @@ function openPdf(url, title) {
     viewer.setAttribute('aria-hidden','false');
     document.body.classList.add('pdf-open');
     setTimeout(()=> { const btn = viewer.querySelector('.pdf-close'); if (btn) btn.focus(); }, 60);
-  } catch (e) {
-    console.error('openPdf error', e);
-  }
+  } catch (e) { console.error('openPdf error', e); }
 }
 function closePdf() {
   try {
@@ -671,13 +578,9 @@ function closePdf() {
     viewer.setAttribute('aria-hidden','true');
     document.body.classList.remove('pdf-open');
     iframe.src = 'about:blank';
-  } catch (e) {
-    console.error('closePdf error', e);
-  }
+  } catch (e) { console.error('closePdf error', e); }
 }
-document.addEventListener('keydown', function(e){
-  if (e.key === 'Escape') closePdf();
-});
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closePdf(); });
   </script>
 </body>
 </html>
