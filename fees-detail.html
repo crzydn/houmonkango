@@ -196,8 +196,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <footer class="container" role="contentinfo" style="margin-top:1rem;text-align:center">
     <small>&copy; 2025 いわき訪問看護ステーション</small>
   </footer>
+  <script>
+(function(){
+  var origOpenPdf = window.openPdf;
+  window.openPdf = function(url, title){
+    try {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'pdf_view',
+        pdf_title: title || '',
+        pdf_url: url || '',
+        page_path: location.pathname
+      });
+    } catch (e) {}
+    if (typeof origOpenPdf === 'function') {
+      return origOpenPdf(url, title);
+    }
+    // 万が一 origOpenPdf がない場合の保険
+    try {
+      var viewer = document.getElementById('pdf-viewer');
+      if (viewer) {
+        var iframe = viewer.querySelector('.pdf-frame');
+        var titleEl = viewer.querySelector('.pdf-title');
+        if (iframe) iframe.src = url;
+        if (titleEl) titleEl.textContent = title || '';
+        viewer.classList.add('open');
+        viewer.setAttribute('aria-hidden','false');
+        document.body.classList.add('pdf-open');
+      } else {
+        window.open(url, '_blank');
+      }
+    } catch(e){}
+  };
+})();
+</script>
+
 </body>
 </html>
+
 
 
 
