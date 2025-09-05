@@ -602,7 +602,6 @@ function closePdf() {
   } catch (e) { console.error('closePdf error', e); }
 }
 document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closePdf(); });
-    <script>
 (function(){
   var origOpenPdf = window.openPdf;
   window.openPdf = function(url, title){
