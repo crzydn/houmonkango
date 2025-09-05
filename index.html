@@ -587,9 +587,24 @@ function openPdf(url, title) {
     viewer.classList.add('open');
     viewer.setAttribute('aria-hidden','false');
     document.body.classList.add('pdf-open');
-    setTimeout(()=> { const btn = viewer.querySelector('.pdf-close'); if (btn) btn.focus(); }, 60);
-  } catch (e) { console.error('openPdf error', e); }
+    setTimeout(()=> {
+      const btn = viewer.querySelector('.pdf-close');
+      if (btn) btn.focus();
+    }, 60);
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'pdf_view',               
+      pdf_title: title || '',        
+      pdf_url: url,
+      page_path: location.pathname    
+    });
+    
+  } catch (e) {
+    console.error('openPdf error', e);
+  }
 }
+
 function closePdf() {
   try {
     const viewer = document.getElementById('pdf-viewer');
@@ -599,41 +614,10 @@ function closePdf() {
     viewer.setAttribute('aria-hidden','true');
     document.body.classList.remove('pdf-open');
     iframe.src = 'about:blank';
-  } catch (e) { console.error('closePdf error', e); }
+  } catch (e) {
+    console.error('closePdf error', e);
+  }
 }
-document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closePdf(); });
-(function(){
-  var origOpenPdf = window.openPdf;
-  window.openPdf = function(url, title){
-    try {
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        event: 'pdf_view',
-        pdf_title: title || '',
-        pdf_url: url || '',
-        page_path: location.pathname
-      });
-    } catch (e) {}
-    if (typeof origOpenPdf === 'function') {
-      return origOpenPdf(url, title);
-    }
-    // 万が一 origOpenPdf がない場合の保険
-    try {
-      var viewer = document.getElementById('pdf-viewer');
-      if (viewer) {
-        var iframe = viewer.querySelector('.pdf-frame');
-        var titleEl = viewer.querySelector('.pdf-title');
-        if (iframe) iframe.src = url;
-        if (titleEl) titleEl.textContent = title || '';
-        viewer.classList.add('open');
-        viewer.setAttribute('aria-hidden','false');
-        document.body.classList.add('pdf-open');
-      } else {
-        window.open(url, '_blank');
-      }
-    } catch(e){}
-  };
-})();
 </script>
 </body>
 </html>
