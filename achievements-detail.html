@@ -48,6 +48,33 @@ a{color:inherit}
 .page-header{background:var(--card-bg); border-radius:10px; padding:1rem; box-shadow:var(--shadow); margin:1rem 0}
 .page-intro{background:transparent; margin-top:.6rem; color:var(--muted)}
 
+    .btn{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none}
+.btn-download{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:.6rem 1rem;border-radius:22px;font-weight:600;box-shadow:0 6px 18px rgba(0,0,0,0.06);border:none}
+.btn-download:hover{transform:translateY(-2px)}
+
+
+.contact-row{display:flex;gap:.6rem;align-items:center;margin-top:1rem;justify-content:center}
+.btn-primary{background:var(--cta);color:#fff;padding:.6rem 1rem;border-radius:22px;font-weight:600;box-shadow:0 6px 18px rgba(0,0,0,0.08);border:none}
+
+.back-link{display:inline-block;color:var(--primary);margin-top:.6rem;text-align:center}
+
+
+.text-muted{color:var(--muted)}
+.align-center{text-align:center}
+
+@media(max-width:900px){.container{padding:0 .75rem}}
+
+@media print{body{background:#fff}.section,.page-header{box-shadow:none}a::after{content:" (" attr(href) ")"}}
+  
+/* ヘッダー中央配置・色合わせとCTAの統一（上書きルール） */
+.page-header.container{display:flex !important;flex-direction:column !important;align-items:center !important;justify-content:center !important;text-align:center !important;width:100% !important;max-width:var(--site-max-width) !important;margin:1rem auto !important;padding:1rem !important}
+.page-header h1{color:var(--primary) !important}
+.page-header .page-intro{color:var(--muted) !important}
+
+/* CTA（LINE / 電話）を同一クラスで動作・色味を統一 */
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:var(--cta) !important;color:#fff !important;padding:.6rem 1rem;border-radius:22px;font-weight:600;box-shadow:0 6px 18px rgba(0,0,0,0.08);border:none;transition:transform .18s ease}
+.btn-primary:hover,.btn-primary:focus{transform:translateY(-3px);outline:none}
+
     .hero{padding:2.2rem 0;background:linear-gradient(180deg,rgba(43,143,110,0.06),transparent)}
     .hero h1{color:var(--accent);font-size:1.4rem;margin-bottom:.4rem}
     .hero p{color:var(--muted);margin-bottom:.6rem}
@@ -345,6 +372,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </script>
 </body>
 </html>
+
 
 
 
