@@ -152,6 +152,20 @@ footer { text-align:center; padding:1rem 0; background:#2b8f6e; color:#fff; font
 }
 .btn-download { display: inline-flex; align-items: center; gap: 0.6rem; background: linear-gradient(135deg, #2b8f6e, #1f7a63); color: #fff; padding: 0.6rem 1rem; border-radius: 25px; border: none; font-size: 0.95rem; font-weight: 600; cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.10); transition: transform .12s ease, box-shadow .12s ease; }
 .btn-download:hover, .btn-download:focus { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(0,0,0,0.12); outline: none; }
+
+    .kpi-section { padding-top: .8rem; padding-bottom: .8rem; }
+.kpi-grid { display:flex; flex-wrap:wrap; gap:1rem; margin-top:1rem; }
+.kpi-card { background:#fafafa; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.04); padding:1rem; display:flex; gap:0.9rem; align-items:center; min-width:220px; flex:1 1 calc(33.333% - 1rem); transition: transform .14s ease, box-shadow .14s ease, opacity .28s ease; }
+.kpi-card:focus, .kpi-card:hover { transform: translateY(-6px); box-shadow:0 10px 30px rgba(0,0,0,0.08); outline: none; }
+.kpi-icon { width:56px; height:56px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.45rem; color:#fff; background:linear-gradient(135deg,#2b8f6e,#1f7a63); flex-shrink:0; }
+.kpi-body { flex:1 1 auto; }
+.kpi-number { font-size:1.35rem; font-weight:700; color:#214a3b; margin-bottom:0.25rem; }
+.kpi-label { font-size:0.92rem; color:#556; margin-bottom:0.45rem; }
+.kpi-link.kpi-cta { display:inline-block; padding:0.45rem 0.8rem; border-radius:14px; background:#00c300; color:#fff; font-weight:600; font-size:0.9rem; text-decoration:none; transition: transform .08s ease, box-shadow .08s ease; }
+.kpi-link.kpi-cta:active, .kpi-link.kpi-cta:hover { transform: translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,0.08); }
+@media (max-width:980px){ .kpi-card { flex:1 1 calc(50% - 1rem); } }
+@media (max-width:560px){ .kpi-card { flex:1 1 100%; } }
+    
   </style>
 </head>
 <body>
@@ -249,6 +263,70 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <p style="text-align:right; margin-top:1rem;"><a href="services-detail.html" class="btn-primary">詳しく見る →</a></p>
     </section>
+    
+　　<!-- KPI -->
+    <section id="kpi" class="section kpi-section" aria-labelledby="kpi-title">
+  <h2 id="kpi-title"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> 実績・活動のご紹介</h2>
+
+  <div class="kpi-grid" role="list">
+    <article class="kpi-card" role="listitem" tabindex="0" aria-labelledby="kpi-1">
+      <div class="kpi-icon"><i class="fa-solid fa-handshake-angle" aria-hidden="true"></i></div>
+      <div class="kpi-body">
+        <div id="kpi-1" class="kpi-number" data-target="284">0</div>
+        <div class="kpi-label">地域連携件数（累計）</div>
+      </div>
+    </article>
+
+    <article class="kpi-card" role="listitem" tabindex="0" aria-labelledby="kpi-2">
+      <div class="kpi-icon"><i class="fa-solid fa-stopwatch" aria-hidden="true"></i></div>
+      <div class="kpi-body">
+        <div id="kpi-2" class="kpi-number" data-target="2.4" data-format="fixed1">0</div>
+        <div class="kpi-label">平均初回リードタイム（時間）</div>
+      </div>
+    </article>
+
+    <article class="kpi-card" role="listitem" tabindex="0" aria-labelledby="kpi-3">
+      <div class="kpi-icon"><i class="fa-solid fa-check-circle" aria-hidden="true"></i></div>
+      <div class="kpi-body">
+        <div id="kpi-3" class="kpi-number" data-target="1240" data-format="int">0</div>
+        <div class="kpi-label">対応完了実績数（累計）</div>
+      </div>
+    </article>
+
+    <article class="kpi-card" role="listitem" tabindex="0" aria-labelledby="kpi-4">
+      <div class="kpi-icon"><i class="fa-solid fa-star" aria-hidden="true"></i></div>
+      <div class="kpi-body">
+        <div id="kpi-4" class="kpi-number" data-target="4.7" data-format="fixed1">0</div>
+        <div class="kpi-label">平均口コミ評価（5点満点）</div>
+       </div>
+    </article>
+
+    <article class="kpi-card" role="listitem" tabindex="0" aria-labelledby="kpi-5">
+      <div class="kpi-icon"><i class="fa-solid fa-book-open" aria-hidden="true"></i></div>
+      <div class="kpi-body">
+        <div id="kpi-5" class="kpi-number" data-target="47" data-format="int">0</div>
+        <div class="kpi-label">公開事例数（事例ページ）</div>
+      </div>
+    </article>
+
+    <article class="kpi-card" role="listitem" tabindex="0" aria-labelledby="kpi-6">
+      <div class="kpi-icon"><i class="fa-solid fa-chalkboard-teacher" aria-hidden="true"></i></div>
+      <div class="kpi-body">
+        <div id="kpi-6" class="kpi-number" data-target="240" data-format="int">0</div>
+        <div class="kpi-label">スタッフ年間研修時間（合計）</div>
+      </div>
+    </article>
+
+    <article class="kpi-card" role="listitem" tabindex="0" aria-labelledby="kpi-7">
+      <div class="kpi-icon"><i class="fa-solid fa-file-signature" aria-hidden="true"></i></div>
+      <div class="kpi-body">
+        <div id="kpi-7" class="kpi-number" data-target="312" data-format="int">0</div>
+        <div class="kpi-label">生活保護受給相談件数（累計）</div>
+       </div>
+    </article>
+  </div>
+  <p style="text-align:right; margin-top:1rem;"><a href="kpi-detail.html" class="btn-primary">実績の詳細 →</a></p>
+</section>
 
     <!-- Region -->
     <section id="region" class="section" aria-labelledby="region-title">
@@ -617,6 +695,71 @@ function closePdf() {
     console.error('closePdf error', e);
   }
 }
+    (function(){
+  const selector = '#kpi .kpi-number';
+  let started = false;
+
+  function formatNumber(val, format) {
+    if (format === 'fixed1') return parseFloat(val).toFixed(1);
+    if (format === 'int') return String(Math.round(val)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return String(val);
+  }
+
+  function animateCount(el, targetRaw, durationMs) {
+    const format = el.getAttribute('data-format') || '';
+    let target = String(targetRaw).replace(/,/g,'');
+    target = isNaN(target) ? 0 : Number(target);
+    const start = 0;
+    const startTime = performance.now();
+    function step(now) {
+      const t = Math.min(1, (now - startTime) / durationMs);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const current = start + (target - start) * eased;
+      if (format === 'fixed1') el.textContent = (Math.round(current*10)/10).toFixed(1);
+      else if (format === 'int') el.textContent = String(Math.floor(current)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      else {
+        if (!Number.isInteger(target) && Math.abs(target - Math.round(target)) > 0.001) el.textContent = (Math.round(current*100)/100).toFixed(2);
+        else el.textContent = String(Math.floor(current));
+      }
+      if (t < 1) requestAnimationFrame(step);
+      else el.textContent = formatNumber(targetRaw, format);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function kickCounters() {
+    if (started) return; started = true;
+    document.querySelectorAll(selector).forEach((el)=>{
+      const raw = el.getAttribute('data-target') || el.textContent || '0';
+      animateCount(el, raw, 1000);
+    });
+  }
+
+  const obs = new IntersectionObserver((entries, o)=>{
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        kickCounters();
+        o.disconnect();
+      }
+    });
+  }, { threshold: 0.28 });
+  const node = document.getElementById('kpi');
+  if (node) obs.observe(node);
+
+  // KPIリンククリックで GA イベント送信（dataLayer または gtag）
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('.kpi-link[data-kpi]');
+    if (!a) return;
+    const kpi = a.getAttribute('data-kpi') || 'kpi_click';
+    try {
+      if (window.gtag && typeof window.gtag === 'function') {
+        window.gtag('event', 'kpi_click', { 'kpi': kpi, 'event_label': a.href });
+      } else if (window.dataLayer && Array.isArray(window.dataLayer)) {
+        window.dataLayer.push({ event:'kpi_click', kpi:kpi, link:a.href });
+      }
+    } catch (err){}
+  });
+})();
 </script>
 </body>
 </html>
