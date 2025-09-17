@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>実務実績｜いわき訪問看護ステーション</title>
+  <meta name="description" content="いわき訪問看護ステーションの実績ページ。地域連携件数、対応完了数、リードタイム、研修実績、事例、口コミなどの主要実績を公開しています。" />
+
+  <!-- Font Awesome（アイコン用） -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+
+  <!-- Analytics（メインと同じタグを貼るとデータが統合されます） -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TQ4Q6V86JC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-TQ4Q6V86JC');
+  </script>
+
+  <style>
+    :root{ --accent:#2b8f6e; --accent-2:#1f7a63; --muted:#6b7a78; --card:#fafafa; --bg:#eef4f7; }
+    html{font-family: 'Hiragino Sans','Noto Sans JP',sans-serif; font-size:16px;}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#222;line-height:1.6}
+    .container{max-width:1024px;margin:0 auto;padding:0 1rem}
+
+    header{background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.06);position:sticky;top:0;z-index:1200}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:0.6rem 1rem}
+    .logo img{height:44px}
+    nav.desktop-nav ul{display:flex;gap:0.8rem;list-style:none;margin:0;padding:0}
+    nav.desktop-nav a{padding:.35rem .6rem;border-radius:6px}
+    .btn-primary{background:#fff;color:var(--accent);padding:.6rem 1rem;border-radius:20px;display:inline-flex;gap:.5rem;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,0.08)}
+
+    .hero{padding:2.2rem 0;background:linear-gradient(180deg,rgba(43,143,110,0.06),transparent)}
+    .hero h1{color:var(--accent);font-size:1.4rem;margin-bottom:.4rem}
+    .hero p{color:var(--muted);margin-bottom:.6rem}
+
+    /* KPI summary */
+    .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:1rem 0}
+    .kpi-card{background:var(--card);padding:1rem;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.04);display:flex;flex-direction:column;gap:.4rem;min-height:96px}
+    .kpi-num{font-size:1.45rem;font-weight:700;color:var(--accent)}
+    .kpi-label{font-size:0.92rem;color:var(--muted)}
+    .kpi-meta{font-size:0.82rem;color:#6b7a78}
+
+    /* Details layout */
+    .section{background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.05);padding:1rem;margin:1rem 0}
+    .section h2{color:var(--accent);font-size:1.15rem;margin-bottom:.6rem}
+
+    .stat-row{display:flex;gap:1rem;flex-wrap:wrap}
+    .stat-left{flex:1 1 320px}
+    .stat-right{flex:1 1 320px}
+
+    .progress{height:12px;background:#eee;border-radius:8px;overflow:hidden}
+    .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0;transition:width .8s ease}
+
+    /* case list */
+    .case{border-left:4px solid rgba(43,143,110,0.12);padding:.6rem;border-radius:6px;background:#fbfdfb;margin-bottom:.6rem}
+    .case h3{margin:0 0 .25rem 0;font-size:1rem}
+    .case p{margin:0;color:#444}
+
+    /* testimonials */
+    .testi{display:flex;gap:1rem;align-items:flex-start}
+    .testi .avatar{width:56px;height:56px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.04);display:flex;align-items:center;justify-content:center}
+    .testi p{margin:0}
+
+    /* accordion */
+    .accordion button{width:100%;text-align:left;padding:.6rem;border:0;background:transparent;font-size:1rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer}
+    .panel{max-height:0;overflow:hidden;transition:max-height .32s ease;padding:0 0}
+    .panel.open{padding:.5rem 0;max-height:480px}
+
+    /* small helpers */
+    .muted{color:var(--muted);font-size:.92rem}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    a.cta{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .9rem;border-radius:20px;background:var(--accent);color:#fff}
+
+    footer{padding:1rem 0;text-align:center;color:#fff;background:var(--accent)}
+
+    @media(max-width:900px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.grid-2{grid-template-columns:1fr}}
+    @media(max-width:520px){.kpi-grid{grid-template-columns:1fr}.header-inner{padding:.5rem}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <div class="logo"><a href="index.html"><img src="iwaki-logo.png" alt="いわきロゴ"></a></div>
+      <nav class="desktop-nav" aria-label="グローバルナビ">
+        <ul>
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="services-detail.html">サービス</a></li>
+          <li><a href="achievements.html" aria-current="page">実績</a></li>
+          <li><a href="#contact" class="btn-primary">お問い合わせ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>実務実績 — 数字と具体事例でわかる当ステーションの成果</h1>
+      <p>地域連携・対応完了・研修実績・生活保護申請支援など、主要指標を公開しています。運営改善や外部連携、採用・広報にご活用ください。</p>
+    </section>
+
+    <!-- KPI summary -->
+    <section class="kpi-summary section" aria-labelledby="kpi-summary-title">
+      <h2 id="kpi-summary-title">主要KPIサマリ</h2>
+      <div class="kpi-grid" role="list">
+        <div class="kpi-card" role="listitem" aria-label="地域連携件数">
+          <div class="kpi-num" data-count="128">128</div>
+          <div class="kpi-label">地域連携件数</div>
+          <div class="kpi-meta">直近12ヶ月の医療・福祉機関との連携数</div>
+        </div>
+
+        <div class="kpi-card" role="listitem" aria-label="平均リードタイム">
+          <div class="kpi-num" data-count="2.8">2.8</div>
+          <div class="kpi-label">平均リードタイム（日）</div>
+          <div class="kpi-meta">問い合わせから初回訪問までの平均日数</div>
+        </div>
+
+        <div class="kpi-card" role="listitem" aria-label="対応完了実績数">
+          <div class="kpi-num" data-count="742">742</div>
+          <div class="kpi-label">対応完了実績数</div>
+          <div class="kpi-meta">クローズされた訪問対応の総数（累計）</div>
+        </div>
+
+        <div class="kpi-card" role="listitem" aria-label="生活保護相談件数">
+          <div class="kpi-num" data-count="96">96</div>
+          <div class="kpi-label">生活保護受給相談件数</div>
+          <div class="kpi-meta">申請支援を実施した相談数（直近12ヶ月）</div>
+        </div>
+      </div>
+      <p class="muted">※ 数値はダミーです。実際のデータに差し替えてください。</p>
+    </section>
+
+    <!-- 詳細セクション -->
+    <section class="section" aria-labelledby="detail-title">
+      <h2 id="detail-title">指標別の詳細と解説</h2>
+
+      <div class="stat-row">
+        <div class="stat-left">
+          <h3>地域連携（件数・種類）</h3>
+          <p class="muted">医療機関・福祉事業所・行政機関などとの協力実績。</p>
+          <div class="grid-2" style="margin-top:.8rem">
+            <div>
+              <strong>2024年度（例）</strong>
+              <ul style="margin:.5rem 0 0 1rem">
+                <li>医療機関（病院・クリニック）：52件</li>
+                <li>福祉事業所（居宅介護等）：34件</li>
+                <li>行政（保健所・福祉課）：18件</li>
+              </ul>
+            </div>
+            <div>
+              <strong>改善ポイント</strong>
+              <ul style="margin:.5rem 0 0 1rem">
+                <li>月次で連携先リストを更新し、接触ログを残す</li>
+                <li>定期的なケースレビュー会を設ける</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-right">
+          <h3>平均リードタイム（問い合わせ→初回訪問）</h3>
+          <p class="muted">患者さんの要件を速やかに把握し、初回対応までの時間を短縮します。</p>
+          <div style="margin-top:.8rem">
+            <div class="progress" aria-hidden="true"><i style="width:0%"></i></div>
+            <p class="muted" style="margin-top:.5rem">目標：3日以内 — 現状：2.8日（中央値）</p>
+          </div>
+        </div>
+      </div>
+
+      <hr style="margin:1rem 0;border:none;border-top:1px solid #eef2f1">
+
+      <h3>対応完了実績（クローズ数）</h3>
+      <p class="muted">対応完了の定義や算出方法を明記することで社内評価を統一します。</p>
+      <div style="display:flex;gap:1rem;margin-top:.6rem;flex-wrap:wrap">
+        <div style="flex:1 1 320px;background:#fff;padding:.8rem;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.04)">
+          <strong>累計対応完了</strong>
+          <div style="font-size:1.2rem;margin-top:.4rem">742</div>
+          <div class="muted" style="margin-top:.3rem">※ 内訳（医療調整・生活支援・服薬管理等）</div>
+        </div>
+
+        <div style="flex:1 1 320px;background:#fff;padding:.8rem;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.04)">
+          <strong>リードタイム分布</strong>
+          <div style="margin-top:.4rem">
+            <ul style="margin:.5rem 0 0 1rem">
+              <li>0-1日：22%</li>
+              <li>2-3日：48%</li>
+              <li>4日以上：30%</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <hr style="margin:1rem 0;border:none;border-top:1px solid #eef2f1">
+
+      <h3>事例（ケーススタディ）</h3>
+      <p class="muted">匿名化した具体事例を掲載します。要点だけまとめて、読みやすく。</p>
+
+      <div class="case" role="article">
+        <h3>【事例A】生活支援から自立へ（60代・男性）</h3>
+        <p>背景：慢性的なうつ状態と孤立。生活保護申請支援を希望。
+        <br>対応：訪問により傾聴・申請書類準備・他機関との連携を実施。3ヶ月で通院復帰と生活保護受給の成立を支援。</p>
+      </div>
+
+      <div class="case" role="article">
+        <h3>【事例B】薬剤管理と安全確保（40代・女性）</h3>
+        <p>背景：多剤服薬による誤薬リスク。定期訪問で服薬管理と家族連携を実施。6週間で投薬の安定化と生活リズム改善を確認。</p>
+      </div>
+
+      <div style="margin-top:.8rem">
+        <button class="cta" id="more-cases">さらに事例を表示</button>
+      </div>
+
+    </section>
+
+    <!-- 口コミ・テ estimonials -->
+    <section class="section" aria-labelledby="reviews-title">
+      <h2 id="reviews-title">口コミ・評価</h2>
+      <div class="testi" style="margin-top:.6rem">
+        <div class="avatar"><i class="fa-solid fa-user" aria-hidden="true"></i></div>
+        <div>
+          <p><strong>利用者A</strong> <span class="muted">（匿名）</span></p>
+          <p>丁寧に話を聞いてくれて、本当に救われました。初回訪問までの対応も早かったです。</p>
+        </div>
+      </div>
+
+      <div class="testi" style="margin-top:.8rem">
+        <div class="avatar"><i class="fa-solid fa-user" aria-hidden="true"></i></div>
+        <div>
+          <p><strong>ご家族B</strong> <span class="muted">（匿名）</span></p>
+          <p>行政手続きで困っていたときに親身に相談に乗ってくれました。専門的な説明がわかりやすいです。</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- スタッフ研修実績 -->
+    <section class="section" aria-labelledby="training-title">
+      <h2 id="training-title">スタッフ研修実績</h2>
+      <p class="muted">継続的な学習で質の高い訪問看護を維持しています。</p>
+      <ul style="margin-top:.6rem">
+        <li>月次ケースレビュー：実施回数（過去12ヶ月） 12回</li>
+        <li>外部講師セミナー：精神科看護の最新知見（年2回）</li>
+        <li>内部ロールプレイ：コミュニケーションスキル向上（毎月）</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">&copy; 2025 いわき訪問看護ステーション</div>
+  </footer>
+
+  <script>
+    // IntersectionObserverで進捗バーとカウンターをアニメ
+    document.addEventListener('DOMContentLoaded', () => {
+      const progress = document.querySelector('.progress > i');
+      const counters = document.querySelectorAll('.kpi-num[data-count]');
+
+      function animateCounters() {
+        counters.forEach(el => {
+          const target = Number(el.getAttribute('data-count')) || 0;
+          const start = 0;
+          const duration = 900; // ms
+          let startTime = null;
+
+          function step(ts) {
+            if (!startTime) startTime = ts;
+            const progressTime = ts - startTime;
+            const pct = Math.min(progressTime / duration, 1);
+            const value = Math.round(start + (target - start) * pct);
+            el.textContent = value;
+            if (pct < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        });
+      }
+
+      function animateProgress() {
+        if (!progress) return;
+        // 目標比率（例）：現在 67% を表示
+        const percent = 67;
+        progress.style.width = percent + '%';
+      }
+
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries, obs) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              animateCounters();
+              animateProgress();
+              obs.disconnect();
+            }
+          });
+        }, {threshold: 0.22});
+        io.observe(document.querySelector('.kpi-summary'));
+      } else {
+        animateCounters();
+        animateProgress();
+      }
+
+      // アコーディオン動作（事例の追加表示ボタン）
+      const moreBtn = document.getElementById('more-cases');
+      if (moreBtn) {
+        moreBtn.addEventListener('click', () => {
+          // ダミーでパネルを生成（運用ではサーバー側からロード）
+          const container = document.createElement('div');
+          container.className = 'case';
+          container.innerHTML = '<h3>【事例C】家族支援での多職種連携</h3><p>短く要点を載せる。連携内容、支援結果、学び。</p>';
+          moreBtn.insertAdjacentElement('beforebegin', container);
+          moreBtn.textContent = 'さらに事例を読み込む';
+
+          // Google Analyticsイベント（ダウンロードや重要な操作を計測）
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'load_more_cases', label: 'achievements_more_cases' });
+        });
+      }
+
+      </script>
+</body>
+</html>
