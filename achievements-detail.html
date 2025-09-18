@@ -157,6 +157,39 @@ footer{padding:1rem 0;text-align:center;color:#fff;background:var(--accent)}
   .kpi-grid{grid-template-columns:1fr}
   .header-inner{padding:.5rem}
 }
+  /* ===== ページ幅をメインと同じに揃えるための補正 ===== */
+main#main {
+  width: 100%;
+  max-width: var(--site-max-width);
+  margin: 0 auto;
+  padding: 0 var(--site-gap);
+  box-sizing: border-box;
+}
+
+/* 万一セクションが幅いっぱいに拡がっている場合のガード */
+.section, .kpi-summary {
+  max-width: var(--site-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;   /* 内側の余白は保持 */
+  padding-right: 1rem;
+}
+
+/* KPI グリッドを中央に寄せる（余白確保） */
+.kpi-grid {
+  max-width: calc(var(--site-max-width) - 2rem);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ヘッダーが親と同幅で崩れる可能性を防ぐ */
+.page-header {
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 </style>
 
 </head>
@@ -174,7 +207,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="page-intro">地域連携・対応完了・研修実績・生活保護申請支援など、主要指標を公開しています。</p>
     </div>
   </header>
-
+<main class="container" id="main">
     <!-- KPI summary -->
     <section class="kpi-summary section" aria-labelledby="kpi-summary-title">
       <h2 id="kpi-summary-title">主要実務実績</h2>
@@ -394,6 +427,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </script>
 </body>
 </html>
+
 
 
 
